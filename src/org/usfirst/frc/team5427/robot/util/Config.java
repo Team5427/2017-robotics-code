@@ -5,7 +5,7 @@ package org.usfirst.frc.team5427.robot.util;
  * our robot will use during the year. All variables are to be static, and
  * nothing in this file should ever have to be initiated.
  * 
- * @author Andrew Kennedy
+ * @author Andrew Kennedy, Bo Corman
  *
  */
 public class Config {

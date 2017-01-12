@@ -5,6 +5,7 @@ package org.usfirst.frc.team5427.robot.util;
  * shortcut to System.out.print, and also allows for sorting your log messages
  * to various things, allowing some to be filtered out on runtime.
  * 
+ * @author Andrew Kennedy, Bo Corman
  *
  */
 @SuppressWarnings(value = { "all" })
