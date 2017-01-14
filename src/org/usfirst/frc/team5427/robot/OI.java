@@ -1,8 +1,14 @@
 package org.usfirst.frc.team5427.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5427.robot.commands.ExampleCommand;
+
+import org.usfirst.frc.team5427.robot.util.Config;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -36,4 +42,20 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+
+	/**
+	 * Primary joystick
+	 */
+	Joystick joy = new Joystick(Config.JOYSTICK_PORT);
+	/**
+	 * Alternate joystick. Disabled / currently unused
+	 */
+//	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT)
+	
+	/**
+	 * Constructor for the OI class, defines the button-press events.
+	 */
+	public OI() {
+		
+	}
 }
