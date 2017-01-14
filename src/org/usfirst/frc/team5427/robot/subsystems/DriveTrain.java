@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5427.robot.subsystems;
 
 import org.usfirst.frc.team5427.robot.Robot;
-import org.usfirst.frc.team5427.robot.SteelTalon;
+import org.usfirst.frc.team5427.robot.OurClasses.SteelTalon;
 import org.usfirst.frc.team5427.robot.util.Config;
 
 import edu.wpi.first.wpilibj.SpeedController;

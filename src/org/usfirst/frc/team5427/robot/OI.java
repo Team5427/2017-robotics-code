@@ -48,9 +48,9 @@ public class OI {
 	 */
 	Joystick joy = new Joystick(Config.JOYSTICK_PORT);
 	/**
-	 * Alternate joystick. Disabled / currently unused
+	 * Alternate joystick. Currently unused
 	 */
-//	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT)
+	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
 	
 	/**
 	 * Constructor for the OI class, defines the button-press events.
