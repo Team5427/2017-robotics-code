@@ -23,7 +23,7 @@ public class DriveTrain extends Subsystem {
 	SpeedController MOTOR_PWM_BackRight;
 
 	/**
-	 * Drivetrain constructor -- as parameters takes each motor to initialise.
+	 * Drive Train constructor -- as parameters takes each motor to initialize.
 	 * 
 	 * @param motorPWM_FrontLeft
 	 * @param motorPWM_RearLeft
