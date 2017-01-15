@@ -3,6 +3,7 @@ package org.usfirst.frc.team5427.robot;
 
 import edu.wpi.cscore.CameraServerJNI;
 import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -33,8 +34,12 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	CameraServer server;
+	//these are the two usb cameras
 	UsbCamera usb_cam_2;
-	CvSink camera2;
+	
+	//NI USB interface numbers for the cameras
+	int devForCam0=2,devForCam2=3;
+	
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -46,17 +51,16 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		//camServ=new CameraServerJNI();
-		usb_cam_2 = new UsbCamera("cam2","/dev/cam2");
-		usb_cam_2.setFPS(10);
+		usb_cam_2 = new UsbCamera("cam0", 2);
 		server = CameraServer.getInstance();
-		server.addCamera((VideoSource)(usb_cam_2));
-		server.startAutomaticCapture("cam2","/dev/cam2");
-		//camera2=server.getVideo((VideoSource)(usb_cam_2));
+		server.addCamera(usb_cam_2);
+		server.startAutomaticCapture();
 		//server.putVideo("camera2", 20, 20);
-
-		//
 		
+		//CameraServer.getInstance().startAutomaticCapture(usb_cam_0);
+		
+
+	
 		
 		
 	}
