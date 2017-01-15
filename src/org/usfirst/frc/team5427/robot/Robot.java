@@ -28,7 +28,6 @@ import org.usfirst.frc.team5427.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 
 	// PWM Motors for Drive Train
