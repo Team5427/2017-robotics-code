@@ -114,43 +114,6 @@ public class DriveTrain extends Subsystem {
 		 */
 		Robot.driveTrain.setLeftSpeed((v - w) / 2);
 
-		/*
-		 * //TODO delete old code once the new code is proven to work. double y
-		 * = joyY; double z = joyZ; double left = 0; double right = 0; boolean b
-		 * = false; if (z >= 0) { z = 1 - z; b = true; } else { z = z + 1; b =
-		 * false; } if (b) { right = y * z; left = y; } else { left = y * z;
-		 * right = y; } if (z != 0 && Math.abs(y) < .1) {
-		 * 
-		 * if (joyZ > .05) {
-		 * 
-		 * 
-		 * right = joyZ * .7 ; left = -joyZ * .7;
-		 * 
-		 * 
-		 * } else if (joyZ < -.05) {
-		 * 
-		 * right = joyZ * .7 ; left = -joyZ * .7;
-		 * 
-		 * }
-		 * 
-		 * }
-		 * 
-		 * 
-		 * Robot.driveTrain.setLeftSpeed(left);
-		 * Robot.driveTrain.setRightSpeed(right);
-		 */
-
-		/*
-		 * double leftSpeed = (-1 * joyY) + joyX; double rightSpeed = (-1 *
-		 * joyY) - joyX;
-		 * 
-		 * rightSpeed = 0 - rightSpeed; double max = Math.abs(leftSpeed); if
-		 * (max < Math.abs(rightSpeed)) max = Math.abs(rightSpeed); if (max > 1)
-		 * { leftSpeed = leftSpeed / max; rightSpeed = rightSpeed / max; }
-		 * Robot.driveTrain.setLeftSpeed(leftSpeed);
-		 * Robot.driveTrain.setRightSpeed(rightSpeed);
-		 */
-
 	}
 
 	/**
