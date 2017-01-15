@@ -9,8 +9,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * This Subsystem will be responsible for managing all four SIM motors that are
- * responsible for controlling the wheels. //TODO expand on this description
- * once more is known about the robot.
+ * responsible for controlling the wheels. It contains initialization code, code for setting speeds,
+ * and code for setting the speeds of individual sides. There is no option for individual motors,
+ * so mecanum wheels cannot be supported. 	
  * 
  * @author Andrew Kennedy, Bo Corman
  */
