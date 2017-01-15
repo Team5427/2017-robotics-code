@@ -27,19 +27,14 @@ public class Drive extends Command {
 
 	@SuppressWarnings("all")
 	protected void execute() {
-		if (Robot.oi.getJoy().getRawButton(Config.TO_TURRET_BUTTON) == false) {
-			if (Config.JOYSTICK_MODE == Config.ONE_JOYSTICK) {
-				Robot.driveTrain.driveJoystick(Robot.oi.getJoy().getZ(), Robot.oi.getJoy().getY());
-			}
-			if (Config.JOYSTICK_MODE == Config.TWO_JOYSTICKS) {
-				Robot.driveTrain.driveDualJoystick(Robot.oi.getJoy().getY(), Robot.oi.getAltJoy().getY());
-			}
-			// Log.init("DRIVING");
-		} else {
-			Robot.driveTrain.stop();
-			// Log.init("NOT");
-
+		if (Config.JOYSTICK_MODE == Config.ONE_JOYSTICK) {
+			Robot.driveTrain.driveJoystick(Robot.oi.getJoy().getZ(), Robot.oi.getJoy().getY());
 		}
+		if (Config.JOYSTICK_MODE == Config.TWO_JOYSTICKS) {
+			Robot.driveTrain.driveDualJoystick(Robot.oi.getJoy().getY(), Robot.oi.getAltJoy().getY());
+		}
+			// Log.init("DRIVING");
+
 
 	}
 
