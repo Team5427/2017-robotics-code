@@ -52,4 +52,7 @@ public class Config {
 	// Joystick
 	public static final int JOYSTICK_PORT = 0;
 	public static final int ALT_JOYSTICK_PORT = 0;
+	public static final int ONE_JOYSTICK = 0; // static var for above
+	public static final int TWO_JOYSTICKS = 1; // static var for above
+	public static final int JOYSTICK_MODE = ONE_JOYSTICK; // Set this to either ONE_JOYSTICK or TWO_JOYSTICK
 }
