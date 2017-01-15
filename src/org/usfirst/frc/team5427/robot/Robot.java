@@ -35,10 +35,10 @@ public class Robot extends IterativeRobot {
 	
 	CameraServer server;
 	//these are the two usb cameras
-	UsbCamera usb_cam_2;
+	UsbCamera usb_cam_0, usb_cam_1, usb_cam_2;
 	
 	//NI USB interface numbers for the cameras
-	int devForCam0=2,devForCam2=3;
+	int devForCam0=2,devForCam1=3;
 	
 	
 	/**
@@ -51,10 +51,23 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		usb_cam_2 = new UsbCamera("cam0", 2);
+		
 		server = CameraServer.getInstance();
-		server.addCamera(usb_cam_2);
-		server.startAutomaticCapture();
+		
+		//creates camera 0 (the smaller one) and adds it to the server
+		usb_cam_0 = new UsbCamera("cam0", 0);
+		server.addCamera(usb_cam_0);
+		
+		//creates camera 1 (the larger one) and adds it to the server
+		usb_cam_1 = new UsbCamera("cam1", 1);
+		server.addCamera(usb_cam_1);
+		
+		//Starts video of both cameras
+		server.startAutomaticCapture(usb_cam_0);
+		server.startAutomaticCapture(usb_cam_1);
+		
+		//in the dashboard, select 'cam0' and 'cam1'
+		
 		//server.putVideo("camera2", 20, 20);
 		
 		//CameraServer.getInstance().startAutomaticCapture(usb_cam_0);
