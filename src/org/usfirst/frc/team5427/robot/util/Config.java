@@ -43,7 +43,7 @@ public class Config {
 
 	// PWM PORTS
 	// TODO reassign motor values
-	public static final int FRONT_LEFT_MOTOR 	= 0;
+	public static final int AAFRONT_LEFT_MOTOR 	= 0;
 	public static final int REAR_LEFT_MOTOR 	= 1;
 	public static final int FRONT_RIGHT_MOTOR 	= 2;
 	public static final int REAR_RIGHT_MOTOR 	= 3;
