@@ -58,4 +58,23 @@ public class OI {
 	public OI() {
 		
 	}
+	/**
+	 * returns the joystick object
+	 * 
+	 * @return the joystick
+	 */
+
+	public Joystick getJoy() {
+		return joy;
+	}
+
+	/**
+	 * returns the right joystick if using 2
+	 * NOTE: not used for real, but used elsewhere in code
+	 * @return the other joystick
+	 */
+	public Joystick getAltJoy() {
+		return altJoy;
+
+	}
 }
