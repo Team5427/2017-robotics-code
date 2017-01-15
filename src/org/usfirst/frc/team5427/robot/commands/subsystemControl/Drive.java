@@ -1,9 +1,11 @@
 
 package org.usfirst.frc.team5427.robot.commands.subsystemControl;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
@@ -13,9 +15,13 @@ import org.usfirst.frc.team5427.robot.util.Log;
  */
 public class Drive extends Command {
 
-	public Drive() {
+	private DriveTrain driveTrain;
+	private Joystick joystick;
+	
+	public Drive(DriveTrain drivetrain, Joystick joystick) {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.driveTrain);
+		this.driveTrain = driveTrain;
+		this.joystick = joystick;
 	}
 
 	// Called just before this Command runs the first time
@@ -28,10 +34,10 @@ public class Drive extends Command {
 	@SuppressWarnings("all")
 	protected void execute() {
 		if (Config.JOYSTICK_MODE == Config.ONE_JOYSTICK) {
-			Robot.driveTrain.driveJoystick(Robot.oi.getJoy().getZ(), Robot.oi.getJoy().getY());
+			driveTrain.driveJoystick(Robot.oi.getJoy().getZ(), Robot.oi.getJoy().getY());
 		}
 		if (Config.JOYSTICK_MODE == Config.TWO_JOYSTICKS) {
-			Robot.driveTrain.driveDualJoystick(Robot.oi.getJoy().getY(), Robot.oi.getAltJoy().getY());
+			driveTrain.driveDualJoystick(Robot.oi.getJoy().getY(), Robot.oi.getAltJoy().getY());
 		}
 			// Log.init("DRIVING");
 
@@ -46,7 +52,7 @@ public class Drive extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.driveTrain.stop();
+		driveTrain.stop();
 	}
 
 	// Called when another command which requires one or more of the same
