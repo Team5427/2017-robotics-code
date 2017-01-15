@@ -15,13 +15,29 @@ import org.usfirst.frc.team5427.robot.util.Log;
  */
 public class Drive extends Command {
 
+	public static final int ONE_JOYSTICK = 0; // static var for above
+	public static final int TWO_JOYSTICKS = 1; // static var for above
+
 	private DriveTrain driveTrain;
 	private Joystick joystick;
+	private Joystick altJoystick;
 	
-	public Drive(DriveTrain drivetrain, Joystick joystick) {
+	private int joystickMode;
+	
+	public Drive(DriveTrain driveTrain, Joystick joystick, int joystickMode) {
 		// Use requires() here to declare subsystem dependencies
 		this.driveTrain = driveTrain;
 		this.joystick = joystick;
+		this.joystickMode = joystickMode;
+		this.altJoystick = null;
+	}
+	
+	public Drive(DriveTrain driveTrain, Joystick joystick, Joystick altJoystick, int joystickMode) {
+		// Use requires() here to declare subsystem dependencies
+		this.driveTrain = driveTrain;
+		this.joystick = joystick;
+		this.joystickMode = joystickMode;
+		this.altJoystick = altJoystick;
 	}
 
 	// Called just before this Command runs the first time
@@ -33,11 +49,11 @@ public class Drive extends Command {
 
 	@SuppressWarnings("all")
 	protected void execute() {
-		if (Config.JOYSTICK_MODE == Config.ONE_JOYSTICK) {
-			driveTrain.driveJoystick(Robot.oi.getJoy().getZ(), Robot.oi.getJoy().getY());
+		if (joystickMode == ONE_JOYSTICK) {
+			driveTrain.driveJoystick(joystick.getZ(), joystick.getY());
 		}
-		if (Config.JOYSTICK_MODE == Config.TWO_JOYSTICKS) {
-			driveTrain.driveDualJoystick(Robot.oi.getJoy().getY(), Robot.oi.getAltJoy().getY());
+		if (joystickMode == TWO_JOYSTICKS) {
+			driveTrain.driveDualJoystick(joystick.getY(), altJoystick.getY());
 		}
 			// Log.init("DRIVING");
 
