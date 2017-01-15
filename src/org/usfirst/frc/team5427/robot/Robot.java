@@ -67,6 +67,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public static DriveTrain driveTrain;
 
+	public static Drive drive;
+	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -149,6 +151,9 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.cancel();
 		
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
+		
+		drive = new Drive(driveTrain, oi.getJoy(), Config.JOYSTICK_MODE);
+		drive.start();
 	}
 
 	/**
