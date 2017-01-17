@@ -1,7 +1,15 @@
 
 package org.usfirst.frc.team5427.robot;
 
+import edu.wpi.cscore.AxisCamera;
+import edu.wpi.cscore.CameraServerJNI;
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.MjpegServer;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSource;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+//import edu.wpi.first.wpilibj.NamedSendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -18,14 +26,24 @@ import org.usfirst.frc.team5427.robot.subsystems.ExampleSubsystem;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot {
+public class Robot extends IterativeRobot{
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-
+	
+	CameraServer server;
+	//these are the two usb cameras
+	UsbCamera usbCam0, usbCam1;
+	
+	AxisCamera axisCam;
+	
+	//NI USB interface numbers for the cameras
+	//int devForCam0=2,devForCam1=3;
+	
+	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -36,6 +54,38 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		server = CameraServer.getInstance();
+		
+		//creates camera 0 (the smaller one) and adds it to the server
+		usbCam0 = new UsbCamera("cam0", 0);
+		server.addCamera(usbCam0);
+		
+		//creates camera 1 (the larger one) and adds it to the server
+		usbCam1 = new UsbCamera("cam1", 1);
+		server.addCamera(usbCam1);
+		
+		//axisCam = new AxisCamera("axisCamera", "10.54.27.11");
+		//server.addCamera(axisCam);
+		
+		//Starts video of both cameras
+//		server.startAutomaticCapture(usbCam0);
+//		server.startAutomaticCapture(usbCam1);
+//		server.startAutomaticCapture(axisCam);
+		
+		server.addServer("Camera0");
+		//server.putVideo("cam0");
+		
+		//in the dashboard, select 'cam0' and 'cam1'
+		
+		server.putVideo("cam0", 20, 20);
+		
+		//CameraServer.getInstance().startAutomaticCapture(usbCam0);
+		
+
+	
+		
+		
 	}
 
 	/**
