@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team5427.robot;
 
+import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.CameraServerJNI;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.MjpegServer;
@@ -25,7 +26,7 @@ import org.usfirst.frc.team5427.robot.subsystems.ExampleSubsystem;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot {
+public class Robot extends IterativeRobot{
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
@@ -35,10 +36,12 @@ public class Robot extends IterativeRobot {
 	
 	CameraServer server;
 	//these are the two usb cameras
-	UsbCamera usb_cam_0, usb_cam_1, usb_cam_2;
+	UsbCamera usbCam0, usbCam1;
+	
+	AxisCamera axisCam;
 	
 	//NI USB interface numbers for the cameras
-	int devForCam0=2,devForCam1=3;
+	//int devForCam0=2,devForCam1=3;
 	
 	
 	/**
@@ -55,22 +58,29 @@ public class Robot extends IterativeRobot {
 		server = CameraServer.getInstance();
 		
 		//creates camera 0 (the smaller one) and adds it to the server
-		usb_cam_0 = new UsbCamera("cam0", 0);
-		server.addCamera(usb_cam_0);
+		usbCam0 = new UsbCamera("cam0", 0);
+		server.addCamera(usbCam0);
 		
 		//creates camera 1 (the larger one) and adds it to the server
-		usb_cam_1 = new UsbCamera("cam1", 1);
-		server.addCamera(usb_cam_1);
+		usbCam1 = new UsbCamera("cam1", 1);
+		server.addCamera(usbCam1);
+		
+		//axisCam = new AxisCamera("axisCamera", "10.54.27.11");
+		//server.addCamera(axisCam);
 		
 		//Starts video of both cameras
-		server.startAutomaticCapture(usb_cam_0);
-		server.startAutomaticCapture(usb_cam_1);
+//		server.startAutomaticCapture(usbCam0);
+//		server.startAutomaticCapture(usbCam1);
+//		server.startAutomaticCapture(axisCam);
+		
+		server.addServer("Camera0");
+		//server.putVideo("cam0");
 		
 		//in the dashboard, select 'cam0' and 'cam1'
 		
-		//server.putVideo("camera2", 20, 20);
+		server.putVideo("cam0", 20, 20);
 		
-		//CameraServer.getInstance().startAutomaticCapture(usb_cam_0);
+		//CameraServer.getInstance().startAutomaticCapture(usbCam0);
 		
 
 	
