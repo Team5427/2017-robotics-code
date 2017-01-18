@@ -9,11 +9,8 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.SpeedController;
-=======
 //import edu.wpi.first.wpilibj.NamedSendable;
->>>>>>> usb_camera
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -104,14 +101,12 @@ public class Robot extends IterativeRobot{
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
-<<<<<<< HEAD
 		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, 0, 0);
 		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, 0, 0);
 		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR, 0, 0);
 		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, 0, 0);
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
-=======
 		server = CameraServer.getInstance();
 		
 		//creates camera 0 (the smaller one) and adds it to the server
@@ -143,7 +138,6 @@ public class Robot extends IterativeRobot{
 	
 		
 		
->>>>>>> usb_camera
 	}
 
 	/**
