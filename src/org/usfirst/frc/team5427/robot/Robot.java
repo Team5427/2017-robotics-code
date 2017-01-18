@@ -4,8 +4,10 @@ package org.usfirst.frc.team5427.robot;
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.CameraServerJNI;
 import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -60,31 +62,45 @@ public class Robot extends IterativeRobot{
 		//creates camera 0 (the smaller one) and adds it to the server
 		usbCam0 = new UsbCamera("cam0", 0);
 		server.addCamera(usbCam0);
+		server.startAutomaticCapture(usbCam0);
 		
 		//creates camera 1 (the larger one) and adds it to the server
-		usbCam1 = new UsbCamera("cam1", 1);
-		server.addCamera(usbCam1);
+		//usbCam1 = new UsbCamera("cam1", 1);
 		
-		//axisCam = new AxisCamera("axisCamera", "10.54.27.11");
+		//CameraServer.getInstance().startAutomaticCapture();
+		
+//		MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1180);
+//		mjpegServer1.setSource(usbCam0);
+		
+		
+		
+		
+/*		CvSink cvSink = new CvSink ("opencv_USB Camera 0");
+		cvSink.setSource(usbCam0);
+		CvSource outputStream = new CvSource("Blur", PixelFormat.kMJPEG, 640, 480, 30);
+		MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 1180);
+		mjpegServer2.setSource(outputStream);*/
+		
+		
+		
+		
+		//server.addCamera(usbCam1);
+		
+		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
 		//server.addCamera(axisCam);
 		
 		//Starts video of both cameras
-//		server.startAutomaticCapture(usbCam0);
-//		server.startAutomaticCapture(usbCam1);
+		//server.startAutomaticCapture(usbCam1);
 //		server.startAutomaticCapture(axisCam);
 		
-		server.addServer("Camera0");
+		//server.addServer("Camera0");
 		//server.putVideo("cam0");
 		
 		//in the dashboard, select 'cam0' and 'cam1'
 		
-		server.putVideo("cam0", 20, 20);
+		//server.putVideo("cam0", 20, 20);
 		
 		//CameraServer.getInstance().startAutomaticCapture(usbCam0);
-		
-
-	
-		
 		
 	}
 
