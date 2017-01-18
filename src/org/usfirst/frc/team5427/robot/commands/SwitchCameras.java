@@ -34,6 +34,7 @@ public class SwitchCameras extends Command {
 		/**
 		 * If camera 0 is currently running, switch to camera 1.
 		 * If camera 1 is currently running, switch to camera 0.
+		 * mode0,mode1. set to mode 0. change modes when button is pressed.
 		 */
 	}
 	
