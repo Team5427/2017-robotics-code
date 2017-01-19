@@ -30,10 +30,18 @@ public class SwitchCameras extends Command {
 	 * Method is called periodically during execution.
 	 */
 	protected void execute()
-	{
+	{	
 		//changes the camera to the next camera - axis camera becomes camera 0
 		Robot.currentCamera++;
 		Robot.currentCamera%=3;
+		Log.info("Swapped Cameras");
+		if(Robot.currentCamera==0)
+			Robot.server.startAutomaticCapture(Robot.usbCam0);
+		else if(Robot.currentCamera==1)
+			Robot.server.startAutomaticCapture(Robot.usbCam1);
+		else if(Robot.currentCamera==2)
+			Robot.server.startAutomaticCapture(Robot.axisCam);
+		end();
 	}
 	
 	//Returns true when the command no longer needs to run execute()

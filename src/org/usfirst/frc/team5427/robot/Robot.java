@@ -82,11 +82,11 @@ public class Robot extends IterativeRobot{
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
-	CameraServer server;
+	public static CameraServer server;
 	//these are the two usb cameras
-	UsbCamera usbCam0, usbCam1;
+	public static UsbCamera usbCam0, usbCam1;
 	
-	AxisCamera axisCam;
+	public static AxisCamera axisCam;
 	
 	public static int currentCamera = 0;
 	//NI USB interface numbers for the cameras
@@ -115,17 +115,20 @@ public class Robot extends IterativeRobot{
 		//creates camera 0 (the smaller one) and adds it to the server
 		usbCam0 = new UsbCamera("cam0", 0);
 		server.addCamera(usbCam0);
-		server.startAutomaticCapture(usbCam0);
 		
 		//creates camera 1 (the larger one) and adds it to the server
-		//usbCam1 = new UsbCamera("cam1", 1);
+		usbCam1 = new UsbCamera("cam1", 1);
+		server.addCamera(usbCam1);
+		
+		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
+		server.addCamera(axisCam);
 		
 		//CameraServer.getInstance().startAutomaticCapture();
 		
 //		MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1180);
 //		mjpegServer1.setSource(usbCam0);
 		
-		
+		server.startAutomaticCapture(usbCam0);
 		
 		
 /*		CvSink cvSink = new CvSink ("opencv_USB Camera 0");
@@ -134,13 +137,7 @@ public class Robot extends IterativeRobot{
 		MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 1180);
 		mjpegServer2.setSource(outputStream);*/
 		
-		
-		
-		
 		//server.addCamera(usbCam1);
-		
-		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
-		//server.addCamera(axisCam);
 		
 		//Starts video of both cameras
 		//server.startAutomaticCapture(usbCam1);
