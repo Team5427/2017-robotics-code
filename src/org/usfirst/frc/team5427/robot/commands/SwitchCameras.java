@@ -31,11 +31,9 @@ public class SwitchCameras extends Command {
 	 */
 	protected void execute()
 	{
-		/**
-		 * If camera 0 is currently running, switch to camera 1.
-		 * If camera 1 is currently running, switch to camera 0.
-		 * mode0,mode1. set to mode 0. change modes when button is pressed.
-		 */
+		//changes the camera to the next camera - axis camera becomes camera 0
+		Robot.currentCamera++;
+		Robot.currentCamera%=3;
 	}
 	
 	//Returns true when the command no longer needs to run execute()

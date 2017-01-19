@@ -88,6 +88,7 @@ public class Robot extends IterativeRobot{
 	
 	AxisCamera axisCam;
 	
+	public static int currentCamera = 0;
 	//NI USB interface numbers for the cameras
 	//int devForCam0=2,devForCam1=3;
 	
