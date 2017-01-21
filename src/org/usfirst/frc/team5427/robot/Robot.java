@@ -255,7 +255,7 @@ public class Robot extends IterativeRobot{
 		Scheduler.getInstance().run();
 		
 		if (ultrasonic != null) {
-			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonic.getRangeInches());Voltage
+			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonic.getRangeInches());
 			
 		}
 		/*if (ultrasonicAnalogInput != null) {
