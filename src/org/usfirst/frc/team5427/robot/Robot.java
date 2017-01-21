@@ -79,7 +79,7 @@ public class Robot extends IterativeRobot{
 	/**
 	 * motor for shooter
 	 */
-	//public static Launcher launcher;
+	public static Launcher launcher;
 	/**
 	 * 
 	 */
@@ -139,7 +139,7 @@ public class Robot extends IterativeRobot{
 		Log.init("Initializing Subsystems");
 
 		//Log.init("Initializing Launcher subsystem");
-		//launcher = new Launcher(motorPWM_Flywheel);
+		launcher = new Launcher(motorPWM_Flywheel);
 		//Log.init("Launcher subsystem Initialized!");
 		
 		
