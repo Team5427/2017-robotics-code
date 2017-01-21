@@ -40,13 +40,16 @@ public class Config {
 	 */
 	public static final boolean LOGGING = true; // only logs errors and fatals
 												// with this false
-
+	// Speeds for the different things that the robot needs to do
+		public static final double LAUNCH_SPEED = 100; // Controlled by grip
 	// PWM PORTS
 	// TODO reassign motor values
 	public static final int FRONT_LEFT_MOTOR 	= 0;
 	public static final int REAR_LEFT_MOTOR 	= 1;
 	public static final int FRONT_RIGHT_MOTOR 	= 2;
-	public static final int REAR_RIGHT_MOTOR 	= 3;
+	public static final int REAR_RIGHT_MOTOR 	= 3;	
+	
+	public static final int SHOOTER_MOTOR =4;
 	
 	/* ----------Controller Ports---------- */
 	// Joystick
@@ -55,4 +58,7 @@ public class Config {
 	public static final int ONE_JOYSTICK = 0; // static var for above
 	public static final int TWO_JOYSTICKS = 1; // static var for above
 	public static final int JOYSTICK_MODE = ONE_JOYSTICK; // Set this to either ONE_JOYSTICK or TWO_JOYSTICK
+	
+	//buttons 
+	public static final int SHOOT_BUTTON=1;
 }

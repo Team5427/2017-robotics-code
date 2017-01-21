@@ -73,6 +73,14 @@ public class Robot extends IterativeRobot{
 	/**
 	 * DriveTrain subsytem to control the drive train
 	 */
+	static SpeedController motorPWM_Flywheel;
+	/**
+	 * motor for shooter
+	 */
+	public static Launcher launcher
+	/**
+	 * 
+	 */
 	public static DriveTrain driveTrain;
 
 	public static Drive drive;
@@ -134,7 +142,11 @@ public class Robot extends IterativeRobot{
 		
 		//CameraServer.getInstance().startAutomaticCapture(usbCam0);
 		
-
+		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);
+		launcher = new Launcher(motorPWM_Flywheel);
+		/**
+		 * launcher and shooter initalization
+		 */
 	
 		
 		

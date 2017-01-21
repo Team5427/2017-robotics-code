@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team5427.robot.commands.ShooterStart;
 import org.usfirst.frc.team5427.robot.util.Config;
 
 /**
@@ -53,8 +54,10 @@ public class OI {
 	/**
 	 * Constructor for the OI class, defines the button-press events.
 	 */
+	//Buttons
+	Button shooter = new JoystickButton(joy,Config.SHOOT_BUTTON);
 	public OI() {
-		
+		shooter.whenPressed(new ShooterStart());
 	}
 	/**
 	 * returns the joystick object
