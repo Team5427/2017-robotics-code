@@ -104,17 +104,34 @@ public class Robot extends IterativeRobot{
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
+		/* Initialize Steel Talon Motors */
+		Log.init("Initializing SteelTalon Motors");
+		
+		Log.init("Initializing Drive Train");
 		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, 0, 0);
 		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, 0, 0);
 		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR, 0, 0);
 		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, 0, 0);
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
+		
+		Log.init("Initializing Flywheels");
+		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);
+		
+		Log.init("Initialized all SteelTalon Motors!");
+		
+		
+		/* Initialize Subsystem*/
+		Log.init("Initializing Subsystems");
+
+		Log.init("Initializing Launcher subsystem");
+		launcher = new Launcher(motorPWM_Flywheel);
+		Log.init("Launcher subsystem Initialized!");
+		
 		server = CameraServer.getInstance();
 		
 		//creates camera 0 (the smaller one) and adds it to the server
@@ -142,14 +159,10 @@ public class Robot extends IterativeRobot{
 		
 		//CameraServer.getInstance().startAutomaticCapture(usbCam0);
 		
-		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);
-		launcher = new Launcher(motorPWM_Flywheel);
-		/**
-		 * launcher and shooter initalization
-		 */
 	
-		
-		
+		Log.init("Initializing OI");
+		oi = new OI();
+		Log.init("OI Initialized!");
 	}
 
 	/**

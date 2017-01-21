@@ -49,7 +49,7 @@ public class Config {
 	public static final int FRONT_RIGHT_MOTOR 	= 2;
 	public static final int REAR_RIGHT_MOTOR 	= 3;	
 	
-	public static final int SHOOTER_MOTOR =4;
+	public static final int SHOOTER_MOTOR 		= 4;
 	
 	/* ----------Controller Ports---------- */
 	// Joystick
