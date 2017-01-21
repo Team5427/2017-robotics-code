@@ -77,7 +77,7 @@ public class Robot extends IterativeRobot{
 	/**
 	 * motor for shooter
 	 */
-	public static Launcher launcher
+	public static Launcher launcher;
 	/**
 	 * 
 	 */
