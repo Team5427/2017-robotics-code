@@ -79,7 +79,7 @@ public class Robot extends IterativeRobot{
 	/**
 	 * motor for shooter
 	 */
-	public static Launcher launcher;
+	//public static Launcher launcher;
 	/**
 	 * 
 	 */
@@ -94,8 +94,9 @@ public class Robot extends IterativeRobot{
 	/**
 	 * Ultrasonic Range Finder to find the distance between the sensor and target
 	 */
-	public static Ultrasonic ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL, Config.ULTRASONIC_ECHO_CHANNEL);;
-	public static AnalogInput ultrasonicAnalogInput = new AnalogInput(0);
+	public static Ultrasonic ultrasonic;
+	//public static AnalogInput ultrasonicAnalogInput = new AnalogInput(0);
+	//public static Ultrasonic ultrasonic = new Ultrasonic(ultrasonicAnalogInput);
 	
 	CameraServer server;
 	//these are the two usb cameras
@@ -137,14 +138,15 @@ public class Robot extends IterativeRobot{
 		/* Initialize Subsystem*/
 		Log.init("Initializing Subsystems");
 
-		Log.init("Initializing Launcher subsystem");
-		launcher = new Launcher(motorPWM_Flywheel);
-		Log.init("Launcher subsystem Initialized!");
+		//Log.init("Initializing Launcher subsystem");
+		//launcher = new Launcher(motorPWM_Flywheel);
+		//Log.init("Launcher subsystem Initialized!");
 		
 		
 		/* Initialize Sensor */
 		
 		// Ultrasonic
+		ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL, Config.ULTRASONIC_ECHO_CHANNEL);
 		ultrasonic.setAutomaticMode(true);
 		
 		server = CameraServer.getInstance();
@@ -253,12 +255,12 @@ public class Robot extends IterativeRobot{
 		Scheduler.getInstance().run();
 		
 		if (ultrasonic != null) {
-//			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonic.getRangeInches());Voltage
+			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonic.getRangeInches());Voltage
 			
 		}
-		if (ultrasonicAnalogInput != null) {
+		/*if (ultrasonicAnalogInput != null) {
 			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonicAnalogInput.getAverageVoltage());
-		}
+		}*/
 	}
 
 	/**
