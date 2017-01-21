@@ -7,6 +7,7 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -16,6 +17,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 import org.usfirst.frc.team5427.robot.OurClasses.*;
 
@@ -88,6 +90,13 @@ public class Robot extends IterativeRobot{
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
+	/* Sensors */
+	/**
+	 * Ultrasonic Range Finder to find the distance between the sensor and target
+	 */
+	public static Ultrasonic ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL, Config.ULTRASONIC_ECHO_CHANNEL);;
+	public static AnalogInput ultrasonicAnalogInput = new AnalogInput(0);
+	
 	CameraServer server;
 	//these are the two usb cameras
 	UsbCamera usbCam0, usbCam1;
@@ -131,6 +140,12 @@ public class Robot extends IterativeRobot{
 		Log.init("Initializing Launcher subsystem");
 		launcher = new Launcher(motorPWM_Flywheel);
 		Log.init("Launcher subsystem Initialized!");
+		
+		
+		/* Initialize Sensor */
+		
+		// Ultrasonic
+		ultrasonic.setAutomaticMode(true);
 		
 		server = CameraServer.getInstance();
 		
@@ -236,6 +251,14 @@ public class Robot extends IterativeRobot{
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		if (ultrasonic != null) {
+//			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonic.getRangeInches());Voltage
+			
+		}
+		if (ultrasonicAnalogInput != null) {
+			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonicAnalogInput.getAverageVoltage());
+		}
 	}
 
 	/**

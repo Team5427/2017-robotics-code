@@ -59,6 +59,11 @@ public class Config {
 	public static final int TWO_JOYSTICKS = 1; // static var for above
 	public static final int JOYSTICK_MODE = ONE_JOYSTICK; // Set this to either ONE_JOYSTICK or TWO_JOYSTICK
 	
-	//buttons 
+	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON=1;
+	
+	/*-------------Ultrasonic Sensor---------*/
+	public static final int ULTRASONIC_PING_CHANNEL = 1;
+	public static final int ULTRASONIC_ECHO_CHANNEL = 0;
+
 }
