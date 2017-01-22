@@ -6,10 +6,12 @@ import org.usfirst.frc.team5427.robot.Robot;
 
 public class ChangeCamera extends Command {
 	
-		boolean 
+		boolean shouldFinish=false; 
+		
 		public ChangeCameras() {
 			// Use requires() here to declare subsystem dependencies
 			requires(Robot.roboCams);
+			
 		}
 
 		// Called just before this Command runs the first time
@@ -21,12 +23,13 @@ public class ChangeCamera extends Command {
 		@Override
 		protected void execute() {
 			Robot.roboCams.changeCamera();
+			shouldFinish=true;
 		}
 
 		// Make this return true when this Command no longer needs to run execute()
 		@Override
 		protected boolean isFinished() {
-			return false;
+			return shouldFinish;
 		}
 
 		// Called once after isFinished returns true
