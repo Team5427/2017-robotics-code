@@ -1,18 +1,17 @@
 package org.usfirst.frc.team5427.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+	import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team5427.robot.Robot;
-import org.usfirst.frc.team5427.robot.util.Log;
+	import org.usfirst.frc.team5427.robot.Robot;
 
-public class ChangeCamera extends Command {
-	
-		boolean shouldFinish=false; 
+public class SetIntakeSpeed extends Command{
+
+		double speed=0;
 		
-		public ChangeCamera() {
+		public SetIntakeSpeed(double speed) {
 			// Use requires() here to declare subsystem dependencies
-			requires(Robot.roboCams);
-			
+			requires(Robot.intake);
+			this.speed=speed;
 		}
 
 		// Called just before this Command runs the first time
@@ -23,21 +22,19 @@ public class ChangeCamera extends Command {
 		// Called repeatedly when this Command is scheduled to run
 		@Override
 		protected void execute() {
-			Log.init("ChangeCamera");
-			Robot.roboCams.changeCamera();
-			
-			shouldFinish=true;
+			Robot.intake.setSpeed(speed);
 		}
 
 		// Make this return true when this Command no longer needs to run execute()
 		@Override
 		protected boolean isFinished() {
-			return shouldFinish;
+			return false;
 		}
 
 		// Called once after isFinished returns true
 		@Override
 		protected void end() {
+			Robot.intake.stop();
 		}
 
 		// Called when another command which requires one or more of the same
@@ -45,6 +42,5 @@ public class ChangeCamera extends Command {
 		@Override
 		protected void interrupted() {
 		}
-
 
 }

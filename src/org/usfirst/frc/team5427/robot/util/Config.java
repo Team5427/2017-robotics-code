@@ -47,7 +47,12 @@ public class Config {
 	public static final int REAR_LEFT_MOTOR 	= 1;
 	public static final int FRONT_RIGHT_MOTOR 	= 2;
 	public static final int REAR_RIGHT_MOTOR 	= 3;
+	public static final int INTAKE_MOTOR 	= 5;
 	
+	//motor speeds
+	public static final double INTAKE_MOTOR_SPEED 	= .5;
+
+
 	/* ----------Controller Ports---------- */
 	// Joystick
 	public static final int JOYSTICK_PORT = 0;

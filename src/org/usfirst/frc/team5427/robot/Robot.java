@@ -24,7 +24,7 @@ import org.usfirst.frc.team5427.robot.OurClasses.*;
 //import org.usfirst.frc.team5427.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5427.robot.util.Log;
 import org.usfirst.frc.team5427.robot.util.Config;
-
+import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 
 import org.usfirst.frc.team5427.robot.subsystems.*;
@@ -39,6 +39,9 @@ import org.usfirst.frc.team5427.robot.subsystems.*;
 public class Robot extends IterativeRobot{
 
 	public static OI oi;
+	
+	//motor for intake
+	static SpeedController motorPWM_Intake;
 
 	// PWM Motors for Drive Train
 	/**
@@ -77,6 +80,9 @@ public class Robot extends IterativeRobot{
 	 */
 	public static DriveTrain driveTrain;
 
+	public static Intake intake;
+
+	
 	public static Drive drive;
 	
 	Command autonomousCommand;
@@ -106,16 +112,22 @@ public class Robot extends IterativeRobot{
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		
+		
+		
 		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, 0, 0);
 		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, 0, 0);
 		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR, 0, 0);
 		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, 0, 0);
+		motorPWM_Intake = new SteelTalon(Config.INTAKE_MOTOR, 0, 0);
+		
+		
+		intake=new Intake(motorPWM_Intake);
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 		server = CameraServer.getInstance();
 		
 		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
-		server.addCamera(axisCam);
+		//server.addCamera(axisCam);
 		
 		//creates camera 0 (the smaller one) and adds it to the server
 		usbCam0 = new UsbCamera("cam0", 0);
@@ -126,15 +138,14 @@ public class Robot extends IterativeRobot{
 		usbCam1 = new UsbCamera("cam1", 1);
 		usbCam1.setFPS(30);
 
-		server.addCamera(usbCam1);
-		
+		//server.addCamera(usbCam1);
 		
 		
 		roboCams=new RobotCameras(usbCam0, usbCam1, axisCam);
 		
 
 		server.startAutomaticCapture(roboCams.getCurrentCamera());
-		
+				
 		//CameraServer.getInstance().startAutomaticCapture();
 		
 //		MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1180);
@@ -230,9 +241,11 @@ public class Robot extends IterativeRobot{
 			autonomousCommand.cancel();
 		
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
-		
 		drive = new Drive(driveTrain, oi.getJoy(), Config.JOYSTICK_MODE);
 		drive.start();
+		
+		intake=new Intake(motorPWM_Intake);
+		new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED);
 	}
 
 	/**
@@ -241,6 +254,8 @@ public class Robot extends IterativeRobot{
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		Robot.server.addCamera(Robot.roboCams.getCurrentCamera());
+		Robot.server.startAutomaticCapture(Robot.roboCams.getCurrentCamera());
 
 		
 	}
