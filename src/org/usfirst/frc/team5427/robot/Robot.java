@@ -112,16 +112,21 @@ public class Robot extends IterativeRobot{
 		Log.init("driveTrain initialized!");
 		server = CameraServer.getInstance();
 		
+		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
+		server.addCamera(axisCam);
+		
 		//creates camera 0 (the smaller one) and adds it to the server
 		usbCam0 = new UsbCamera("cam0", 0);
+		usbCam0.setFPS(30);
 		server.addCamera(usbCam0);
 		
 		//creates camera 1 (the larger one) and adds it to the server
 		usbCam1 = new UsbCamera("cam1", 1);
+		usbCam1.setFPS(30);
+
 		server.addCamera(usbCam1);
 		
-		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
-		server.addCamera(axisCam);
+		
 		
 		//CameraServer.getInstance().startAutomaticCapture();
 		
@@ -129,7 +134,11 @@ public class Robot extends IterativeRobot{
 //		mjpegServer1.setSource(usbCam0);
 		
 		server.startAutomaticCapture(usbCam0);
+
+		server.startAutomaticCapture(usbCam1);
+//SmartDashboard.putData("Image", usbCam0.);
 		
+
 		
 /*		CvSink cvSink = new CvSink ("opencv_USB Camera 0");
 		cvSink.setSource(usbCam0);

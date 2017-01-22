@@ -36,9 +36,15 @@ public class SwitchCameras extends Command {
 		Robot.currentCamera%=3;
 		Log.info("Swapped Cameras");
 		if(Robot.currentCamera==0)
+		{
 			Robot.server.startAutomaticCapture(Robot.usbCam0);
+		
+		}
 		else if(Robot.currentCamera==1)
+		{
 			Robot.server.startAutomaticCapture(Robot.usbCam1);
+			
+		}
 		else if(Robot.currentCamera==2)
 			Robot.server.startAutomaticCapture(Robot.axisCam);
 		end();
