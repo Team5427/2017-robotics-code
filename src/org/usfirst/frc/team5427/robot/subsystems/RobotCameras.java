@@ -52,7 +52,7 @@ public class RobotCameras extends Subsystem {
 		Robot.server.removeCamera(getCurrentCamera().toString());
 		if(currentCamera==1)
 			currentCamera=0;
-		
+	
 		currentCamera++;
 
 	}

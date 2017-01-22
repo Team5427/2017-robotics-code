@@ -25,7 +25,6 @@ public class ChangeCamera extends Command {
 		protected void execute() {
 			Log.init("ChangeCamera");
 			Robot.roboCams.changeCamera();
-			
 			shouldFinish=true;
 		}
 
