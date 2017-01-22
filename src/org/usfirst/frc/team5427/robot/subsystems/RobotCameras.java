@@ -48,12 +48,12 @@ public class RobotCameras extends Subsystem {
 	public void changeCamera()
 	{
 		Robot.server.removeCamera(getCurrentCamera().toString());
-		if(currentCamera==2)
-			currentCamera=-1;
+		if(currentCamera==1)
+			currentCamera=0;
 		
 		currentCamera++;
 		
-		Robot.server.addCamera(getCurrentCamera());
-		Robot.server.startAutomaticCapture(getCurrentCamera());
+		
+		
 	}
 }
