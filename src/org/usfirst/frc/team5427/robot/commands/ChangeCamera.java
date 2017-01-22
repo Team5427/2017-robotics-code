@@ -8,7 +8,7 @@ public class ChangeCamera extends Command {
 	
 		boolean shouldFinish=false; 
 		
-		public ChangeCameras() {
+		public ChangeCamera() {
 			// Use requires() here to declare subsystem dependencies
 			requires(Robot.roboCams);
 			
