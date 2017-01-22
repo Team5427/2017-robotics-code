@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5427.robot.subsystems;
 
 import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.UsbCamera;
@@ -47,12 +48,13 @@ public class RobotCameras extends Subsystem {
 	}
 	public void changeCamera()
 	{
+		
 		Robot.server.removeCamera(getCurrentCamera().toString());
 		if(currentCamera==2)
 			currentCamera=-1;
 		
 		currentCamera++;
-		
+		Log.init(getCurrentCamera().toString());
 		Robot.server.addCamera(getCurrentCamera());
 		Robot.server.startAutomaticCapture(getCurrentCamera());
 	}

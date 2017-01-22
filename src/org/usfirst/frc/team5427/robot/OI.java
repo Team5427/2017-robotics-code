@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team5427.robot.commands.ChangeCamera;
 import org.usfirst.frc.team5427.robot.commands.SwitchCameras;
 import org.usfirst.frc.team5427.robot.util.Config;
 
@@ -58,7 +59,7 @@ public class OI {
 	 * Constructor for the OI class, defines the button-press events.
 	 */
 	public OI() {
-		switchCameras.whenPressed(new SwitchCameras());
+		switchCameras.whenPressed(new ChangeCamera());
 	}
 	/**
 	 * returns the joystick object

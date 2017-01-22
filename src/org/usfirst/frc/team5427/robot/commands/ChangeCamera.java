@@ -3,6 +3,7 @@ package org.usfirst.frc.team5427.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.util.Log;
 
 public class ChangeCamera extends Command {
 	
@@ -22,6 +23,7 @@ public class ChangeCamera extends Command {
 		// Called repeatedly when this Command is scheduled to run
 		@Override
 		protected void execute() {
+			Log.init("ChangeCamera");
 			Robot.roboCams.changeCamera();
 			shouldFinish=true;
 		}
