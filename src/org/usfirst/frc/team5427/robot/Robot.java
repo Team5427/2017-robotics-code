@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+
 import org.usfirst.frc.team5427.robot.OurClasses.*;
 
 //import org.usfirst.frc.team5427.robot.commands.ExampleCommand;
@@ -105,6 +106,9 @@ public class Robot extends IterativeRobot{
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard smartDashboard2=new SmartDashboard();
+		SmartDashboard smartDashboard3=new SmartDashboard();
+		
 		
 		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, 0, 0);
 		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, 0, 0);
@@ -115,7 +119,7 @@ public class Robot extends IterativeRobot{
 		server = CameraServer.getInstance();
 		
 		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
-		server.addCamera(axisCam);
+	//	server.addCamera(axisCam);
 		
 		//creates camera 0 (the smaller one) and adds it to the server
 		usbCam0 = new UsbCamera("cam0", 0);
@@ -126,7 +130,7 @@ public class Robot extends IterativeRobot{
 		usbCam1 = new UsbCamera("cam1", 1);
 		usbCam1.setFPS(30);
 
-		server.addCamera(usbCam1);
+		//server.addCamera(usbCam1);
 		
 		
 		
@@ -239,8 +243,11 @@ public class Robot extends IterativeRobot{
 	 * This function is called periodically during operator control
 	 */
 	@Override
-	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
+	public void teleopPeriodic() {	
+		Robot.server.addCamera(Robot.roboCams.getCurrentCamera());
+	Robot.server.startAutomaticCapture(Robot.roboCams.getCurrentCamera());
+		
+	Scheduler.getInstance().run();
 
 		
 	}
