@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot{
 	static SpeedController motorPWM_RearRight;
 	
 	/**
-	 * DriveTrain subsytem to control the drive train
+	 * DriveTrain subsystem to control the drive train
 	 */
 	public static DriveTrain driveTrain;
 
@@ -86,8 +86,10 @@ public class Robot extends IterativeRobot{
 	//these are the two usb cameras
 	public static UsbCamera usbCam0, usbCam1;
 	
+	//this is the ip camera
 	public static AxisCamera axisCam;
 	
+	public static RobotCameras roboCams;
 	public static int currentCamera = 0;
 	//NI USB interface numbers for the cameras
 	//int devForCam0=2,devForCam1=3;
@@ -123,12 +125,18 @@ public class Robot extends IterativeRobot{
 		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
 		server.addCamera(axisCam);
 		
+		roboCams=new RobotCameras(usbCam0, usbCam1, axisCam);
+		
+
+		server.startAutomaticCapture(roboCams.getCurrentCamera());
+		
 		//CameraServer.getInstance().startAutomaticCapture();
 		
 //		MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1180);
 //		mjpegServer1.setSource(usbCam0);
 		
-		server.startAutomaticCapture(usbCam0);
+		
+		
 		
 		
 /*		CvSink cvSink = new CvSink ("opencv_USB Camera 0");
