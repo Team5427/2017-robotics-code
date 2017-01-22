@@ -25,6 +25,8 @@ public class ChangeCamera extends Command {
 		protected void execute() {
 			Log.init("ChangeCamera");
 			Robot.roboCams.changeCamera();
+			Robot.server.addCamera(Robot.roboCams.getCurrentCamera());
+			Robot.server.startAutomaticCapture(Robot.roboCams.getCurrentCamera());
 			shouldFinish=true;
 		}
 
