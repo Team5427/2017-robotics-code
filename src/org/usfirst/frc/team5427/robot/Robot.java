@@ -9,6 +9,8 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SpeedController;
 //import edu.wpi.first.wpilibj.NamedSendable;
@@ -87,6 +89,9 @@ public class Robot extends IterativeRobot{
 
 	public static Drive drive;
 	
+	public static DigitalInput digI=new DigitalInput(Config.ULTRASONIC_ECHO_CHANNEL);
+	public static DigitalOutput digO=new DigitalOutput(Config.ULTRASONIC_PING_CHANNEL);
+	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
@@ -94,13 +99,13 @@ public class Robot extends IterativeRobot{
 	/**
 	 * Ultrasonic Range Finder to find the distance between the sensor and target
 	 */
-	public static Ultrasonic ultrasonic;
+	public static Ultrasonic ultrasonic = new Ultrasonic(digO, digI);
 	//public static AnalogInput ultrasonicAnalogInput = new AnalogInput(0);
 	//public static Ultrasonic ultrasonic = new Ultrasonic(ultrasonicAnalogInput);
 	
-	CameraServer server;
+	//CameraServer server;
 	//these are the two usb cameras
-	UsbCamera usbCam0, usbCam1;
+	//UsbCamera usbCam0, usbCam1;
 	
 	AxisCamera axisCam;
 	
@@ -146,18 +151,20 @@ public class Robot extends IterativeRobot{
 		/* Initialize Sensor */
 		
 		// Ultrasonic
-		ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL, Config.ULTRASONIC_ECHO_CHANNEL);
+//		ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL, Config.ULTRASONIC_ECHO_CHANNEL);
 		ultrasonic.setAutomaticMode(true);
+		ultrasonic.setEnabled(true);
 		
-		server = CameraServer.getInstance();
+		
+		//server = CameraServer.getInstance();
 		
 		//creates camera 0 (the smaller one) and adds it to the server
-		usbCam0 = new UsbCamera("cam0", 0);
-		server.addCamera(usbCam0);
+		//usbCam0 = new UsbCamera("cam0", 0);
+		//server.addCamera(usbCam0);
 		
 		//creates camera 1 (the larger one) and adds it to the server
-		usbCam1 = new UsbCamera("cam1", 1);
-		server.addCamera(usbCam1);
+		//usbCam1 = new UsbCamera("cam1", 1);
+//		server.addCamera(usbCam1);
 		
 		//axisCam = new AxisCamera("axisCamera", "10.54.27.11");
 		//server.addCamera(axisCam);
@@ -167,12 +174,12 @@ public class Robot extends IterativeRobot{
 //		server.startAutomaticCapture(usbCam1);
 //		server.startAutomaticCapture(axisCam);
 		
-		server.addServer("Camera0");
+		//server.addServer("Camera0");
 		//server.putVideo("cam0");
 		
 		//in the dashboard, select 'cam0' and 'cam1'
 		
-		server.putVideo("cam0", 20, 20);
+//		server.putVideo("cam0", 20, 20);
 		
 		//CameraServer.getInstance().startAutomaticCapture(usbCam0);
 		
@@ -254,9 +261,15 @@ public class Robot extends IterativeRobot{
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		
+		Log.init("ultrasonic1");
+		
 		if (ultrasonic != null) {
-			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonic.getRangeInches());
+//			ultrasonic.ping();
 			
+			Log.init("DiOutput"+digO.get());
+			Log.init("DiInput"+digI.get());
+			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonic.getRangeInches());
+			Log.init(""+ultrasonic.getRangeInches());
 		}
 		/*if (ultrasonicAnalogInput != null) {
 			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonicAnalogInput.getAverageVoltage());

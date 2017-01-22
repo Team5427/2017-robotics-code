@@ -63,7 +63,7 @@ public class Config {
 	public static final int SHOOT_BUTTON=1;
 	
 	/*-------------Ultrasonic Sensor---------*/
-	public static final int ULTRASONIC_PING_CHANNEL = 1;
-	public static final int ULTRASONIC_ECHO_CHANNEL = 0;
+	public static final int ULTRASONIC_PING_CHANNEL = 0;
+	public static final int ULTRASONIC_ECHO_CHANNEL = 1;
 
 }
