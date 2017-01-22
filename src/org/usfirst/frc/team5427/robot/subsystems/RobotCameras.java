@@ -54,14 +54,6 @@ public class RobotCameras extends Subsystem {
 			currentCamera=0;
 		
 		currentCamera++;
-<<<<<<< HEAD
-		Log.init(getCurrentCamera().toString());
-		Robot.server.addCamera(getCurrentCamera());
-		Robot.server.startAutomaticCapture(getCurrentCamera());
-=======
-		
-		
-		
->>>>>>> 7e94708e2b641d97545f3a850643e3b8923b8eb7
+
 	}
 }

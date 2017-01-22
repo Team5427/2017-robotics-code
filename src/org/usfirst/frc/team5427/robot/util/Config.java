@@ -50,7 +50,7 @@ public class Config {
 	public static final int INTAKE_MOTOR 	= 5;
 	
 	//motor speeds
-	public static final double INTAKE_MOTOR_SPEED 	= .5;
+	public static final double INTAKE_MOTOR_SPEED 	= .45;
 
 
 	/* ----------Controller Ports---------- */
@@ -63,4 +63,6 @@ public class Config {
 	
 	//Buttons
 	public static final int SWITCH_CAMERAS_BUTTON = 2;
+	public static final int START_INTAKE_BUTTON = 11;
+	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 12;
 }

@@ -4,14 +4,11 @@ package org.usfirst.frc.team5427.robot.commands;
 
 	import org.usfirst.frc.team5427.robot.Robot;
 
-public class SetIntakeSpeed extends Command{
-
-		double speed=0;
+public class ChangeDirections extends Command{
 		
-		public SetIntakeSpeed(double speed) {
+		public ChangeDirections() {
 			// Use requires() here to declare subsystem dependencies
 			requires(Robot.intake);
-			this.speed=speed;
 		}
 
 		// Called just before this Command runs the first time
@@ -22,7 +19,7 @@ public class SetIntakeSpeed extends Command{
 		// Called repeatedly when this Command is scheduled to run
 		@Override
 		protected void execute() {
-			Robot.intake.setSpeed(speed);
+			Robot.intake.changeDirections();
 		}
 
 		// Make this return true when this Command no longer needs to run execute()
@@ -41,7 +38,7 @@ public class SetIntakeSpeed extends Command{
 		// subsystems is scheduled to run
 		@Override
 		protected void interrupted() {
-			end();
+				end();
 		}
 
 }

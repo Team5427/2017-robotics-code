@@ -84,6 +84,7 @@ public class Robot extends IterativeRobot{
 
 	
 	public static Drive drive;
+	public static SetIntakeSpeed si;
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -122,6 +123,7 @@ public class Robot extends IterativeRobot{
 		
 		
 		intake=new Intake(motorPWM_Intake);
+		Log.info("Intake SUbsystem Initialized!");
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 		server = CameraServer.getInstance();
@@ -245,7 +247,8 @@ public class Robot extends IterativeRobot{
 		drive.start();
 		
 		intake=new Intake(motorPWM_Intake);
-		new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED);
+		//si=new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED);
+		//si.start();
 	}
 
 	/**
@@ -254,8 +257,8 @@ public class Robot extends IterativeRobot{
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		Robot.server.addCamera(Robot.roboCams.getCurrentCamera());
-		Robot.server.startAutomaticCapture(Robot.roboCams.getCurrentCamera());
+		//Robot.server.addCamera(Robot.roboCams.getCurrentCamera());
+		//Robot.server.startAutomaticCapture(Robot.roboCams.getCurrentCamera());
 
 		
 	}
