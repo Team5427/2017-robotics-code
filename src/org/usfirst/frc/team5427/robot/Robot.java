@@ -99,7 +99,7 @@ public class Robot extends IterativeRobot{
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
+		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -133,9 +133,8 @@ public class Robot extends IterativeRobot{
 //		MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1180);
 //		mjpegServer1.setSource(usbCam0);
 		
-		server.startAutomaticCapture(usbCam0);
-
-		server.startAutomaticCapture(usbCam1);
+	//	server.startAutomaticCapture(usbCam0);
+	//		server.startAutomaticCapture(usbCam1);
 //SmartDashboard.putData("Image", usbCam0.);
 		
 
@@ -160,7 +159,7 @@ public class Robot extends IterativeRobot{
 		//server.putVideo("cam0", 20, 20);
 		
 		//CameraServer.getInstance().startAutomaticCapture(usbCam0);
-		
+		oi = new OI();
 	}
 
 	/**
