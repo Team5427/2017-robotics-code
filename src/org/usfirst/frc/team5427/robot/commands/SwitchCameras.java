@@ -10,7 +10,7 @@ import org.usfirst.frc.team5427.robot.util.Log;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * @author Blake Romero
+ * @author bLAKE roM
  *
  */
 public class SwitchCameras extends Command {

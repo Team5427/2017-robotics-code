@@ -25,6 +25,23 @@ public class ChangeCamera extends Command {
 		protected void execute() {
 			Log.init("ChangeCamera");
 			Robot.roboCams.changeCamera();
+			if(Robot.roboCams.currentCamera==0)
+			{
+				Robot.server.putVideo("usbCam0", 200, 200);
+				Robot.server.startAutomaticCapture(Robot.usbCam0);
+			
+			}
+			else if(Robot.roboCams.currentCamera==1)
+			{
+				Robot.server.putVideo("usbCam1", 200, 200);
+				Robot.server.startAutomaticCapture(Robot.usbCam1);
+				
+			}
+			else if(Robot.roboCams.currentCamera==2)
+			{
+				Robot.server.putVideo("axisCam", 200, 200);
+				Robot.server.startAutomaticCapture(Robot.axisCam);
+			}
 			shouldFinish=true;
 		}
 

@@ -113,8 +113,8 @@ public class Robot extends IterativeRobot{
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-		SmartDashboard smartDashboard2=new SmartDashboard();
-		SmartDashboard smartDashboard3=new SmartDashboard();
+		//SmartDashboard smartDashboard2=new SmartDashboard();
+	//	SmartDashboard smartDashboard3=new SmartDashboard();
 		
 		
 		

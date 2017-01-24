@@ -64,7 +64,12 @@ public class OI {
 	 * Constructor for the OI class, defines the button-press events.
 	 */
 	public OI() {
-		switchCameras.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
+		switchCameras.whenPressed(new ChangeCamera());
+		//startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
+		startIntake.whileHeld(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
+		
+	
+		
 		//TODO tie teh right buttons to teh right commands
 		//changeIntakeDirection.whenPressed(new ChangeDirections());
 		//startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED);
