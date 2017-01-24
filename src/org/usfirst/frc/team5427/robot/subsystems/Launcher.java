@@ -23,8 +23,7 @@ public class Launcher extends Subsystem {
 	 * ball out of the robot.
 	 */
 	public SpeedController motorPWM_Flywheel;
-	
-	
+
 	/**
 	 * launcher constructor -- takes motors for various parts of the launcher as
 	 * parameters
@@ -54,7 +53,6 @@ public class Launcher extends Subsystem {
 		setShootSpeed(0);
 	}
 
-
 	/**
 	 * sets the speed of the shooting motors to the specified speed.
 	 * 
@@ -69,14 +67,5 @@ public class Launcher extends Subsystem {
 
 		motorPWM_Flywheel.set(speed);
 	}
-<<<<<<< HEAD
-
-=======
-	
-	//public double getDegrees() {
-	
-		//return Config.TURRET_CENTER - Robot.potentiometer.get();
-	//}
->>>>>>> e9e8c3a7eb59f1e71302fcae343cf1eed1c30cfd
 
 }
