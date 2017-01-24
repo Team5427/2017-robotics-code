@@ -41,7 +41,8 @@ public class Config {
 	public static final boolean LOGGING = true; // only logs errors and fatals
 												// with this false
 	// Speeds for the different things that the robot needs to do
-		public static final double LAUNCH_SPEED = 100; // Controlled by grip
+	public static final double LAUNCH_SPEED = 100; // Controlled by grip
+	public static final double PULL_SPEED = 1; //TODO change to correct value later
 	// PWM PORTS
 	// TODO reassign motor values
 	public static final int FRONT_LEFT_MOTOR 	= 0;
@@ -61,6 +62,7 @@ public class Config {
 	
 	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON=1;
+	public static final int PULL_BUTTON=7;
 	
 	/*-------------Ultrasonic Sensor---------*/
 	public static final int ULTRASONIC_PING_CHANNEL = 0;

@@ -78,10 +78,15 @@ public class Robot extends IterativeRobot{
 	 * DriveTrain subsytem to control the drive train
 	 */
 	static SpeedController motorPWM_Flywheel;
+	static SpeedController motorPWM_Flywheel2;
 	/**
 	 * motor for shooter
 	 */
 	public static Launcher launcher;
+	/**
+	 * motor for rope climb
+	 */
+	public static RopeClimb ropeClimb;
 	/**
 	 * 
 	 */
@@ -136,6 +141,7 @@ public class Robot extends IterativeRobot{
 		
 		Log.init("Initializing Flywheels");
 		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);
+		motorPWM_Flywheel2 = new SteelTalon(Config.SHOOTER_MOTOR);
 		
 		Log.init("Initialized all SteelTalon Motors!");
 		
@@ -143,9 +149,13 @@ public class Robot extends IterativeRobot{
 		/* Initialize Subsystem*/
 		Log.init("Initializing Subsystems");
 
-		//Log.init("Initializing Launcher subsystem");
+		Log.init("Initializing Launcher subsystem");
 		launcher = new Launcher(motorPWM_Flywheel);
-		//Log.init("Launcher subsystem Initialized!");
+		Log.init("Launcher subsystem Initialized!");
+		
+		Log.init("Initializing RopeClimb subsystem");
+		ropeClimb = new RopeClimb(motorPWM_Flywheel2);
+		Log.init("RopeClimb subsystem initialized!");
 		
 		
 		/* Initialize Sensor */

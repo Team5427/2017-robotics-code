@@ -9,32 +9,31 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * the launcher subsystem is used for controlling the mechanism that launches
- * boulders, and involves 3 different parts, the shooting motors, turning
- * motors, and angling/tilting motors.
+ * The RopeClimb subsystem is used to control the motors used in the PullRope command, which is used to control
+ * the motors used to climb the rope.
  * 
- * @author team5427
+ * @author Blake Romero
  *
  */
-public class Launcher extends Subsystem {
+public class RopeClimb extends Subsystem {
 
 	/**
-	 * SpeedController which is responsible for the flywheel that launches the
-	 * ball out of the robot.
+	 * SpeedControllers which are responsible for the wheels that pull the rope
+	 * into the robot.
 	 */
 	public SpeedController motorPWM_Flywheel;
 	
 	
 	/**
-	 * launcher constructor -- takes motors for various parts of the launcher as
+	 * launcher constructor -- takes motors for various parts of the rope climber as
 	 * parameters
 	 * 
 	 * @param motorFlyWheel
 	 */
-	public Launcher(SpeedController motorFlyWheel) {
+	public RopeClimb(SpeedController motorFlyWheel) {
 		this.motorPWM_Flywheel = motorFlyWheel;
 
-		Log.init("FINISHED MAKING A NEW LAUNCHER");
+		Log.init("FINISHED MAKING A NEW RopeClimb");
 	}
 
 	@Override
@@ -46,29 +45,26 @@ public class Launcher extends Subsystem {
 	 * sets all of the motor speeds to 0
 	 */
 	public void stop() {
-		setShootSpeed(0);
-
+		setPullSpeed(0);
 	}
 
-public void stopShoot() {
-		setShootSpeed(0);
+public void stopPull() {
+		setPullSpeed(0);
 	}
 
 
 	/**
-	 * sets the speed of the shooting motors to the specified speed.
+	 * sets the speed of the pulling motors to the specified speed.
 	 * 
 	 * @param speed
 	 */
-	public void setShootSpeed(double speed) {
+	public void setPullSpeed(double speed) {
 		// Prevent speed from going to fast
-		if (speed > 1)
+		if (speed > 1)}
 			speed = 1;
 		else if (speed < -1)
 			speed = -1;
 
 		motorPWM_Flywheel.set(speed);
-	}
-
-
+	
 }
