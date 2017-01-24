@@ -50,7 +50,7 @@ public class Launcher extends Subsystem {
 
 	}
 
-public void stopShoot() {
+	public void stopShoot() {
 		setShootSpeed(0);
 	}
 
@@ -69,6 +69,14 @@ public void stopShoot() {
 
 		motorPWM_Flywheel.set(speed);
 	}
+<<<<<<< HEAD
 
+=======
+	
+	//public double getDegrees() {
+	
+		//return Config.TURRET_CENTER - Robot.potentiometer.get();
+	//}
+>>>>>>> e9e8c3a7eb59f1e71302fcae343cf1eed1c30cfd
 
 }

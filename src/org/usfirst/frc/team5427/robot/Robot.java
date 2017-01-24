@@ -161,7 +161,7 @@ public class Robot extends IterativeRobot{
 		/* Initialize Sensor */
 		
 		// Ultrasonic
-//		ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL, Config.ULTRASONIC_ECHO_CHANNEL);
+		//ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL, Config.ULTRASONIC_ECHO_CHANNEL);
 		ultrasonic.setAutomaticMode(true);
 		ultrasonic.setEnabled(true);
 		
@@ -174,22 +174,22 @@ public class Robot extends IterativeRobot{
 		
 		//creates camera 1 (the larger one) and adds it to the server
 		//usbCam1 = new UsbCamera("cam1", 1);
-//		server.addCamera(usbCam1);
+		//server.addCamera(usbCam1);
 		
 		//axisCam = new AxisCamera("axisCamera", "10.54.27.11");
 		//server.addCamera(axisCam);
 		
 		//Starts video of both cameras
-//		server.startAutomaticCapture(usbCam0);
-//		server.startAutomaticCapture(usbCam1);
-//		server.startAutomaticCapture(axisCam);
+		//server.startAutomaticCapture(usbCam0);
+		//server.startAutomaticCapture(usbCam1);
+		//server.startAutomaticCapture(axisCam);
 		
 		//server.addServer("Camera0");
 		//server.putVideo("cam0");
 		
 		//in the dashboard, select 'cam0' and 'cam1'
 		
-//		server.putVideo("cam0", 20, 20);
+		//server.putVideo("cam0", 20, 20);
 		
 		//CameraServer.getInstance().startAutomaticCapture(usbCam0);
 		
