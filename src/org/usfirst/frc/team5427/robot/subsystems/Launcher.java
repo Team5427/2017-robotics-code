@@ -50,7 +50,7 @@ public class Launcher extends Subsystem {
 
 	}
 
-public void stopShoot() {
+	public void stopShoot() {
 		setShootSpeed(0);
 	}
 
@@ -73,6 +73,6 @@ public void stopShoot() {
 	//public double getDegrees() {
 	
 		//return Config.TURRET_CENTER - Robot.potentiometer.get();
-//	}
+	//}
 
 }
