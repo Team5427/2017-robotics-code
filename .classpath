@@ -14,5 +14,13 @@
 	<classpathentry kind="lib" path="C:/Users/Varsh/Documents/RoboticsCode2017/2017-robotics-code/WPILIB_JARS/opencv-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Varsh/Documents/RoboticsCode2017/2017-robotics-code/WPILIB_JARS/WPILib.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Varsh/Documents/RoboticsCode2017/2017-robotics-code/WPILIB_JARS/WPILib-sources.jar"/>
+	<classpathentry kind="lib" path="WPILIB_JARS/cscore-sources.jar"/>
+	<classpathentry kind="lib" path="WPILIB_JARS/cscore.jar"/>
+	<classpathentry kind="lib" path="WPILIB_JARS/NetworkTables-sources.jar"/>
+	<classpathentry kind="lib" path="WPILIB_JARS/NetworkTables.jar"/>
+	<classpathentry kind="lib" path="WPILIB_JARS/opencv-sources.jar"/>
+	<classpathentry kind="lib" path="WPILIB_JARS/opencv.jar"/>
+	<classpathentry kind="lib" path="WPILIB_JARS/WPILib-sources.jar"/>
+	<classpathentry kind="lib" path="WPILIB_JARS/WPILib.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
