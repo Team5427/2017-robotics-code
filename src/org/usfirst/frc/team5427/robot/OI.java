@@ -67,10 +67,10 @@ public class OI {
 	 */
 	
 	public OI() {
-		shooter.whenPressed(new ShooterStart());
+		//shooter.whenPressed(new ShooterStart());
 		//switchCameras.whenPressed(new ChangeCamera());
 		//startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
-		startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
+		startIntake.whileActive(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		//startIntake.whenReleased(new StopIntake());
 		
 	
