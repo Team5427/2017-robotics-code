@@ -6,7 +6,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+//import org.usfirst.frc.team5427.robot.commands.ChangeCamera;
+import org.usfirst.frc.team5427.robot.commands.ChangeDirections;
+import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
 import org.usfirst.frc.team5427.robot.commands.ShooterStart;
+//import org.usfirst.frc.team5427.robot.commands.SwitchCameras;
 import org.usfirst.frc.team5427.robot.util.Config;
 
 /**
@@ -51,14 +55,30 @@ public class OI {
 	 */
 	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
 	
+	//Buttons
+	Button switchCameras = new JoystickButton(joy,Config.SWITCH_CAMERAS_BUTTON);
+	Button changeIntakeDirection = new JoystickButton(joy,Config.CHANGE_INTAKE_DIRECTION_BUTTON);
+	Button startIntake = new JoystickButton(joy,Config.START_INTAKE_BUTTON);
+	Button shooter = new JoystickButton(joy,Config.SHOOT_BUTTON);
+	SetIntakeSpeed si;
+	
 	/**
 	 * Constructor for the OI class, defines the button-press events.
 	 */
-	//Buttons
-	Button shooter = new JoystickButton(joy,Config.SHOOT_BUTTON);
+	
 	public OI() {
 		shooter.whenPressed(new ShooterStart());
-	}
+		//switchCameras.whenPressed(new ChangeCamera());
+		//startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
+		startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
+		//startIntake.whenReleased(new StopIntake());
+		
+	
+		
+		//TODO tie teh right buttons to teh right commands
+		//changeIntakeDirection.whenPressed(new ChangeDirections());
+		//startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED);
+}
 	/**
 	 * returns the joystick object
 	 * 

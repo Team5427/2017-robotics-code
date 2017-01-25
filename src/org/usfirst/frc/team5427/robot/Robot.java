@@ -26,7 +26,7 @@ import org.usfirst.frc.team5427.robot.OurClasses.*;
 //import org.usfirst.frc.team5427.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5427.robot.util.Log;
 import org.usfirst.frc.team5427.robot.util.Config;
-
+import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 
 import org.usfirst.frc.team5427.robot.subsystems.*;
@@ -41,6 +41,9 @@ import org.usfirst.frc.team5427.robot.subsystems.*;
 public class Robot extends IterativeRobot{
 
 	public static OI oi;
+	
+	//motor for intake
+		static SpeedController motorPWM_Intake;
 
 	// PWM Motors for Drive Train
 	/**
@@ -91,8 +94,10 @@ public class Robot extends IterativeRobot{
 	 * 
 	 */
 	public static DriveTrain driveTrain;
-
 	public static Drive drive;
+	
+	public static Intake intake;
+//	public static SetIntakeSpeed si;//to be used if we want to keep the intake always on
 	
 	public static DigitalInput digI=new DigitalInput(Config.ULTRASONIC_ECHO_CHANNEL);
 	public static DigitalOutput digO=new DigitalOutput(Config.ULTRASONIC_PING_CHANNEL);
@@ -105,8 +110,7 @@ public class Robot extends IterativeRobot{
 	 * Ultrasonic Range Finder to find the distance between the sensor and target
 	 */
 	public static Ultrasonic ultrasonic = new Ultrasonic(digO, digI);
-	//public static AnalogInput ultrasonicAnalogInput = new AnalogInput(0);
-	//public static Ultrasonic ultrasonic = new Ultrasonic(ultrasonicAnalogInput);
+	
 	
 	//CameraServer server;
 	//these are the two usb cameras
@@ -156,6 +160,11 @@ public class Robot extends IterativeRobot{
 		Log.init("Initializing RopeClimb subsystem");
 		ropeClimb = new RopeClimb(motorPWM_Flywheel2);
 		Log.init("RopeClimb subsystem initialized!");
+		
+		Log.init("Initializing Intake subsystem");
+		intake=new Intake(motorPWM_Intake);
+		Log.init("Intake SUbsystem Initialized!");
+
 		
 		
 		/* Initialize Sensor */
@@ -262,6 +271,10 @@ public class Robot extends IterativeRobot{
 		
 		drive = new Drive(driveTrain, oi.getJoy(), Config.JOYSTICK_MODE);
 		drive.start();
+		
+//		intake=new Intake(motorPWM_Intake);
+		//si=new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED);
+		//si.start();
 	}
 
 	/**
