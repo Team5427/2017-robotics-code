@@ -11,6 +11,7 @@ import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.SpeedController;
 //import edu.wpi.first.wpilibj.NamedSendable;
 import edu.wpi.first.wpilibj.command.Command;
@@ -25,6 +26,7 @@ import org.usfirst.frc.team5427.robot.OurClasses.*;
 //import org.usfirst.frc.team5427.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5427.robot.util.Log;
 import org.usfirst.frc.team5427.robot.util.Config;
+import org.usfirst.frc.team5427.robot.commands.ChangeCamera;
 import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 
@@ -112,9 +114,8 @@ public class Robot extends IterativeRobot{
 		
 		//chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
-		//SmartDashboard smartDashboard2=new SmartDashboard();
-	//	SmartDashboard smartDashboard3=new SmartDashboard();
+
+
 		
 		
 		
@@ -131,14 +132,13 @@ public class Robot extends IterativeRobot{
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 		server = CameraServer.getInstance();
-		
 		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
 	//	server.addCamera(axisCam);
 		
 		//creates camera 0 (the smaller one) and adds it to the server
 		usbCam0 = new UsbCamera("cam0", 0);
 		usbCam0.setFPS(30);
-		server.addCamera(usbCam0);
+	//	server.addCamera(usbCam0);
 		
 		//creates camera 1 (the larger one) and adds it to the server
 		usbCam1 = new UsbCamera("cam1", 1);
@@ -148,9 +148,10 @@ public class Robot extends IterativeRobot{
 		
 		
 		roboCams=new RobotCameras(usbCam0, usbCam1, axisCam);
+
 		
 
-		server.startAutomaticCapture(roboCams.getCurrentCamera());
+	//	server.startAutomaticCapture(roboCams.getCurrentCamera());
 				
 		//CameraServer.getInstance().startAutomaticCapture();
 		
@@ -184,6 +185,44 @@ public class Robot extends IterativeRobot{
 		//server.putVideo("cam0", 20, 20);
 		
 		//CameraServer.getInstance().startAutomaticCapture(usbCam0);
+	//	chooser.addObject("Cam",new ChangeCamera());
+
+		//SmartDashboard sd = new SmartDashboard();
+		//SmartDashboard sd2 = new SmartDashboard();
+		/*CvSink cvSink = new CvSink ("opencv_USB Camera 0");
+		cvSink.setSource(usbCam0);
+		CvSource outputStream = new CvSource("Blur", PixelFormat.kMJPEG, 640, 480, 30);
+		MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 1180);
+		mjpegServer2.setSource(outputStream);
+		server.addServer(mjpegServer2);*/
+		Robot.server.addCamera(usbCam0);	Robot.server.addCamera( usbCam1);Robot.server.addCamera(axisCam);
+		if(Robot.roboCams.currentCamera==0)
+		{
+			
+			//Robot.server.removeCamera("axisCam");
+			
+			Robot.server.putVideo("usbCam0", 200, 200);
+			Robot.server.startAutomaticCapture(Robot.usbCam0);
+		}
+		else if(Robot.roboCams.currentCamera==1)
+		{
+		
+			//Robot.server.removeCamera("usbCam0");
+		
+				Robot.server.putVideo("usbCam1", 200, 200);
+			Robot.server.startAutomaticCapture(Robot.usbCam1);
+			
+		}
+		else if(Robot.roboCams.currentCamera==2)
+		{
+	
+			//Robot.server.removeCamera("usbCam1");
+			
+			Robot.server.putVideo("axisCamera", 200, 200);
+			Robot.server.startAutomaticCapture(Robot.axisCam);
+		}
+	//	chooser.addObject("camera", server);
+		SmartDashboard.putData("Auto mode",chooser);
 		oi = new OI();
 	}
 

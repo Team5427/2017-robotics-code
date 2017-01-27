@@ -30,9 +30,9 @@ public class RobotCameras extends Subsystem {
 		this.usbCamera0=usbCamera0;
         this.usbCamera1=usbCamera1;
         this.axisCamera=axisCamera;
-        Robot.server.addCamera(usbCamera0);
-        Robot.server.addCamera(usbCamera1);
-Robot.server.addCamera(axisCamera);
+     //   Robot.server.addCamera(usbCamera0);
+//  Robot.server.addCamera(usbCamera1);
+//Robot.server.addCamera(axisCamera);
 	}
 	public VideoSource getCurrentCamera()
 	{
@@ -52,11 +52,11 @@ Robot.server.addCamera(axisCamera);
 	public void changeCamera()
 	{
 		Log.init(currentCamera+"");
-		Robot.server.removeCamera(getCurrentCamera().toString());
+		
 		if(currentCamera==2)
 			currentCamera=0;
 		else
-		currentCamera++;
+			currentCamera++;
 
 	}
 }
