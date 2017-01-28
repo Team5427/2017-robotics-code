@@ -55,8 +55,8 @@ public class Config {
 	public static final int INTAKE_MOTOR 		= 5;
 
 	// Motor Bias
-	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARDS  = 1;
-	public static final double BIAS_FRONT_LEFT_MOTOR_BACKWARDS = 1;
+	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARD  = 1;
+	public static final double BIAS_FRONT_LEFT_MOTOR_BACKWARD = 1;
 
 	public static final double BIAS_REAR_LEFT_MOTOR_FORWARD    = 1;
 	public static final double BIAS_REAR_LEFT_MOTOR_BACKWARD   = 1;
