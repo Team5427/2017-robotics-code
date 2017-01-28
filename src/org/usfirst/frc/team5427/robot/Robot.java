@@ -166,7 +166,7 @@ public class Robot extends IterativeRobot {
 		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, O, 0);
 		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, 0, 0);
 		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR, 0, 0);
-		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, 0, 0);
+		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, Config.OFFSET_FRONT_LEFT_MOTOR_BACKWARDS, Config.OFFSET_FRONT_LEFT_MOTOR_FORWARDS, Config.BIAS_FRONT_LEFT_MOTOR_BACKWARDS, Config.BIAS_FRONT_LEFT_MOTOR_FORWARDS);
 		motorPWM_Intake = new SteelTalon(Config.INTAKE_MOTOR, 0, 0);
 
 		intake = new Intake(motorPWM_Intake);
