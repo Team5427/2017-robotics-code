@@ -93,6 +93,7 @@ public class Robot extends IterativeRobot{
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	public static CameraServer server;
+	//public static CameraServer server0;
 	//these are the two usb cameras
 	public static UsbCamera usbCam0, usbCam1;
 	
@@ -132,22 +133,26 @@ public class Robot extends IterativeRobot{
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 		server = CameraServer.getInstance();
+	//	server0=CameraServer.getInstance();
 		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
 	//	server.addCamera(axisCam);
 		
 		//creates camera 0 (the smaller one) and adds it to the server
 		usbCam0 = new UsbCamera("cam0", 0);
-		usbCam0.setFPS(30);
+		usbCam0.setFPS(15);
 	//	server.addCamera(usbCam0);
 		
 		//creates camera 1 (the larger one) and adds it to the server
 		usbCam1 = new UsbCamera("cam1", 1);
-		usbCam1.setFPS(30);
+		usbCam1.setFPS(15);
+	server.addCamera(usbCam1);
+	
 
 		//server.addCamera(usbCam1);
 		
 		
 		roboCams=new RobotCameras(usbCam0, usbCam1, axisCam);
+		
 
 		
 
@@ -195,17 +200,27 @@ public class Robot extends IterativeRobot{
 		MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 1180);
 		mjpegServer2.setSource(outputStream);
 		server.addServer(mjpegServer2);*/
-		Robot.server.addCamera(usbCam0);	Robot.server.addCamera( usbCam1);Robot.server.addCamera(axisCam);
-		if(Robot.roboCams.currentCamera==0)
+		//CvSink cvSink = new CvSink ("opencv_USB Camera 0");
+		//server.putVideo("cam1bruh", 200, 200);
+	//	server.startAutomaticCapture(usbCam1);
+	
+		Robot.server.addCamera(usbCam0);
+		
+		Robot.server.addCamera(axisCam);
+		server.startAutomaticCapture(usbCam0);
+		server.startAutomaticCapture(usbCam1);
+		
+		/*if(Robot.roboCams.currentCamera==0)
 		{
-			
+			cvSink.setSource(usbCam0);
 			//Robot.server.removeCamera("axisCam");
-			
 			Robot.server.putVideo("usbCam0", 200, 200);
 			Robot.server.startAutomaticCapture(Robot.usbCam0);
+			
 		}
 		else if(Robot.roboCams.currentCamera==1)
 		{
+			cvSink.setSource(usbCam1);
 		
 			//Robot.server.removeCamera("usbCam0");
 		
@@ -215,12 +230,19 @@ public class Robot extends IterativeRobot{
 		}
 		else if(Robot.roboCams.currentCamera==2)
 		{
-	
+			cvSink.setSource(axisCam);
 			//Robot.server.removeCamera("usbCam1");
 			
 			Robot.server.putVideo("axisCamera", 200, 200);
 			Robot.server.startAutomaticCapture(Robot.axisCam);
 		}
+CvSource outputStream = new CvSource("Blur", PixelFormat.kMJPEG, 200, 200, 15);
+		
+
+		MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 30);
+		
+		mjpegServer2.setSource(outputStream);
+		server.addServer(mjpegServer2);*/
 	//	chooser.addObject("camera", server);
 		SmartDashboard.putData("Auto mode",chooser);
 		oi = new OI();
