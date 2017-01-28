@@ -41,54 +41,60 @@ public class Config {
 	public static final boolean LOGGING = true; // only logs errors and fatals
 												// with this false
 	// Speeds for the different things that the robot needs to do
-	 // Controlled by grip
-	public static final double PULL_SPEED = 1; //TODO change to correct value later
-	
+	// Controlled by grip
+	public static final double PULL_SPEED = 1; // TODO change to correct value
+												// later
+
 	// PWM PORTS
 	// TODO reassign motor values
-	public static final int FRONT_LEFT_MOTOR 	= 2;
+	public static final int FRONT_LEFT_MOTOR	= 2;
 	public static final int REAR_LEFT_MOTOR 	= 3;
 	public static final int FRONT_RIGHT_MOTOR 	= 0;
-	public static final int REAR_RIGHT_MOTOR 	= 1;	
-	public static final int SHOOTER_MOTOR 		= 4;
+	public static final int REAR_RIGHT_MOTOR	= 1;
+	public static final int SHOOTER_MOTOR		= 4;
 	public static final int INTAKE_MOTOR 		= 5;
-	
-	// Motor Bias
-	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARDS 	= 1;
-	public static final double BIAS_FRONT_LEFT_MOTOR_BACKWARDS 	= 1;
-	
-	public static final double BIAS_REAR_LEFT_MOTOR_FORWARD	= 1;
-	public static final double BIAS_REAR_LEFT_MOTOR_BACKWARD = 1;
-	
-	public static final double BIAS_FRONT_RIGHT_MOTOR_FORWARD 	= 1;
-	public static final double BIAS_FRONT_RIGHT_MOTOR_BACKWARD 	= 1;
-	
-	public static final double BIAS_SHOOTER_MOTOR_FORWARD 		= 1;
-	public static final double BIAS_SHOOTER_MOTOR_BACKWARD 		= 1;
-	
-	public static final double BIAS_INTAKE_MOTOR_FORWARD 		= 1;
-	public static final double BIAS_INTAKE_MOTOR_BACKWARD 		= 1;
-	
-	// Motor Offset
-	public static final double OFFSET_FRONT_LEFT_MOTOR_FORWARDS 	= 0;
-	public static final double OFFSET_FRONT_LEFT_MOTOR_BACKWARDS 	= 0;
-	
-	public static final double OFFSET_REAR_LEFT_MOTOR_FORWARD = 0;
-	public static final double OFFSET_REAR_LEFT_MOTOR_BACKWARD = 0;
-	
-	public static final double OFFSET_FRONT_RIGHT_MOTOR_BACKWARD = 0;
-	public static final double OFFSET_FRONT_RIGHT_MOTOR_FORWARD = 0;
-	
-	public static final double OFFSET_SHOOTER_MOTOR_FORWARD 	= 0;
-	public static final double OFFSET_SHOOTER_MOTOR_BACKWARD 	= 0;
-	
-	public static final double OFFSET_INTAKE_MOTOR_FORWARD 		= 0;
-	public static final double OFFSET_INTAKE_MOTOR_BACKWARD 	= 0;
-	
-	//motor speeds
-	public static final double INTAKE_MOTOR_SPEED 	= .45;
-	public static final double SHOOTER_MOTOR_SPEED 	= 1;
 
+	// Motor Bias
+	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARDS  = 1;
+	public static final double BIAS_FRONT_LEFT_MOTOR_BACKWARDS = 1;
+
+	public static final double BIAS_REAR_LEFT_MOTOR_FORWARD    = 1;
+	public static final double BIAS_REAR_LEFT_MOTOR_BACKWARD   = 1;
+
+	public static final double BIAS_FRONT_RIGHT_MOTOR_FORWARD  = 1;
+	public static final double BIAS_FRONT_RIGHT_MOTOR_BACKWARD = 1;
+
+	public static final double BIAS_REAR_RIGHT_MOTOR_FORWARD   = 1;
+	public static final double BIAS_REAR_RIGHT_MOTOR_BACKWARD  = 1;
+
+	public static final double BIAS_SHOOTER_MOTOR_FORWARD  	   = 1;
+	public static final double BIAS_SHOOTER_MOTOR_BACKWARD     = 1;
+
+	public static final double BIAS_INTAKE_MOTOR_FORWARD       = 1;
+	public static final double BIAS_INTAKE_MOTOR_BACKWARD      = 1;
+
+	// Motor Offset
+	public static final double OFFSET_FRONT_LEFT_MOTOR_FORWARDS  = 0;
+	public static final double OFFSET_FRONT_LEFT_MOTOR_BACKWARDS = 0;
+
+	public static final double OFFSET_REAR_LEFT_MOTOR_FORWARD    = 0;
+	public static final double OFFSET_REAR_LEFT_MOTOR_BACKWARD   = 0;
+
+	public static final double OFFSET_FRONT_RIGHT_MOTOR_FORWARD  = 0;
+	public static final double OFFSET_FRONT_RIGHT_MOTOR_BACKWARD = 0;
+
+	public static final double OFFSET_REAR_RIGHT_MOTOR_FORWARD   = 0;
+	public static final double OFFSET_REAR_RIGHT_MOTOR_BACKWARD  = 0;
+
+	public static final double OFFSET_SHOOTER_MOTOR_FORWARD  = 0;
+	public static final double OFFSET_SHOOTER_MOTOR_BACKWARD = 0;
+
+	public static final double OFFSET_INTAKE_MOTOR_FORWARD  = 0;
+	public static final double OFFSET_INTAKE_MOTOR_BACKWARD = 0;
+
+	// motor speeds
+	public static final double INTAKE_MOTOR_SPEED = .45;
+	public static final double SHOOTER_MOTOR_SPEED = 1;
 
 	/* ----------Controller Ports---------- */
 	// Joystick
@@ -96,18 +102,19 @@ public class Config {
 	public static final int ALT_JOYSTICK_PORT = 0;
 	public static final int ONE_JOYSTICK = 0; // static var for above
 	public static final int TWO_JOYSTICKS = 1; // static var for above
-	public static final int JOYSTICK_MODE = ONE_JOYSTICK; // Set this to either ONE_JOYSTICK or TWO_JOYSTICK
-	
+	public static final int JOYSTICK_MODE = ONE_JOYSTICK; // Set this to either
+															// ONE_JOYSTICK or
+															// TWO_JOYSTICK
+
 	/*---------------Buttons------------------- */
-	public static final int SHOOT_BUTTON=1;
-	public static final int PULL_BUTTON=7;
+	public static final int SHOOT_BUTTON = 1;
+	public static final int PULL_BUTTON = 7;
 	public static final int SWITCH_CAMERAS_BUTTON = 2;
 	public static final int START_INTAKE_BUTTON = 11;
 	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 12;
-	
+
 	/*-------------Ultrasonic Sensor---------*/
 	public static final int ULTRASONIC_PING_CHANNEL = 0;
 	public static final int ULTRASONIC_ECHO_CHANNEL = 1;
-	
 
 }
