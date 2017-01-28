@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot {
 
 	// motor for intake
 
-	static SpeedController motorPWM_Intake;
+	public static SpeedController motorPWM_Intake;
 
 	// PWM Motors for Drive Train
 	/**
@@ -56,7 +56,7 @@ public class Robot extends IterativeRobot {
 	 * robot from a top-down point of view, and setting the speed of this motor
 	 * to a positive value will cause the robot to move __________
 	 */
-	static SpeedController motorPWM_FrontLeft;
+	public static SpeedController motorPWM_FrontLeft;
 
 	// TODO fill in the blank in this comment after testing the robot.
 	/**
@@ -64,7 +64,7 @@ public class Robot extends IterativeRobot {
 	 * robot from a top-down point of view, and setting the speed of this motor
 	 * to a positive value will cause the robot to move __________
 	 */
-	static SpeedController motorPWM_RearLeft;
+	public static SpeedController motorPWM_RearLeft;
 
 	// TODO fill in the blank in this comment after testing the robot.
 	/**
@@ -72,7 +72,7 @@ public class Robot extends IterativeRobot {
 	 * robot from a top-down point of view, and setting the speed of this motor
 	 * to a positive value will cause the robot to move __________
 	 */
-	static SpeedController motorPWM_FrontRight;
+	public static SpeedController motorPWM_FrontRight;
 
 	// TODO fill in the blank in this comment after testing the robot.
 	/**
@@ -80,29 +80,38 @@ public class Robot extends IterativeRobot {
 	 * robot from a top-down point of view, and setting the speed of this motor
 	 * to a positive value will cause the robot to move __________
 	 */
-	static SpeedController motorPWM_RearRight;
+	public static SpeedController motorPWM_RearRight;
 
 	/**
 	 * DriveTrain subsystem to control the drive train
 	 */
-	static SpeedController motorPWM_Flywheel;
-	static SpeedController motorPWM_Flywheel2;
+	public static SpeedController motorPWM_Flywheel;
+	public static SpeedController motorPWM_Flywheel2;
 	/**
-	 * motor for shooter
+	 * Launcher subsystem to shoot balls from the shooting mechanism
 	 */
 	public static Launcher launcher;
 	/**
-	 * motor for rope climb
+	 * Rope Climb subsystem launcher for the robot to climb the rope
 	 */
 	public static RopeClimb ropeClimb;
 	/**
-	 * 
+	 * Drive train subsystem to drive the robot
 	 */
 	public static DriveTrain driveTrain;
 
+	/**
+	 * Drive command to drive the robot
+	 */
 	public static Drive drive;
+	/**
+	 * Command that sets the intake speed of the robot
+	 */
 	public static SetIntakeSpeed si;
 
+	/**
+	 * Intake subsystem to intake balls into the robot
+	 */
 	public static Intake intake;
 	// public static SetIntakeSpeed si;//to be used if we want to keep the
 	// intake always on
@@ -113,23 +122,30 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
-	/* Sensors */
+	/* -------Sensors------- */
 	/**
 	 * Ultrasonic Range Finder to find the distance between the sensor and
 	 * target
 	 */
 	public static Ultrasonic ultrasonic = new Ultrasonic(digO, digI);
 
-	// CameraServer server;
-	// these are the two usb cameras
-	// UsbCamera usbCam0, usbCam1;
+	/**
+	 * Camera server
+	 */
 	public static CameraServer server;
-	// these are the two usb cameras
+	/**
+	 * USB Cameras for robot
+	 */
 	public static UsbCamera usbCam0, usbCam1;
 
-	// this is the ip camera
+	/**
+	 * IP Camera
+	 */
 	public static AxisCamera axisCam;
 
+	/**
+	 * Current camera in use
+	 */
 	public static int currentCamera = 0;
 	// NI USB interface numbers for the cameras
 	// int devForCam0=2,devForCam1=3;
@@ -188,31 +204,6 @@ public class Robot extends IterativeRobot {
 		ultrasonic.setEnabled(true);
 
 		// server = CameraServer.getInstance();
-
-		// creates camera 0 (the smaller one) and adds it to the server
-		// usbCam0 = new UsbCamera("cam0", 0);
-		// server.addCamera(usbCam0);
-
-		// creates camera 1 (the larger one) and adds it to the server
-		// usbCam1 = new UsbCamera("cam1", 1);
-		// server.addCamera(usbCam1);
-
-		// axisCam = new AxisCamera("axisCamera", "10.54.27.11");
-		// server.addCamera(axisCam);
-
-		// Starts video of both cameras
-		// server.startAutomaticCapture(usbCam0);
-		// server.startAutomaticCapture(usbCam1);
-		// server.startAutomaticCapture(axisCam);
-
-		// server.addServer("Camera0");
-		// server.putVideo("cam0");
-
-		// in the dashboard, select 'cam0' and 'cam1'
-
-		// server.putVideo("cam0", 20, 20);
-
-		// CameraServer.getInstance().startAutomaticCapture(usbCam0);
 
 		Log.init("Initializing OI");
 		oi = new OI();

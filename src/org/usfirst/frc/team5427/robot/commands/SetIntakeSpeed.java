@@ -8,11 +8,14 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 public class SetIntakeSpeed extends Command {
 
-	double speed = 0;
+	//speed which the intake system runs at
+	double speed;
+	
+	//
 	boolean on = false;
 
 	public SetIntakeSpeed(double speed) {
-		// Use requires() here to declare subsystem dependencies
+		//requires the intake system
 		requires(Robot.intake);
 		this.speed = speed;
 
@@ -23,14 +26,14 @@ public class SetIntakeSpeed extends Command {
 	protected void initialize() {
 	}
 
-	// Called repeatedly when this Command is scheduled to run
+	//sets the speed to the speed specified in config
 	@Override
 	protected void execute() {
 		Log.init("Intaking");
 		Robot.intake.setSpeed(speed);
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	//turns off when the button to start intake is not pressed
 	@Override
 	protected boolean isFinished() {
 		if (Robot.oi.getJoy().getRawButton(Config.START_INTAKE_BUTTON))
