@@ -3,7 +3,10 @@ package org.usfirst.frc.team5427.robot.commands;
 	import edu.wpi.first.wpilibj.command.Command;
 
 	import org.usfirst.frc.team5427.robot.Robot;
+<<<<<<< HEAD
 import org.usfirst.frc.team5427.robot.util.Config;
+=======
+>>>>>>> usb_camera
 import org.usfirst.frc.team5427.robot.util.Log;
 
 public class SetIntakeSpeed extends Command{
@@ -33,10 +36,14 @@ public class SetIntakeSpeed extends Command{
 		// Make this return true when this Command no longer needs to run execute()
 		@Override
 		protected boolean isFinished() {
+<<<<<<< HEAD
 			if(Robot.oi.getJoy().getRawButton(Config.START_INTAKE_BUTTON))
 				return false;
 			else
 				return true;
+=======
+			return false;
+>>>>>>> usb_camera
 		}
 
 		// Called once after isFinished returns true

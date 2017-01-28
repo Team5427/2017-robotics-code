@@ -71,8 +71,6 @@ public class OI {
 		//switchCameras.whenPressed(new ChangeCamera());
 		//startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		startIntake.whileHeld(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
-		//startIntake.whenReleased(new StopIntake());
-		
 	
 		
 		//TODO tie teh right buttons to teh right commands

@@ -43,7 +43,6 @@ public class Config {
 	// Speeds for the different things that the robot needs to do
 	public static final double LAUNCH_SPEED = 1; // Controlled by grip
 	public static final double PULL_SPEED = 1; //TODO change to correct value later
-	public static final double INTAKE_MOTOR_SPEED 	= .45;
 	
 	// PWM PORTS
 	// TODO reassign motor values
@@ -54,6 +53,10 @@ public class Config {
 	public static final int INTAKE_MOTOR 	= 5;
 	public static final int SHOOTER_MOTOR 		= 4;
 	
+	//motor speeds
+	public static final double INTAKE_MOTOR_SPEED 	= .45;
+
+
 	/* ----------Controller Ports---------- */
 	// Joystick
 	public static final int JOYSTICK_PORT = 0;
