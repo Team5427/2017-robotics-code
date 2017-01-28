@@ -163,8 +163,8 @@ public class Robot extends IterativeRobot {
 		Log.init("Initializing SteelTalon Motors");
 
 		Log.init("Initializing Drive Train");
-		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, Config.OFFSET_REAR_RIGHT_MOTOR_BACKWARDS, Config.OFFSET_REAR_RIGHT_MOTOR_FORWARDS,Config.BIAS_REAR_RIGHT_MOTOR_BACKWARDS,Config.BIAS_REAR_RIGHT_MOTOR_FORWARDS);
-		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, 0, 0);
+		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, 0, 0);
+		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, Config.OFFSET_FRONT_RIGHT_MOTOR_BACKWARD,Config.OFFSET_FRONT_RIGHT_MOTOR_FRONTWARD, Config.BIAS_FRONT_RIGHT_MOTOR_BACKWARD,Config.BIAS_FRONT_RIGHT_MOTOR_FRONTWARD);
 		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR, 0, 0);
 		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, 0, 0);
 		motorPWM_Intake = new SteelTalon(Config.INTAKE_MOTOR, 0, 0);
