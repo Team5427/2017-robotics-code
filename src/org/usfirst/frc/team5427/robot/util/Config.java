@@ -93,7 +93,8 @@ public class Config {
 	public static final double OFFSET_INTAKE_MOTOR_BACKWARD = 0;
 
 	// motor speeds
-	public static final double INTAKE_MOTOR_SPEED = .45;
+	public static final double INTAKE_MOTOR_SPEED = -.85;
+	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=.1;
 	public static final double SHOOTER_MOTOR_SPEED = 1;
 
 	/* ----------Controller Ports---------- */
