@@ -22,3 +22,4 @@ tmp/
 
 #Eclipse project files
 sysProps.xml
+.classpath
