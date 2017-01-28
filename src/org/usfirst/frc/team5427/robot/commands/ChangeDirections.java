@@ -7,7 +7,7 @@ package org.usfirst.frc.team5427.robot.commands;
 public class ChangeDirections extends Command{
 		
 		public ChangeDirections() {
-			// Use requires() here to declare subsystem dependencies
+			//change directions requires the intake system
 			requires(Robot.intake);
 		}
 
@@ -16,7 +16,7 @@ public class ChangeDirections extends Command{
 		protected void initialize() {
 		}
 
-		// Called repeatedly when this Command is scheduled to run
+		//changes the direction of the intake
 		@Override
 		protected void execute() {
 			Robot.intake.changeDirections();
@@ -28,7 +28,7 @@ public class ChangeDirections extends Command{
 			return false;
 		}
 
-		// Called once after isFinished returns true
+		//stops the intake system
 		@Override
 		protected void end() {
 			Robot.intake.stop();
