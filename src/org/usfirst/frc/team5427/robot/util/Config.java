@@ -56,7 +56,8 @@ public class Config {
 	// Motor Bias
 	public static final double BIAS_FRONT_LEFT_MOTOR 	= 1;
 	public static final double BIAS_REAR_LEFT_MOTOR 	= 1;
-	public static final double BIAS_FRONT_RIGHT_MOTOR 	= 1;
+	public static final double BIAS_FRONT_RIGHT_MOTOR_FORWARD 	= 1;
+	public static final double BIAS_FRONT_RIGHT_MOTOR_BACKWARD 	= 1;	
 	public static final double BIAS_REAR_RIGHT_MOTOR 	= 1;	
 	public static final double BIAS_SHOOTER_MOTOR_FORWARD 		= 1;
 	public static final double BIAS_SHOOTER_MOTOR_BACKWARD 		= 1;
@@ -66,7 +67,8 @@ public class Config {
 	// Motor Offset
 	public static final double OFFSET_FRONT_LEFT_MOTOR 	= 0;
 	public static final double OFFSET_REAR_LEFT_MOTOR 	= 0;
-	public static final double OFFSET_FRONT_RIGHT_MOTOR = 0;
+	public static final double OFFSET_FRONT_RIGHT_MOTOR_BACKWARD = 0;
+	public static final double OFFSET_FRONT_RIGHT_MOTOR_FORWARD = 0;
 	public static final double OFFSET_REAR_RIGHT_MOTOR 	= 0;
 	public static final double OFFSET_SHOOTER_MOTOR_FORWARD 	= 0;
 	public static final double OFFSET_SHOOTER_MOTOR_BACKWARD 	= 0;
