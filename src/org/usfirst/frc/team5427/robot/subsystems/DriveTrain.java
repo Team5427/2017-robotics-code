@@ -3,6 +3,7 @@ package org.usfirst.frc.team5427.robot.subsystems;
 import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.OurClasses.SteelTalon;
 import org.usfirst.frc.team5427.robot.util.Config;
+import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -59,6 +60,7 @@ public class DriveTrain extends Subsystem {
 	 * @param speed - The wanted speed of the right side motors.
 	 */
 	public void setRightSpeed(double speed) {
+		Log.debug("Speed: " + speed);
 		motorPWM_FrontRight.set(speed);
 		MOTOR_PWM_BackRight.set(speed);
 	}

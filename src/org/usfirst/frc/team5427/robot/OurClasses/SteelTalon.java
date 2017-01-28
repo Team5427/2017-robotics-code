@@ -26,6 +26,12 @@ public class SteelTalon extends Talon {
 	 * present.
 	 */
 	double backwardoffset, forwardOffset;
+	
+	/**
+	 * The doubles that will store the bias for the motors. This value will be
+	 * between 0.0-1.0, and will slow down the motor to the correct ratio.
+	 */
+	double backwardBias, forwardBias;
 
 	/**
 	 * Creates an instance of
@@ -40,6 +46,8 @@ public class SteelTalon extends Talon {
 
 		this.backwardoffset = 0;
 		this.forwardOffset = 0;
+		this.backwardBias = 1f;
+		this.forwardBias = 1f;
 	}
 
 	/**
@@ -53,8 +61,25 @@ public class SteelTalon extends Talon {
 
 		this.backwardoffset = backwardOffset;
 		this.forwardOffset = forwardOffset;
+		this.backwardBias = 1f;
+		this.forwardBias = 1f;
 	}
 
+	/**
+	 * 
+	 * @param channel
+	 * @param backwardOffset
+	 * @param forwardOffset
+	 */
+	public SteelTalon(int channel, double backwardOffset, double forwardOffset, double backwardBias, double forwardBias) {
+		super(channel);
+
+		this.backwardoffset = backwardOffset;
+		this.forwardOffset = forwardOffset;
+		setBackwardBias(backwardBias);
+		setForwardBias(forwardBias);
+	}
+	
 	public void setBackwardOffset(double backwardOffset) {
 		this.backwardoffset = backwardOffset;
 	}
@@ -63,12 +88,33 @@ public class SteelTalon extends Talon {
 		this.forwardOffset = forwardOffset;
 	}
 
+	public void setBackwardBias(double backwardBias) {
+		this.backwardBias = normalizeBias(backwardBias);
+	}
+	
+	public void setForwardBias(double forwardBias) {
+		this.forwardBias = normalizeBias(forwardBias);
+	}
+	
+	private double normalizeBias(double bias) {
+		if (bias < 0f)
+			return 0f;
+		else if (bias > 1f)
+			return 1f;
+		
+		return bias;
+	}
+	
 	@Override
 	public void set(double speed) {
-		if (speed > .02)
+		if (speed > .02) {
+			speed *= forwardBias;
 			speed += forwardOffset;
-		else if (speed < -.02)
+		}
+		else if (speed < -.02) {
+			speed *= backwardBias;
 			speed -= backwardoffset;
+		}
 
 		/*
 		 * ensures that the speed plus/minus the offset will not exceed the
