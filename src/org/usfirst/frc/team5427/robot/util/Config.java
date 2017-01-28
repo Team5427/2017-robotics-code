@@ -41,7 +41,7 @@ public class Config {
 	public static final boolean LOGGING = true; // only logs errors and fatals
 												// with this false
 	// Speeds for the different things that the robot needs to do
-	public static final double LAUNCH_SPEED = 1; // Controlled by grip
+	 // Controlled by grip
 	public static final double PULL_SPEED = 1; //TODO change to correct value later
 	
 	// PWM PORTS
@@ -55,6 +55,7 @@ public class Config {
 	
 	//motor speeds
 	public static final double INTAKE_MOTOR_SPEED 	= .45;
+	public static final double SHOOTER_MOTOR_SPEED 	= .5;
 
 
 	/* ----------Controller Ports---------- */

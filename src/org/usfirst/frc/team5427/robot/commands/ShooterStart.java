@@ -8,10 +8,16 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ShooterStart extends Command {
 
+	//speed of the shooter
 	private double shootSpeed;
 
-	public ShooterStart() {
+	/**
+	 * sets the speed of the launching mechanism to the speed defined in the
+	 * configuration file.
+	 */
+	public ShooterStart(double shootSpeed) {
 		// Use requires() here to declare subsystem dependencies
+		this.shootSpeed=shootSpeed;
 		requires(Robot.launcher);
 
 	}
