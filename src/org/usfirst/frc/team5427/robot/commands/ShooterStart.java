@@ -28,7 +28,7 @@ public class ShooterStart extends Command {
 	 */
 	protected void initialize() {
 		Log.init("initialized Shoot");
-		shootSpeed = Config.LAUNCH_SPEED;
+
 
 		Robot.launcher.setShootSpeed(shootSpeed);
 	}
@@ -48,7 +48,7 @@ public class ShooterStart extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.launcher.stopShoot();
+		Robot.launcher.stop();
 	}
 
 	// Called when another command which requires one or more of the same
