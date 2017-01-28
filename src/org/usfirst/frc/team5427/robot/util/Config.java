@@ -93,7 +93,7 @@ public class Config {
 	public static final double OFFSET_INTAKE_MOTOR_BACKWARD = 0;
 
 	// motor speeds
-	public static final double INTAKE_MOTOR_SPEED = -.85;
+	public static final double INTAKE_MOTOR_SPEED = -.80;
 	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=.1;
 	public static final double SHOOTER_MOTOR_SPEED = 1;
 
@@ -110,7 +110,7 @@ public class Config {
 	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON = 1;
 	public static final int PULL_BUTTON = 7;
-	public static final int SWITCH_CAMERAS_BUTTON = 2;
+	public static final int SWITCH_CAMERAS_BUTTON = 12;
 	public static final int START_INTAKE_BUTTON = 11;
 	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 12;
 
