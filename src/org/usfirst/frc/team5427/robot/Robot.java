@@ -26,7 +26,7 @@ import org.usfirst.frc.team5427.robot.OurClasses.*;
 //import org.usfirst.frc.team5427.robot.commands.ExampleCommand;
 import org.usfirst.frc.team5427.robot.util.Log;
 import org.usfirst.frc.team5427.robot.util.Config;
-import org.usfirst.frc.team5427.robot.commands.ChangeCamera;
+
 import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 
@@ -93,14 +93,13 @@ public class Robot extends IterativeRobot{
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
 	public static CameraServer server;
-	//public static CameraServer server0;
 	//these are the two usb cameras
 	public static UsbCamera usbCam0, usbCam1;
 	
 	//this is the ip camera
 	public static AxisCamera axisCam;
 	
-	public static RobotCameras roboCams;
+
 	public static int currentCamera = 0;
 	//NI USB interface numbers for the cameras
 	//int devForCam0=2,devForCam1=3;
@@ -132,118 +131,30 @@ public class Robot extends IterativeRobot{
 		Log.info("Intake SUbsystem Initialized!");
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
+		//camera code
+		/* initialize server*/
 		server = CameraServer.getInstance();
-	//	server0=CameraServer.getInstance();
+			//initialize axis cam
 		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
-	//	server.addCamera(axisCam);
-		
-		//creates camera 0 (the smaller one) and adds it to the server
+			//init usb cam 0 and set fps
 		usbCam0 = new UsbCamera("cam0", 0);
 		usbCam0.setFPS(15);
-	//	server.addCamera(usbCam0);
+	
 		
-		//creates camera 1 (the larger one) and adds it to the server
+		//creates camera 1 and set fps and adds it to the server
 		usbCam1 = new UsbCamera("cam1", 1);
 		usbCam1.setFPS(15);
-	server.addCamera(usbCam1);
-	
-
-		//server.addCamera(usbCam1);
+		server.addCamera(usbCam1);
 		
-		
-		roboCams=new RobotCameras(usbCam0, usbCam1, axisCam);
-		
-
-		
-
-	//	server.startAutomaticCapture(roboCams.getCurrentCamera());
-				
-		//CameraServer.getInstance().startAutomaticCapture();
-		
-//		MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1180);
-//		mjpegServer1.setSource(usbCam0);
-		
-
-	//	server.startAutomaticCapture(usbCam0);
-	//		server.startAutomaticCapture(usbCam1);
-//SmartDashboard.putData("Image", usbCam0.);
-		
-
-		
-/*		CvSink cvSink = new CvSink ("opencv_USB Camera 0");
-		cvSink.setSource(usbCam0);
-		CvSource outputStream = new CvSource("Blur", PixelFormat.kMJPEG, 640, 480, 30);
-		MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 1180);
-		mjpegServer2.setSource(outputStream);*/
-		
-		//server.addCamera(usbCam1);
-		
-		//Starts video of both cameras
-		//server.startAutomaticCapture(usbCam1);
-//		server.startAutomaticCapture(axisCam);
-		
-		//server.addServer("Camera0");
-		//server.putVideo("cam0");
-		
-		//in the dashboard, select 'cam0' and 'cam1'
-		
-		//server.putVideo("cam0", 20, 20);
-		
-		//CameraServer.getInstance().startAutomaticCapture(usbCam0);
-	//	chooser.addObject("Cam",new ChangeCamera());
-
-		//SmartDashboard sd = new SmartDashboard();
-		//SmartDashboard sd2 = new SmartDashboard();
-		/*CvSink cvSink = new CvSink ("opencv_USB Camera 0");
-		cvSink.setSource(usbCam0);
-		CvSource outputStream = new CvSource("Blur", PixelFormat.kMJPEG, 640, 480, 30);
-		MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 1180);
-		mjpegServer2.setSource(outputStream);
-		server.addServer(mjpegServer2);*/
-		//CvSink cvSink = new CvSink ("opencv_USB Camera 0");
-		//server.putVideo("cam1bruh", 200, 200);
-	//	server.startAutomaticCapture(usbCam1);
-	
+		//adds usb and axis camera to server
 		Robot.server.addCamera(usbCam0);
-		
 		Robot.server.addCamera(axisCam);
+		
+		//start auto capture of camera 0 and camera 1
 		server.startAutomaticCapture(usbCam0);
 		server.startAutomaticCapture(usbCam1);
 		
-		/*if(Robot.roboCams.currentCamera==0)
-		{
-			cvSink.setSource(usbCam0);
-			//Robot.server.removeCamera("axisCam");
-			Robot.server.putVideo("usbCam0", 200, 200);
-			Robot.server.startAutomaticCapture(Robot.usbCam0);
-			
-		}
-		else if(Robot.roboCams.currentCamera==1)
-		{
-			cvSink.setSource(usbCam1);
 		
-			//Robot.server.removeCamera("usbCam0");
-		
-				Robot.server.putVideo("usbCam1", 200, 200);
-			Robot.server.startAutomaticCapture(Robot.usbCam1);
-			
-		}
-		else if(Robot.roboCams.currentCamera==2)
-		{
-			cvSink.setSource(axisCam);
-			//Robot.server.removeCamera("usbCam1");
-			
-			Robot.server.putVideo("axisCamera", 200, 200);
-			Robot.server.startAutomaticCapture(Robot.axisCam);
-		}
-CvSource outputStream = new CvSource("Blur", PixelFormat.kMJPEG, 200, 200, 15);
-		
-
-		MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 30);
-		
-		mjpegServer2.setSource(outputStream);
-		server.addServer(mjpegServer2);*/
-	//	chooser.addObject("camera", server);
 		SmartDashboard.putData("Auto mode",chooser);
 		oi = new OI();
 	}

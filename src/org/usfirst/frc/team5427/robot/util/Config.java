@@ -62,7 +62,6 @@ public class Config {
 	public static final int JOYSTICK_MODE = ONE_JOYSTICK; // Set this to either ONE_JOYSTICK or TWO_JOYSTICK\\
 	
 	//Buttons
-	public static final int SWITCH_CAMERAS_BUTTON = 2;
 	public static final int START_INTAKE_BUTTON = 11;
 	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 12;
 }
