@@ -4,11 +4,17 @@ package org.usfirst.frc.team5427.robot;
 import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.CameraServerJNI;
 import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.cscore.VideoSource;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.SpeedController;
 //import edu.wpi.first.wpilibj.NamedSendable;
 import edu.wpi.first.wpilibj.command.Command;
@@ -16,6 +22,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 import org.usfirst.frc.team5427.robot.OurClasses.*;
 
@@ -23,6 +30,7 @@ import org.usfirst.frc.team5427.robot.OurClasses.*;
 import org.usfirst.frc.team5427.robot.util.Log;
 import org.usfirst.frc.team5427.robot.util.Config;
 
+import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 
 import org.usfirst.frc.team5427.robot.subsystems.*;
@@ -34,9 +42,13 @@ import org.usfirst.frc.team5427.robot.subsystems.*;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot{
+public class Robot extends IterativeRobot {
 
 	public static OI oi;
+
+	// motor for intake
+
+	public static SpeedController motorPWM_Intake;
 
 	// PWM Motors for Drive Train
 	/**
@@ -44,7 +56,7 @@ public class Robot extends IterativeRobot{
 	 * robot from a top-down point of view, and setting the speed of this motor
 	 * to a positive value will cause the robot to move __________
 	 */
-	static SpeedController motorPWM_FrontLeft;
+	public static SpeedController motorPWM_FrontLeft;
 
 	// TODO fill in the blank in this comment after testing the robot.
 	/**
@@ -52,7 +64,7 @@ public class Robot extends IterativeRobot{
 	 * robot from a top-down point of view, and setting the speed of this motor
 	 * to a positive value will cause the robot to move __________
 	 */
-	static SpeedController motorPWM_RearLeft;
+	public static SpeedController motorPWM_RearLeft;
 
 	// TODO fill in the blank in this comment after testing the robot.
 	/**
@@ -60,7 +72,7 @@ public class Robot extends IterativeRobot{
 	 * robot from a top-down point of view, and setting the speed of this motor
 	 * to a positive value will cause the robot to move __________
 	 */
-	static SpeedController motorPWM_FrontRight;
+	public static SpeedController motorPWM_FrontRight;
 
 	// TODO fill in the blank in this comment after testing the robot.
 	/**
@@ -68,76 +80,159 @@ public class Robot extends IterativeRobot{
 	 * robot from a top-down point of view, and setting the speed of this motor
 	 * to a positive value will cause the robot to move __________
 	 */
-	static SpeedController motorPWM_RearRight;
-	
+	public static SpeedController motorPWM_RearRight;
+
 	/**
-	 * DriveTrain subsytem to control the drive train
+	 * DriveTrain subsystem to control the drive train
+	 */
+	public static SpeedController motorPWM_Flywheel;
+	public static SpeedController motorPWM_Flywheel2;
+	/**
+	 * Launcher subsystem to shoot balls from the shooting mechanism
+	 */
+	public static Launcher launcher;
+	/**
+	 * Rope Climb subsystem launcher for the robot to climb the rope
+	 */
+	public static RopeClimb ropeClimb;
+	/**
+	 * Drive train subsystem to drive the robot
 	 */
 	public static DriveTrain driveTrain;
 
+	/**
+	 * Drive command to drive the robot
+	 */
 	public static Drive drive;
-	
+	/**
+	 * Command that sets the intake speed of the robot
+	 */
+	public static SetIntakeSpeed si;
+
+	/**
+	 * Intake subsystem to intake balls into the robot
+	 */
+	public static Intake intake;
+	// public static SetIntakeSpeed si;//to be used if we want to keep the
+	// intake always on
+
+	public static DigitalInput digI = new DigitalInput(Config.ULTRASONIC_ECHO_CHANNEL);
+	public static DigitalOutput digO = new DigitalOutput(Config.ULTRASONIC_PING_CHANNEL);
+
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	
-	CameraServer server;
-	//these are the two usb cameras
-	UsbCamera usbCam0, usbCam1;
-	
-	AxisCamera axisCam;
-	
-	//NI USB interface numbers for the cameras
-	//int devForCam0=2,devForCam1=3;
-	
-	
+
+	/* -------Sensors------- */
+	/**
+	 * Ultrasonic Range Finder to find the distance between the sensor and
+	 * target
+	 */
+	public static Ultrasonic ultrasonic = new Ultrasonic(digO, digI);
+
+	/**
+	 * Camera server
+	 */
+	public static CameraServer server;
+	/**
+	 * USB Cameras for robot
+	 */
+	public static UsbCamera usbCam0, usbCam1;
+
+	/**
+	 * IP Camera
+	 */
+	public static AxisCamera axisCam;
+
+	/**
+	 * Current camera in use
+	 */
+	public static int currentCamera = 0;
+	// NI USB interface numbers for the cameras
+	// int devForCam0=2,devForCam1=3;
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
-		oi = new OI();
-		//chooser.addDefault("Default Auto", new ExampleCommand());
+		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
-		
+
+		/* Initialize Steel Talon Motors */
+		Log.init("Initializing SteelTalon Motors");
+
+		Log.init("Initializing Drive Train");
 		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, 0, 0);
 		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, 0, 0);
 		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR, 0, 0);
 		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, 0, 0);
+		motorPWM_Intake = new SteelTalon(Config.INTAKE_MOTOR, 0, 0);
+
+		intake = new Intake(motorPWM_Intake);
+		Log.info("Intake SUbsystem Initialized!");
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
-		server = CameraServer.getInstance();
-		
-		//creates camera 0 (the smaller one) and adds it to the server
-		usbCam0 = new UsbCamera("cam0", 0);
-		server.addCamera(usbCam0);
-		
-		//creates camera 1 (the larger one) and adds it to the server
-		usbCam1 = new UsbCamera("cam1", 1);
-		server.addCamera(usbCam1);
-		
-		//axisCam = new AxisCamera("axisCamera", "10.54.27.11");
-		//server.addCamera(axisCam);
-		
-		//Starts video of both cameras
-//		server.startAutomaticCapture(usbCam0);
-//		server.startAutomaticCapture(usbCam1);
-//		server.startAutomaticCapture(axisCam);
-		
-		server.addServer("Camera0");
-		//server.putVideo("cam0");
-		
-		//in the dashboard, select 'cam0' and 'cam1'
-		
-		server.putVideo("cam0", 20, 20);
-		
-		//CameraServer.getInstance().startAutomaticCapture(usbCam0);
-		
 
-	
-		
-		
+		Log.init("Initializing Flywheels");
+		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);
+		// motorPWM_Flywheel2 = new SteelTalon(Config.SHOOTER_MOTOR);
+
+		Log.init("Initialized all SteelTalon Motors!");
+
+		/* Initialize Subsystem */
+		Log.init("Initializing Subsystems");
+
+		Log.init("Initializing Launcher subsystem");
+		launcher = new Launcher(motorPWM_Flywheel);
+		Log.init("Launcher subsystem Initialized!");
+
+		Log.init("Initializing RopeClimb subsystem");
+		ropeClimb = new RopeClimb(motorPWM_Flywheel2);
+		Log.init("RopeClimb subsystem initialized!");
+
+		Log.init("Initializing Intake subsystem");
+		intake = new Intake(motorPWM_Intake);
+		Log.init("Intake SUbsystem Initialized!");
+
+		/* Initialize Sensor */
+
+		// Ultrasonic
+		// ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL,
+		// Config.ULTRASONIC_ECHO_CHANNEL);
+		ultrasonic.setAutomaticMode(true);
+		ultrasonic.setEnabled(true);
+
+		// server = CameraServer.getInstance();
+
+		Log.init("Initializing OI");
+		oi = new OI();
+		Log.init("OI Initialized!");
+
+		// camera code
+		/* initialize server */
+		server = CameraServer.getInstance();
+		// initialize axis cam
+		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
+		// init usb cam 0 and set fps
+		usbCam0 = new UsbCamera("cam0", 0);
+		usbCam0.setFPS(15);
+
+		// creates camera 1 and set fps and adds it to the server
+		usbCam1 = new UsbCamera("cam1", 1);
+		usbCam1.setFPS(15);
+		server.addCamera(usbCam1);
+
+		// adds usb and axis camera to server
+		Robot.server.addCamera(usbCam0);
+		Robot.server.addCamera(axisCam);
+
+		// start auto capture of camera 0 and camera 1
+		server.startAutomaticCapture(usbCam0);
+		server.startAutomaticCapture(usbCam1);
+
+		SmartDashboard.putData("Auto mode", chooser);
+
 	}
 
 	/**
@@ -198,11 +293,14 @@ public class Robot extends IterativeRobot{
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		
+
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
-		
 		drive = new Drive(driveTrain, oi.getJoy(), Config.JOYSTICK_MODE);
 		drive.start();
+
+		intake = new Intake(motorPWM_Intake);
+		// si=new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED);
+		// si.start();
 	}
 
 	/**
@@ -211,6 +309,22 @@ public class Robot extends IterativeRobot{
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+
+		Log.init("ultrasonic1");
+
+		if (ultrasonic != null) {
+			// ultrasonic.ping();
+
+			Log.init("DiOutput" + digO.get());
+			Log.init("DiInput" + digI.get());
+			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonic.getRangeInches());
+			Log.init("" + ultrasonic.getRangeInches());
+		}
+		/*
+		 * if (ultrasonicAnalogInput != null) {
+		 * SmartDashboard.putNumber("Ultrasonic Sensor (in):",
+		 * ultrasonicAnalogInput.getAverageVoltage()); }
+		 */
 	}
 
 	/**
@@ -220,6 +334,5 @@ public class Robot extends IterativeRobot{
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
-	
-	
+
 }

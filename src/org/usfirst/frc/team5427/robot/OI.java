@@ -6,6 +6,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+//import org.usfirst.frc.team5427.robot.commands.ChangeCamera;
+import org.usfirst.frc.team5427.robot.commands.ChangeDirections;
+import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
+import org.usfirst.frc.team5427.robot.commands.ShooterStart;
+//import org.usfirst.frc.team5427.robot.commands.SwitchCameras;
 import org.usfirst.frc.team5427.robot.util.Config;
 
 /**
@@ -44,31 +49,62 @@ public class OI {
 	/**
 	 * Primary joystick
 	 */
-	Joystick joy = new Joystick(Config.JOYSTICK_PORT);
+	public Joystick joy = new Joystick(Config.JOYSTICK_PORT);
 	/**
 	 * Alternate joystick. Currently unused
 	 */
-	Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
-	
+	public Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
+
+	// Buttons
+	/**
+	 * Switches the camera view
+	 */
+	public Button switchCameras = new JoystickButton(joy, Config.SWITCH_CAMERAS_BUTTON);
+	/**
+	 * Changes the direction of the intake
+	 */
+	public Button changeIntakeDirection = new JoystickButton(joy, Config.CHANGE_INTAKE_DIRECTION_BUTTON);
+	/**
+	 * Starts the intake
+	 */
+	public Button startIntake = new JoystickButton(joy, Config.START_INTAKE_BUTTON);
+	/**
+	 * Button to shoot the balls
+	 */
+	public Button shooter = new JoystickButton(joy, Config.SHOOT_BUTTON);
+	/**
+	 * Set intake speed
+	 */
+	public SetIntakeSpeed si;
+
 	/**
 	 * Constructor for the OI class, defines the button-press events.
 	 */
 	public OI() {
-		
+		shooter.whenPressed(new ShooterStart(Config.SHOOTER_MOTOR_SPEED * -1));
+		//switchCameras.whenPressed(new ChangeCamera());
+		//startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
+		startIntake.whileHeld(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
+
+		// TODO tie the right buttons to the right commands
+		// changeIntakeDirection.whenPressed(new ChangeDirections());
+		// startIntake.whenPressed(new
+		// SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED);
 	}
+
 	/**
 	 * returns the joystick object
 	 * 
 	 * @return the joystick
 	 */
-
 	public Joystick getJoy() {
 		return joy;
 	}
 
 	/**
-	 * returns the right joystick if using 2
-	 * NOTE: not used for real, but used elsewhere in code
+	 * returns the right joystick if using 2 NOTE: not used for real, but used
+	 * elsewhere in code
+	 * 
 	 * @return the other joystick
 	 */
 	public Joystick getAltJoy() {

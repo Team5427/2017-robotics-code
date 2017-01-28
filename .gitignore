@@ -15,7 +15,11 @@ hs_err_pid*
 # Unused Folder
 .metadata/
 
-# Eclipse project files
+# Eclipse project directory
 .metadata/
 bin/
 tmp/
+
+#Eclipse project files
+# sysProps.xml
+# .classpath
