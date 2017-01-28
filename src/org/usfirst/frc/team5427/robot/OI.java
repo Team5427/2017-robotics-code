@@ -81,7 +81,7 @@ public class OI {
 	 * Constructor for the OI class, defines the button-press events.
 	 */
 	public OI() {
-		shooter.whenPressed(new ShooterStart(Config.SHOOTER_MOTOR_SPEED));
+		shooter.whenPressed(new ShooterStart(Config.SHOOTER_MOTOR_SPEED * -1));
 		//switchCameras.whenPressed(new ChangeCamera());
 		//startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		startIntake.whileHeld(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
