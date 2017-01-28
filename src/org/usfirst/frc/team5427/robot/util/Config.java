@@ -74,8 +74,8 @@ public class Config {
 	public static final double BIAS_INTAKE_MOTOR_BACKWARD      = 1;
 
 	// Motor Offset
-	public static final double OFFSET_FRONT_LEFT_MOTOR_FORWARDS  = 0;
-	public static final double OFFSET_FRONT_LEFT_MOTOR_BACKWARDS = 0;
+	public static final double OFFSET_FRONT_LEFT_MOTOR_FORWARD  = 0;
+	public static final double OFFSET_FRONT_LEFT_MOTOR_BACKWARD = 0;
 
 	public static final double OFFSET_REAR_LEFT_MOTOR_FORWARD    = 0;
 	public static final double OFFSET_REAR_LEFT_MOTOR_BACKWARD   = 0;
