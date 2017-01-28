@@ -8,24 +8,19 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * This Subsystem will be responsible for managing all four SIM motors that are
- * responsible for controlling the wheels. It contains initialization code, code for setting speeds,
- * and code for setting the speeds of individual sides. There is no option for individual motors,
- * so mecanum wheels cannot be supported. 	
+ * This Subsystem will be responsible for managing the motor used to control the Intake mechanism.
  * 
- * @author Andrew Kennedy, Bo Corman
+ * @author 
  */
 public class Intake extends Subsystem {
 
 	SpeedController motorPWM_Intake;
 
 	/**
-	 * Drive Train constructor -- as parameters takes each motor to initialize.
+	 * Intake subsystem constructor. - Initializes the Speed Controller for the motor used to
+	 * control the intake.
 	 * 
-	 * @param motorPWM_FrontLeft
-	 * @param motorPWM_RearLeft
-	 * @param motorPWM_FrontRight
-	 * @param motorPWM_BackRight
+	 * @param motorPWM_Intake - The motor used to control the intake.
 	 */
 	public Intake(SpeedController motorPWM_Intake)
 	{
@@ -38,47 +33,26 @@ public class Intake extends Subsystem {
 		}
 
 	/**
-	 * Sets the speed of the left motors on the drive train.
+	 * Sets the speed of the intake motor.
 	 * 
-	 * @param speed
-	 *            - the speed you want to set
+	 * @param speed - The speed you want to set the motor at.
 	 */
 	public void setSpeed(double speed) {
 		motorPWM_Intake.set(speed);
 	}
 	
+	/**
+	 * Changes the direction of the intake motor.
+	 */
 	public void changeDirections()
 	{
 		motorPWM_Intake.set(-motorPWM_Intake.get());
 	}
 
 	/**
-	 * Sets the speed of the right motors on the drive train.
-	 * 
-	 * @param speed
-	 *            - the speed you want to set
-	 */
-
-
-	/**
-	 * Sets the speed of all motors to 0
+	 * Sets the speed of the motor to 0.
 	 */
 	public void stop() {
 		setSpeed(0);
 	}
-
-	/**
-	 * Takes the input of the joystick, and uses it to drive the robot. It
-	 * currently uses six variables: the Z axis of the joystick, the Y axis of
-	 * the joystick, the speed which the left (left) side should move, the speed
-	 * at which the right side should move (right), the right side plus the left
-	 * side (v), and the right side minus the left side (w).
-	 * 
-	 * @param z
-	 *            - Z axis of joystick, positive is to the right
-	 * @param y
-	 *            - Y axis of joystick, positive is backwards
-	 */
-	
-
 }

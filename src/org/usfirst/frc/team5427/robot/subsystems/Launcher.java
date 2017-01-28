@@ -9,9 +9,8 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * the launcher subsystem is used for controlling the mechanism that launches
- * boulders, and involves 3 different parts, the shooting motors, turning
- * motors, and angling/tilting motors.
+ * This subsystem will be responsible for controlling the mechanism used to shoot fuel
+ * into the boilers. It will be controlled with one motor.
  * 
  * @author team5427
  *
@@ -19,21 +18,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Launcher extends Subsystem {
 
 	/**
-	 * SpeedController which is responsible for the flywheel that launches the
-	 * ball out of the robot.
+	 * SpeedController which is responsible for the wheels that launch the
+	 * balls out of the robot.
 	 */
 	public SpeedController motorPWM_Flywheel;
 
 	/**
-	 * launcher constructor -- takes motors for various parts of the launcher as
-	 * parameters
+	 * Launcher Constructor - Initializes the motor used to control the launcher.
 	 * 
-	 * @param motorFlyWheel
+	 * @param motorFlyWheel - The motor used to control the launcher.
 	 */
 	public Launcher(SpeedController motorFlyWheel) {
 		this.motorPWM_Flywheel = motorFlyWheel;
-
-		Log.init("FINISHED MAKING A NEW LAUNCHER");
 	}
 
 	@Override
@@ -42,21 +38,17 @@ public class Launcher extends Subsystem {
 	}
 
 	/**
-	 * sets all of the motor speeds to 0
+	 * Sets the launcher's motor's speed to zero.
 	 */
 	public void stop() {
 		setShootSpeed(0);
 
 	}
 
-	public void stopShoot() {
-		setShootSpeed(0);
-	}
-
 	/**
-	 * sets the speed of the shooting motors to the specified speed.
+	 * Sets the speed of the launcher's motor to the desired speed.
 	 * 
-	 * @param speed
+	 * @param speed - The desired speed of the launcher.
 	 */
 	public void setShootSpeed(double speed) {
 		// Prevent speed from going to fast

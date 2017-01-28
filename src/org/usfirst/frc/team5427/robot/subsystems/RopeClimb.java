@@ -24,14 +24,12 @@ public class RopeClimb extends Subsystem {
 	public SpeedController motorPWM_Flywheel;
 
 	/**
-	 * launcher constructor -- takes motors for various parts of the rope
-	 * climber as parameters
+	 * RopeClimb constructor -- Initializes the motor for the RopeClimb subsystem.
 	 * 
-	 * @param motorFlyWheel
+	 * @param motorFlyWheel - The motor used to control the RopeClimb.
 	 */
 	public RopeClimb(SpeedController motorFlyWheel) {
 		this.motorPWM_Flywheel = motorFlyWheel;
-
 		Log.init("FINISHED MAKING A NEW RopeClimb");
 	}
 
@@ -41,20 +39,16 @@ public class RopeClimb extends Subsystem {
 	}
 
 	/**
-	 * sets all of the motor speeds to 0
+	 * Sets the motor's speed to zero.
 	 */
 	public void stop() {
 		setPullSpeed(0);
 	}
 
-	public void stopPull() {
-		setPullSpeed(0);
-	}
-
 	/**
-	 * sets the speed of the pulling motors to the specified speed.
+	 * Sets the speed of the RopeClimb to the desired speed.
 	 * 
-	 * @param speed
+	 * @param speed - The desired speed of the RopeClimb.
 	 */
 	public void setPullSpeed(double speed) {
 		// Prevent speed from going to fast
@@ -65,5 +59,4 @@ public class RopeClimb extends Subsystem {
 
 		motorPWM_Flywheel.set(speed);
 	}
-
 }
