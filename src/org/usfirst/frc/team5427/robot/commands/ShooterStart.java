@@ -13,8 +13,9 @@ public class ShooterStart extends Command {
 	 * sets the speed of the launching mechanism to the speed defined in the
 	 * configuration file.
 	 */
-	public ShooterStart() {
+	public ShooterStart(double shootSpeed) {
 		// Use requires() here to declare subsystem dependencies
+		this.shootSpeed=shootSpeed;
 		requires(Robot.launcher);
 		
 	}
@@ -22,7 +23,6 @@ public class ShooterStart extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Log.init("initialized Shoot");
-			shootSpeed = Config.LAUNCH_SPEED;
 
 		Robot.launcher.setShootSpeed(shootSpeed);
 	}
