@@ -113,9 +113,9 @@ public class Config {
 	public static final int FULL_TURN_SPEED_LEFT = 1;	
 
 	/*-----------spot-----------*/
-	public boolean left = false;
-	public boolean middle = false;
-	public boolean right = false;
+	public static final int AUTO_LEFT = 0;
+	public static final int AUTO_MIDDLE = 1;
+	public static final int AUTO_RIGHT = 2;
 	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON = 1;
 	public static final int PULL_BUTTON = 7;

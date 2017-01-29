@@ -238,9 +238,9 @@ public class Robot extends IterativeRobot {
 		if(chooser==spot0)
 			chooser.addObject("AutoDriveLeft", new AutoDrive(distance,forward,0));
 		else if(chooser==spot1)
-			chooser.addObject("AutoDriveLeft", new AutoDrive(distance,forward,0));
+			chooser.addObject("AutoDriveMiddle", new AutoDrive(distance,forward,0));
 		else if(chooser==spot2)
-			chooser.addObject("AutoDriveLeft", new AutoDrive(distance,forward,0));
+			chooser.addObject("AutoDriveRight", new AutoDrive(distance,forward,0));
 		SmartDashboard.putData("Auto mode", chooser);
 		
 	}

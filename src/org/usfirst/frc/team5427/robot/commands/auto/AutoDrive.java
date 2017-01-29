@@ -13,12 +13,15 @@ import org.usfirst.frc.team5427.robot.util.Log;
  */
 public class AutoDrive extends Command {
 
-	private boolean forward;
-
-	public AutoDrive() {
+	private int position;
+	private long startTime;
+	
+	public AutoDrive(int position) {
 		// Use requires() here to declare subsystem dependencies
+
 		requires(Robot.driveTrain);
-		startTime= System.nanoTime();
+		startTime = System.nanoTime();
+		this.position = position;
 	}
 
 	// Called just before this Command runs the first time
@@ -30,7 +33,7 @@ public class AutoDrive extends Command {
 
 	@SuppressWarnings("all")
 	protected void execute() {
-			if(Config.left)
+		if(position = Config.AUTO_LEFT)
 		{
 			if(getTime<1000)
 			{
@@ -49,7 +52,7 @@ public class AutoDrive extends Command {
 			}
 				
 		}
-		else if(Config.middle)
+		else if(position = Config.AUTO_MIDDLE)
 		{
 			if(getTime()<500)
 			{
@@ -62,7 +65,7 @@ public class AutoDrive extends Command {
 			Robot.driveTrain.setRightSpeed(-1);
 			}
 		}
-		else if(Config.right)
+		else if(position = Config.AUTO_RIGHT)
 		{
 			if(getTime<1000)
 			{
@@ -88,19 +91,19 @@ public class AutoDrive extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (Config.LEFT)
+		if (position = Config.AUTO_LEFT)
 		{
 			if(getTime()==5000)
 			return true;
 		return false;
 		}
-		if(Config.RIGHT)
+		if(position = Config.AUTO_MIDDLE)
 		{
 			if(getTime()==5000)
 				return true;
 			return false;
 		}
-		if(Config.MIDDLE)
+		if(position = Config.AUTO_RIGHT)
 		{
 			if(getTime()==3000)
 				return true;
