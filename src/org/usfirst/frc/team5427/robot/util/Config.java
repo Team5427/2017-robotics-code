@@ -105,8 +105,17 @@ public class Config {
 	public static final int TWO_JOYSTICKS = 1; // static var for above
 	public static final int JOYSTICK_MODE = ONE_JOYSTICK; // Set this to either
 															// ONE_JOYSTICK or
-															// TWO_JOYSTICK
+	
+	/*------------speed for auto-------*/
+	public static final int FULL_SPEED_FORWARD = 1;
+	public static final int FULL_SPEED_BACKWARD = 1;
+	public static final int FULL_TURN_SPEED_RIGHT = 1;
+	public static final int FULL_TURN_SPEED_LEFT = 1;	
 
+	/*-----------spot-----------*/
+	public boolean left = false;
+	public boolean middle = false;
+	public boolean right = false;
 	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON = 1;
 	public static final int PULL_BUTTON = 7;
