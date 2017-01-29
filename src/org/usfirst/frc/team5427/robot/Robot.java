@@ -231,8 +231,12 @@ public class Robot extends IterativeRobot {
 		server.startAutomaticCapture(usbCam0);
 		server.startAutomaticCapture(usbCam1);
 
+		/**
+		 * TODO Add the different chooser selections for autonomous for Left,
+		 * Middle, and Right.
+		 */
 		SmartDashboard.putData("Auto mode", chooser);
-
+		
 	}
 
 	/**
