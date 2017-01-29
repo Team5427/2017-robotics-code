@@ -77,6 +77,7 @@ public class OI {
 	 */
 	public SetIntakeSpeed si;
 
+	
 	/**
 	 * Constructor for the OI class, defines the button-press events.
 	 */
@@ -86,6 +87,7 @@ public class OI {
 		//startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		startIntake.whileHeld(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 
+		
 		// TODO tie the right buttons to the right commands
 		// changeIntakeDirection.whenPressed(new ChangeDirections());
 		// startIntake.whenPressed(new

@@ -235,12 +235,13 @@ public class Robot extends IterativeRobot {
 		 * TODO Add the different chooser selections for autonomous for Left,
 		 * Middle, and Right.
 		 */
-		if(chooser==spot0)
-			chooser.addObject("AutoDriveLeft", new AutoDrive(distance,forward,0));
-		else if(chooser==spot1)
-			chooser.addObject("AutoDriveMiddle", new AutoDrive(distance,forward,0));
-		else if(chooser==spot2)
-			chooser.addObject("AutoDriveRight", new AutoDrive(distance,forward,0));
+		chooser = new SendableChooser();
+		
+		chooser.addDefault("", 0);
+		chooser.addObject("AutoDriveLeft", 1);
+		chooser.addObject("AutoDriveMiddle", 2);
+		chooser.addObject("AutoDriveRight", 3);
+		
 		SmartDashboard.putData("Auto mode", chooser);
 		
 	}
@@ -275,6 +276,23 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
 
+		switch(autonomousCommand){
+		
+		case 1:
+			new AutoDrive(Config.AUTO_LEFT).start();
+			break;
+		
+		case 2:
+			new AutoDrive(Config.AUTO_MIDDLE).start();
+			break;
+		
+		case 3:
+			new AutoDrive(Config.AUTO_RIGHT).start();
+			break;
+			
+		default:
+			break;
+		}
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -283,8 +301,6 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
 	}
 
 	/**
