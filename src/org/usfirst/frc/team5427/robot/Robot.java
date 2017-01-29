@@ -142,6 +142,8 @@ public class Robot extends IterativeRobot {
 	 * IP Camera
 	 */
 	public static AxisCamera axisCam;
+	
+	public static CLient c;
 
 	/**
 	 * Current camera in use
@@ -160,6 +162,17 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 
 		/* Initialize Steel Talon Motors */
+		try {
+			Log.init("Initializing connection to the driver station...");
+			c = new Client();
+			c.start();
+			if (c.isConnected())
+				Log.init("Connection successfully established with the driver station.");
+			else
+				Log.init("Connection failed to establish. Client will continue to connect with the driver station.");
+		} catch (Exception e) {
+			Log.error(e.getMessage());
+		}
 		Log.init("Initializing SteelTalon Motors");
 
 		Log.init("Initializing Drive Train");
