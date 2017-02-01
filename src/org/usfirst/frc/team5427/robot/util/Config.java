@@ -107,15 +107,29 @@ public class Config {
 															// ONE_JOYSTICK or
 	
 	/*------------speed for auto-------*/
-	public static final int FULL_SPEED_FORWARD = 1;
-	public static final int FULL_SPEED_BACKWARD = 1;
-	public static final int FULL_TURN_SPEED_RIGHT = 1;
-	public static final int FULL_TURN_SPEED_LEFT = 1;	
+	public static final int AUTO_FULL_SPEED_FORWARD = 1;
+	public static final int AUTO_FULL_SPEED_BACKWARD = 1;
+	public static final int AUTO_FULL_TURN_SPEED_RIGHT = 1;
+	public static final int AUTO_FULL_TURN_SPEED_LEFT = 1;	
+
+	
+	/*------------timings for auto-------*/
+	public static final int AUTO_MIDDLE_START_DRIVE_TIME= 0;
+	public static final int AUTO_SIDES_START_DRIVE_TIME = 0;
+	public static final int AUTO_SIDES_TURN_TIME = 0;
+	public static final int AUTO_GEAR_WAIT_TIME = 0;
+	public static final int AUTO_BACK_OFF_TIME = 0;
+	public static final int AUTO_LEFT_TURN_TO_GOAL_TIME = 0;
+	public static final int AUTO_MIDDLE_TURN_TO_GOAL_TIME = 0;
+	public static final int AUTO_RIGHT_TURN_TO_GOAL_TIME = 0;
+	public static final int AUTO_SHOOT_TIME = 0;
+	
 
 	/*-----------spot-----------*/
 	public static final int AUTO_LEFT = 0;
 	public static final int AUTO_MIDDLE = 1;
 	public static final int AUTO_RIGHT = 2;
+	
 	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON = 1;
 	public static final int PULL_BUTTON = 7;

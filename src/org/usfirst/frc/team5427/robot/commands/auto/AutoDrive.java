@@ -35,9 +35,10 @@ public class AutoDrive extends Command {
 	protected void execute() {
 		if(position = Config.AUTO_LEFT)
 		{
+			//drive forwards for an amount of time
 			if(getTime<1000)
 			{
-				Robot.driveTrain.setLeftSpeed(1);
+				Robot.driveTrain.setLeftSpeed(Config.PULL_);
 				Robot.driveTrain.setRightSpeed(1);
 			}
 			else if(getTime<1500)
@@ -50,7 +51,6 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(1);
 				Robot.driveTrain.setRightSpeed(1);
 			}
-				
 		}
 		else if(position = Config.AUTO_MIDDLE)
 		{
@@ -85,6 +85,11 @@ public class AutoDrive extends Command {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @return returns the number of miliseconds since autonomous started
+	 */
 	protected int getTime() {
 		return (int) ((System.nanoTime() - timeStarted) / 1000000);
 	}
