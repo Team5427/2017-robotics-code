@@ -117,6 +117,7 @@ public class Config {
 	public static final int AUTO_MIDDLE_START_DRIVE_TIME= 0;
 	public static final int AUTO_SIDES_START_DRIVE_TIME = 0;
 	public static final int AUTO_SIDES_TURN_TIME = 0;
+	public static final int AUTO_SIDES_DRIVE_TO_GEAR_TIME = 0;
 	public static final int AUTO_GEAR_WAIT_TIME = 0;
 	public static final int AUTO_BACK_OFF_TIME = 0;
 	public static final int AUTO_LEFT_TURN_TO_GOAL_TIME = 0;

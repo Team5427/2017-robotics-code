@@ -36,20 +36,41 @@ public class AutoDrive extends Command {
 		if(position = Config.AUTO_LEFT)
 		{
 			//drive forwards for an amount of time
-			if(getTime<1000)
+			if(getTime<Config.AUTO_SIDES_START_DRIVE_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(Config.PULL_);
-				Robot.driveTrain.setRightSpeed(1);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 			}
-			else if(getTime<1500)
+			else if(getTime<Config.AUTO_SIDES_TURN_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(-1);
-				Robot.driveTrain.setRightSpeed(1);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
 			}
-			else 
+			else if(getTime<Config.AUTO_SIDES_DRIVE_TO_GEAR_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(1);
-				Robot.driveTrain.setRightSpeed(1);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+			}
+			else if(getTime<Config.AUTO_GEAR_WAIT_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+			}
+			else if(getTime<Config.AUTO_BACK_OFF_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
+			}
+			else if(getTime<Config.AUTO_LEFT_TURN_TO_GOAL_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1)
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT)
+			}
+			else if(getTime<Config.AUTO_SHOOT_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+				Robot.
 			}
 		}
 		else if(position = Config.AUTO_MIDDLE)
