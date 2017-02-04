@@ -49,8 +49,7 @@ public class AutoDrive extends Command {
 			{
 				Robot.driveTrain.setLeftSpeed(1);
 				Robot.driveTrain.setRightSpeed(1);
-			}
-				
+			}	
 		}
 		else if(position = Config.AUTO_MIDDLE)
 		{
@@ -72,7 +71,7 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(1);
 				Robot.driveTrain.setRightSpeed(1);
 			}
-			else if(getTime<1500))
+			else if(getTime<1500)
 			{
 				Robot.driveTrain.setLeftSpeed(1);
 				Robot.driveTrain.setRightSpeed(-1);
@@ -93,19 +92,19 @@ public class AutoDrive extends Command {
 	protected boolean isFinished() {
 		if (position = Config.AUTO_LEFT)
 		{
-			if(getTime()==5000)
+			if(getTime()==15000)
 			return true;
 		return false;
 		}
 		if(position = Config.AUTO_MIDDLE)
 		{
-			if(getTime()==5000)
+			if(getTime()==15000)
 				return true;
 			return false;
 		}
 		if(position = Config.AUTO_RIGHT)
 		{
-			if(getTime()==3000)
+			if(getTime()==15000)
 				return true;
 			return false;
 		}
