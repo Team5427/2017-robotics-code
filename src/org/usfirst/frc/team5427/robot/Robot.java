@@ -31,8 +31,9 @@ import org.usfirst.frc.team5427.robot.util.Log;
 import org.usfirst.frc.team5427.robot.util.Config;
 
 import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
+import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
-
+import org.usfirst.frc.team5427.robot.network.Client;
 import org.usfirst.frc.team5427.robot.subsystems.*;
 
 /**
@@ -143,7 +144,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public static AxisCamera axisCam;
 	
-	public static CLient c;
+	public static Client c;
 
 	/**
 	 * Current camera in use
@@ -249,11 +250,11 @@ public class Robot extends IterativeRobot {
 		 * Middle, and Right.
 		 */
 		chooser = new SendableChooser();
-		
-		chooser.addDefault("", 0);
-		chooser.addObject("AutoDriveLeft", 1);
-		chooser.addObject("AutoDriveMiddle", 2);
-		chooser.addObject("AutoDriveRight", 3);
+//		
+//		chooser.addDefault("", 0);
+//		chooser.addObject("AutoDriveLeft", 1);
+//		chooser.addObject("AutoDriveMiddle", 2);
+//		chooser.addObject("AutoDriveRight", 3);
 		
 		SmartDashboard.putData("Auto mode", chooser);
 		
@@ -287,9 +288,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		//autonomousCommand = chooser.getSelected();
 
-		switch(autonomousCommand){
+		switch((Integer) oi.autoChooser.getSelected()){
 		
 		case 1:
 			new AutoDrive(Config.AUTO_LEFT).start();

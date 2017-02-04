@@ -36,27 +36,27 @@ public class AutoDrive extends Command {
 		if(position == Config.AUTO_LEFT)
 		{
 			//drive forwards for an amount of time
-			if(getTime()<Config.AUTO_SIDES_START_DRIVE_TIME)
+			if(getTime()<Config.AUTO_LEFT_START_DRIVE_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 			}
-			else if(getTime()<Config.AUTO_SIDES_TURN_TIME)
+			else if(getTime()<Config.AUTO_LEFT_TURN_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
 			}
-			else if(getTime()<Config.AUTO_SIDES_DRIVE_TO_GEAR_TIME)
+			else if(getTime()<Config.AUTO_LEFT_DRIVE_TO_GEAR_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 			}
-			else if(getTime()<Config.AUTO_GEAR_WAIT_TIME)
+			else if(getTime()<Config.AUTO_LEFT_GEAR_WAIT_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime()<Config.AUTO_BACK_OFF_TIME)
+			else if(getTime()<Config.AUTO_LEFT_BACK_OFF_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
@@ -65,6 +65,7 @@ public class AutoDrive extends Command {
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
+				//TODO Make this work with vision processing
 			}
 			else if(getTime()<Config.AUTO_SHOOT_TIME)
 			{
@@ -104,17 +105,17 @@ public class AutoDrive extends Command {
 		}
 		else if(position == Config.AUTO_RIGHT)
 		{
-			if(getTime()<Config.AUTO_SIDES_START_DRIVE_TIME)
+			if(getTime()<Config.AUTO_RIGHT_START_DRIVE_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 			}
-			else if(getTime()<Config.AUTO_SIDES_TURN_TIME)
+			else if(getTime()<Config.AUTO_RIGHT_TURN_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT*-1);
 			}
-			else if(getTime()<Config.AUTO_SIDES_DRIVE_TO_GEAR_TIME)
+			else if(getTime()<Config.AUTO_RIGHT_DRIVE_TO_GEAR_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
@@ -156,22 +157,23 @@ public class AutoDrive extends Command {
 	protected boolean isFinished() {
 		if (position == Config.AUTO_LEFT)
 		{
-			if(getTime()==5000)
+			if(getTime()>=Config.LEFT_TIMEOUT)
 			return true;
 		return false;
 		}
 		if(position == Config.AUTO_MIDDLE)
 		{
-			if(getTime()==5000)
+			if(getTime()>=Config.MIDDLE_TIMEOUT)
 				return true;
 			return false;
 		}
 		if(position == Config.AUTO_RIGHT)
 		{
-			if(getTime()==3000)
+			if(getTime()>=Config.RIGHT_TIMEOUT)
 				return true;
 			return false;
 		}
+		return true;
 	}
 
 	// Called once after isFinished returns true

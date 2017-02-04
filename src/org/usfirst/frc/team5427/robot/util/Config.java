@@ -114,16 +114,34 @@ public class Config {
 
 	
 	/*------------timings for auto-------*/
-	public static final double AUTO_MIDDLE_START_DRIVE_TIME= 0;
-	public static final double AUTO_SIDES_START_DRIVE_TIME = 0;
-	public static final double AUTO_SIDES_TURN_TIME = 0;
-	public static final double AUTO_SIDES_DRIVE_TO_GEAR_TIME = 0;
 	public static final double AUTO_GEAR_WAIT_TIME = 0;
 	public static final double AUTO_BACK_OFF_TIME = 0;
-	public static final double AUTO_LEFT_TURN_TO_GOAL_TIME = 0;
+	public static final double AUTO_SHOOT_TIME = 0;
+	//Left Side
+	public static final double AUTO_LEFT_START_DRIVE_TIME = 0;
+	public static final double AUTO_LEFT_TURN_TIME = AUTO_LEFT_START_DRIVE_TIME+0;
+	public static final double AUTO_LEFT_DRIVE_TO_GEAR_TIME =AUTO_LEFT_TURN_TIME+0;
+	public static final double AUTO_LEFT_GEAR_WAIT_TIME = AUTO_LEFT_DRIVE_TO_GEAR_TIME+AUTO_GEAR_WAIT_TIME;
+	public static final double AUTO_LEFT_BACK_OFF_TIME = AUTO_LEFT_GEAR_WAIT_TIME+0;//+AUTO_BACK_OFF_TIME;
+	public static final double AUTO_LEFT_TURN_TO_GOAL_TIME =AUTO_LEFT_BACK_OFF_TIME+ 0;
+	
+	public static final double AUTO_MIDDLE_START_DRIVE_TIME= 0;
+	
+	public static final double AUTO_RIGHT_START_DRIVE_TIME = 0;
+	public static final double AUTO_RIGHT_TURN_TIME = 0;
+	
+	public static final double AUTO_RIGHT_DRIVE_TO_GEAR_TIME = 0;
+	
+	
+	
 	public static final double AUTO_MIDDLE_TURN_TO_GOAL_TIME = 0;
 	public static final double AUTO_RIGHT_TURN_TO_GOAL_TIME = 0;
-	public static final double AUTO_SHOOT_TIME = 0;
+	
+	public static final double LEFT_TIMEOUT = 60;
+	public static final double MIDDLE_TIMEOUT = 60;
+	public static final double RIGHT_TIMEOUT = 60;
+
+	
 	
 
 	/*-----------spot-----------*/
