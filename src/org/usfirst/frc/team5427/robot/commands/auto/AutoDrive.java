@@ -67,7 +67,7 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
 				//TODO Make this work with vision processing
 			}
-			else if(getTime()<Config.AUTO_SHOOT_TIME)
+			else if(getTime()<Config.AUTO_LEFT_SHOOT_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
@@ -81,12 +81,12 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 			}
-			else if(getTime()<Config.AUTO_GEAR_WAIT_TIME)
+			else if(getTime()<Config.AUTO_MIDDLE_GEAR_WAIT_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime()<Config.AUTO_BACK_OFF_TIME)
+			else if(getTime()<Config.AUTO_MIDDLE_BACK_OFF_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
@@ -96,7 +96,7 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
 			}
-			else if(getTime()<Config.AUTO_SHOOT_TIME)
+			else if(getTime()<Config.AUTO_MIDDLE_SHOOT_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
@@ -120,12 +120,12 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 			}
-			else if(getTime()<Config.AUTO_GEAR_WAIT_TIME)
+			else if(getTime()<Config.AUTO_RIGHT_GEAR_WAIT_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime()<Config.AUTO_BACK_OFF_TIME)
+			else if(getTime()<Config.AUTO_RIGHT_BACK_OFF_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
@@ -135,7 +135,7 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
 			}
-			else if(getTime()<Config.AUTO_SHOOT_TIME)
+			else if(getTime()<Config.AUTO_RIGHT_SHOOT_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
