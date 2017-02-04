@@ -33,81 +33,147 @@ public class AutoDrive extends Command {
 
 	@SuppressWarnings("all")
 	protected void execute() {
-		if(position = Config.AUTO_LEFT)
+		if(position == Config.AUTO_LEFT)
 		{
-			if(getTime<1000)
+			//drive forwards for an amount of time
+			if(getTime()<Config.AUTO_LEFT_START_DRIVE_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(1);
-				Robot.driveTrain.setRightSpeed(1);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 			}
-			else if(getTime<1500)
+			else if(getTime()<Config.AUTO_LEFT_TURN_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(-1);
-				Robot.driveTrain.setRightSpeed(1);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
 			}
-			else 
+			else if(getTime()<Config.AUTO_LEFT_DRIVE_TO_GEAR_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(1);
-				Robot.driveTrain.setRightSpeed(1);
-			}	
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+			}
+			else if(getTime()<Config.AUTO_LEFT_GEAR_WAIT_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+			}
+			else if(getTime()<Config.AUTO_LEFT_BACK_OFF_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
+			}
+			else if(getTime()<Config.AUTO_LEFT_TURN_TO_GOAL_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
+				//TODO Make this work with vision processing
+			}
+			else if(getTime()<Config.AUTO_LEFT_SHOOT_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
+			}
 		}
-		else if(position = Config.AUTO_MIDDLE)
+		else if(position == Config.AUTO_MIDDLE)
 		{
-			if(getTime()<500)
+			if(getTime()<Config.AUTO_MIDDLE_START_DRIVE_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(1);
-				Robot.driveTrain.setRightSpeed(-1);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 			}
-			else
+			else if(getTime()<Config.AUTO_MIDDLE_GEAR_WAIT_TIME)
 			{
-			Robot.driveTrain.setLeftSpeed(-1);
-			Robot.driveTrain.setRightSpeed(-1);
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+			}
+			else if(getTime()<Config.AUTO_MIDDLE_BACK_OFF_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
+			}
+			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
+			}
+			else if(getTime()<Config.AUTO_MIDDLE_SHOOT_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
 			}
 		}
-		else if(position = Config.AUTO_RIGHT)
+		else if(position == Config.AUTO_RIGHT)
 		{
-			if(getTime<1000)
+			if(getTime()<Config.AUTO_RIGHT_START_DRIVE_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(1);
-				Robot.driveTrain.setRightSpeed(1);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 			}
-			else if(getTime<1500)
+			else if(getTime()<Config.AUTO_RIGHT_TURN_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(1);
-				Robot.driveTrain.setRightSpeed(-1);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT*-1);
 			}
-			else 
+			else if(getTime()<Config.AUTO_RIGHT_DRIVE_TO_GEAR_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(1);
-				Robot.driveTrain.setRightSpeed(1);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+			}
+			else if(getTime()<Config.AUTO_RIGHT_GEAR_WAIT_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+			}
+			else if(getTime()<Config.AUTO_RIGHT_BACK_OFF_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
+			}
+			else if(getTime()<Config.AUTO_RIGHT_TURN_TO_GOAL_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
+			}
+			else if(getTime()<Config.AUTO_RIGHT_SHOOT_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
 			}
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @return returns the number of miliseconds since autonomous started
+	 */
 	protected int getTime() {
-		return (int) ((System.nanoTime() - timeStarted) / 1000000);
+		return (int) ((System.nanoTime() - startTime) / 1000000);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (position = Config.AUTO_LEFT)
+		if (position == Config.AUTO_LEFT)
 		{
-			if(getTime()==15000)
+			if(getTime()>=Config.LEFT_TIMEOUT)
 			return true;
 		return false;
 		}
-		if(position = Config.AUTO_MIDDLE)
+		if(position == Config.AUTO_MIDDLE)
 		{
-			if(getTime()==15000)
+			if(getTime()>=Config.MIDDLE_TIMEOUT)
 				return true;
 			return false;
 		}
-		if(position = Config.AUTO_RIGHT)
+		if(position == Config.AUTO_RIGHT)
 		{
-			if(getTime()==15000)
+			if(getTime()>=Config.RIGHT_TIMEOUT)
 				return true;
 			return false;
 		}
+		return true;
 	}
 
 	// Called once after isFinished returns true

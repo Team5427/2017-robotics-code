@@ -77,6 +77,7 @@ public class OI {
 	 */
 	public SetIntakeSpeed si;
 
+	SendableChooser autoChooser= new SendableChooser();
 	
 	/**
 	 * Constructor for the OI class, defines the button-press events.
@@ -87,6 +88,13 @@ public class OI {
 		//startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		startIntake.whileHeld(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 
+		
+		autoChooser.addDefault("", 0);
+		autoChooser.addObject("AutoDriveLeft", 1);
+		autoChooser.addObject("AutoDriveMiddle", 2);
+		autoChooser.addObject("AutoDriveRight", 3);
+		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		
 		
 		// TODO tie the right buttons to the right commands
 		// changeIntakeDirection.whenPressed(new ChangeDirections());

@@ -107,15 +107,49 @@ public class Config {
 															// ONE_JOYSTICK or
 	
 	/*------------speed for auto-------*/
-	public static final int FULL_SPEED_FORWARD = 1;
-	public static final int FULL_SPEED_BACKWARD = 1;
-	public static final int FULL_TURN_SPEED_RIGHT = 1;
-	public static final int FULL_TURN_SPEED_LEFT = 1;	
+	public static final double AUTO_FULL_SPEED_FORWARD = .1;
+	public static final double AUTO_FULL_SPEED_BACKWARD = .1;
+	public static final double AUTO_FULL_TURN_SPEED_RIGHT = .1;
+	public static final double AUTO_FULL_TURN_SPEED_LEFT = .1;	
 
+	
+	/*------------timings for auto-------*/
+	//General Constants
+	public static final double AUTO_GEAR_WAIT_TIME = 0;
+	public static final double AUTO_BACK_OFF_TIME = 0;
+	public static final double AUTO_SHOOT_TIME = 0;
+	public static final double LEFT_TIMEOUT = 60;
+	public static final double MIDDLE_TIMEOUT = 60;
+	public static final double RIGHT_TIMEOUT = 60;
+	//Left Side
+	public static final double AUTO_LEFT_START_DRIVE_TIME = 0;
+	public static final double AUTO_LEFT_TURN_TIME = AUTO_LEFT_START_DRIVE_TIME+0;
+	public static final double AUTO_LEFT_DRIVE_TO_GEAR_TIME =AUTO_LEFT_TURN_TIME+0;
+	public static final double AUTO_LEFT_GEAR_WAIT_TIME = AUTO_LEFT_DRIVE_TO_GEAR_TIME+AUTO_GEAR_WAIT_TIME;
+	public static final double AUTO_LEFT_BACK_OFF_TIME = AUTO_LEFT_GEAR_WAIT_TIME+0;//+AUTO_BACK_OFF_TIME;
+	public static final double AUTO_LEFT_TURN_TO_GOAL_TIME =AUTO_LEFT_BACK_OFF_TIME+ 0;
+	public static final double AUTO_LEFT_SHOOT_TIME =AUTO_LEFT_TURN_TO_GOAL_TIME+ 0;//+AUTO_SHOOT_TIME;
+	//Middle
+	public static final double AUTO_MIDDLE_START_DRIVE_TIME = 0;
+	public static final double AUTO_MIDDLE_GEAR_WAIT_TIME = AUTO_MIDDLE_START_DRIVE_TIME+AUTO_GEAR_WAIT_TIME;
+	public static final double AUTO_MIDDLE_BACK_OFF_TIME = AUTO_MIDDLE_GEAR_WAIT_TIME+0;//+AUTO_BACK_OFF_TIME;
+	public static final double AUTO_MIDDLE_TURN_TO_GOAL_TIME =AUTO_MIDDLE_BACK_OFF_TIME+ 0;
+	public static final double AUTO_MIDDLE_SHOOT_TIME =AUTO_MIDDLE_TURN_TO_GOAL_TIME+ 0;//+AUTO_SHOOT_TIME;
+	//Right Side
+	public static final double AUTO_RIGHT_START_DRIVE_TIME = 0;
+	public static final double AUTO_RIGHT_TURN_TIME = AUTO_RIGHT_START_DRIVE_TIME+0;
+	public static final double AUTO_RIGHT_DRIVE_TO_GEAR_TIME =AUTO_RIGHT_TURN_TIME+0;
+	public static final double AUTO_RIGHT_GEAR_WAIT_TIME = AUTO_RIGHT_DRIVE_TO_GEAR_TIME+AUTO_GEAR_WAIT_TIME;
+	public static final double AUTO_RIGHT_BACK_OFF_TIME = AUTO_RIGHT_GEAR_WAIT_TIME+0;//+AUTO_BACK_OFF_TIME;
+	public static final double AUTO_RIGHT_TURN_TO_GOAL_TIME =AUTO_RIGHT_BACK_OFF_TIME+ 0;
+	public static final double AUTO_RIGHT_SHOOT_TIME =AUTO_RIGHT_TURN_TO_GOAL_TIME+ 0;//+AUTO_SHOOT_TIME;
+
+	
 	/*-----------spot-----------*/
 	public static final int AUTO_LEFT = 0;
 	public static final int AUTO_MIDDLE = 1;
 	public static final int AUTO_RIGHT = 2;
+	
 	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON = 1;
 	public static final int PULL_BUTTON = 7;
