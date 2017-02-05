@@ -54,12 +54,14 @@ public class Config {
 	public static final int SHOOTER_MOTOR		= 4;
 	public static final int INTAKE_MOTOR 		= 5;
 
+	public static final double DRIVE_TRAIN_MULTIPLIER = .5;
+	
 	// Motor Bias
-	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARD  = 1;
-	public static final double BIAS_FRONT_LEFT_MOTOR_BACKWARD = 1;
+	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARD  = .87;
+	public static final double BIAS_FRONT_LEFT_MOTOR_BACKWARD = .94192;
 
-	public static final double BIAS_REAR_LEFT_MOTOR_FORWARD    = 1;
-	public static final double BIAS_REAR_LEFT_MOTOR_BACKWARD   = 1;
+	public static final double BIAS_REAR_LEFT_MOTOR_FORWARD    = .87;
+	public static final double BIAS_REAR_LEFT_MOTOR_BACKWARD   = .94192;
 
 	public static final double BIAS_FRONT_RIGHT_MOTOR_FORWARD  = 1;
 	public static final double BIAS_FRONT_RIGHT_MOTOR_BACKWARD = 1;

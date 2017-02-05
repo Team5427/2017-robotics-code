@@ -77,7 +77,7 @@ public class OI {
 	 */
 	public SetIntakeSpeed si;
 
-	SendableChooser autoChooser= new SendableChooser();x	x	
+	SendableChooser autoChooser= new SendableChooser();
 	
 	/**
 	 * Constructor for the OI class, defines the button-press events.

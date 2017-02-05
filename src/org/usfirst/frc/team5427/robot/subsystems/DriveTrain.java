@@ -50,8 +50,8 @@ public class DriveTrain extends Subsystem {
 	 * @param speed - The wanted speed of the left side motors.
 	 */
 	public void setLeftSpeed(double speed) {
-		motorPWM_FrontLeft.set(-speed);
-		motorPWM_RearLeft.set(-speed);
+		motorPWM_FrontLeft.set(-speed*Config.DRIVE_TRAIN_MULTIPLIER);
+		motorPWM_RearLeft.set(-speed*Config.DRIVE_TRAIN_MULTIPLIER);
 	}
 
 	/**
@@ -61,8 +61,8 @@ public class DriveTrain extends Subsystem {
 	 */
 	public void setRightSpeed(double speed) {
 		Log.debug("Speed: " + speed);
-		motorPWM_FrontRight.set(speed);
-		MOTOR_PWM_BackRight.set(speed);
+		motorPWM_FrontRight.set(speed*Config.DRIVE_TRAIN_MULTIPLIER);
+		MOTOR_PWM_BackRight.set(speed*Config.DRIVE_TRAIN_MULTIPLIER);
 	}
 
 	/**
