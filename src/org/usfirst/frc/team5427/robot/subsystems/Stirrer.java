@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * This subsystem will be responsible for controlling the mechanism used to shoot fuel
- * into the boilers. It will be controlled with one motor.
+ * This subsystem will be responsible for controlling the mechanism used to circulate
+ * fuel in the ball storage area. It will be controlled with one motor.
  * 
  * @author Ethan Bennikutty
  *
@@ -18,15 +18,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Stirrer extends Subsystem {
 
 	/**
-	 * SpeedController which is responsible for the wheels that launch the
-	 * balls out of the robot.
+	 * SpeedController which is responsible for the blade that stir balls in
+	 * the ball storage area
 	 */
 	public SpeedController motorPWM_Flywheel;
 
 	/**
-	 * Launcher Constructor - Initializes the motor used to control the launcher.
+	 * Launcher Constructor - Initializes the motor used to control the blade.
 	 * 
-	 * @param motorFlyWheel - The motor used to control the launcher.
+	 * @param motorFlyWheel - The motor used to control the blade.
 	 */
 	public Stirrer(SpeedController motorFlyWheel) {
 		this.motorPWM_Flywheel = motorFlyWheel;
@@ -38,7 +38,7 @@ public class Stirrer extends Subsystem {
 	}
 
 	/**
-	 * Sets the launcher's motor's speed to zero.
+	 * Sets the blade's motor's speed to zero.
 	 */
 	public void stop() {
 		setShootSpeed(0);
@@ -46,9 +46,9 @@ public class Stirrer extends Subsystem {
 	}
 
 	/**
-	 * Sets the speed of the launcher's motor to the desired speed.
+	 * Sets the speed of the blades's motor to the desired speed.
 	 * 
-	 * @param speed - The desired speed of the launcher.
+	 * @param speed - The desired speed of the blade.
 	 */
 	public void setShootSpeed(double speed) {
 		// Prevent speed from going to fast
