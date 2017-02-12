@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class MultiFlap extends Subsystem{
 
 	public SpeedController motorPWM_Flap;
-	private Config.stage currentStage;
+	public Config.stage currentStage;
 	
 	public MultiFlap(SpeedController motorFlap) {
 		this.motorPWM_Flap = motorFlap;
@@ -21,5 +21,4 @@ public class MultiFlap extends Subsystem{
 	protected void initDefaultCommand() {
 		
 	}
-	
 }

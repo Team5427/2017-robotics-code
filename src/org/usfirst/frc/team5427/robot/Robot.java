@@ -122,6 +122,10 @@ public class Robot extends IterativeRobot {
 	 * Agitator subsystem to spin balls inside the robot
 	 */
 	public static Agitator agitator;
+	/**
+	 * Flap subsystem
+	 */
+	public static MultiFlap mFlap;
 	
 	// public static SetIntakeSpeed si;//to be used if we want to keep the
 	// intake always on

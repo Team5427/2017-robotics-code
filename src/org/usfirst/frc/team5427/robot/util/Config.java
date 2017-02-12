@@ -155,16 +155,22 @@ public class Config {
 	
 	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON = 1;
-	public static final int PULL_BUTTON = 7;
-	public static final int SWITCH_CAMERAS_BUTTON = 12;
+	//public static final int PULL_BUTTON = 8;
+	//public static final int SWITCH_CAMERAS_BUTTON = 12;
 	public static final int START_INTAKE_BUTTON = 11;
 	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 12;
 	public static final int SPIN_BUTTON = 2;
+	public static final int FLAP_REATRACTED = 9;
+	public static final int FLAP_GEAR = 10;
 
 	/*-------------Ultrasonic Sensor---------*/
 	public static final int ULTRASONIC_PING_CHANNEL = 0;
 	public static final int ULTRASONIC_ECHO_CHANNEL = 1;
 
-	/*------------Mulipurpose Flap Positions--*/
+	/*------------Mulipurpose Flap Vars------*/
 	public static enum stage {RETRACTED,INTAKE,GEAR};
+	public static final long retractedToIntake = 1;
+	public static final long intakeToGear = 1;
+	public static final long gearToRetracted = 1;
+	public static final double FLAP_SPEED = 1;
 }

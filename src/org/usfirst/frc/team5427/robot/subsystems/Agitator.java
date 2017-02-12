@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Ethan Bennikutty 
  *
  */
+
+//TODO rename to "Stirrer"
 public class Agitator extends Subsystem {
 
 	/**
