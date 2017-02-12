@@ -163,4 +163,6 @@ public class Config {
 	public static final int ULTRASONIC_PING_CHANNEL = 0;
 	public static final int ULTRASONIC_ECHO_CHANNEL = 1;
 
+	/*------------Mulipurpose Flap Positions--*/
+	public static enum stage {RETRACTED,INTAKE,GEAR};
 }
