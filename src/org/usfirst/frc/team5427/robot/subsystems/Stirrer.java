@@ -41,7 +41,7 @@ public class Stirrer extends Subsystem {
 	 * Sets the blade's motor's speed to zero.
 	 */
 	public void stop() {
-		setShootSpeed(0);
+		setSpinSpeed(0);
 
 	}
 
@@ -50,7 +50,7 @@ public class Stirrer extends Subsystem {
 	 * 
 	 * @param speed - The desired speed of the blade.
 	 */
-	public void setShootSpeed(double speed) {
+	public void setSpinSpeed(double speed) {
 		// Prevent speed from going to fast
 		if (speed > 1)
 			speed = 1;
