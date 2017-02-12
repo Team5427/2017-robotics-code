@@ -50,6 +50,9 @@ public class Robot extends IterativeRobot {
 	// motor for intake
 
 	public static SpeedController motorPWM_Intake;
+	
+	//motor for agitator
+	public static SpeedController motorPWM_Agitator;
 
 	// PWM Motors for Drive Train
 	/**
@@ -114,6 +117,12 @@ public class Robot extends IterativeRobot {
 	 * Intake subsystem to intake balls into the robot
 	 */
 	public static Intake intake;
+	
+	/**
+	 * Agitator subsystem to spin balls inside the robot
+	 */
+	public static Agitator agitator;
+	
 	// public static SetIntakeSpeed si;//to be used if we want to keep the
 	// intake always on
 
@@ -182,9 +191,8 @@ public class Robot extends IterativeRobot {
 		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, Config.OFFSET_FRONT_RIGHT_MOTOR_BACKWARD,Config.OFFSET_FRONT_RIGHT_MOTOR_FORWARD, Config.BIAS_FRONT_RIGHT_MOTOR_BACKWARD,Config.BIAS_FRONT_RIGHT_MOTOR_FORWARD);
 		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, Config.OFFSET_REAR_RIGHT_MOTOR_BACKWARD, Config.OFFSET_REAR_RIGHT_MOTOR_FORWARD, Config.BIAS_REAR_RIGHT_MOTOR_BACKWARD, Config.BIAS_REAR_RIGHT_MOTOR_FORWARD);
 		motorPWM_Intake = new SteelTalon(Config.INTAKE_MOTOR, 0, 0);
+		motorPWM_Agitator = new SteelTalon(Config.AGITATOR_MOTOR,0,0);
 
-		intake = new Intake(motorPWM_Intake);
-		Log.info("Intake SUbsystem Initialized!");
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 
@@ -207,7 +215,11 @@ public class Robot extends IterativeRobot {
 
 		Log.init("Initializing Intake subsystem");
 		intake = new Intake(motorPWM_Intake);
-		Log.init("Intake SUbsystem Initialized!");
+		Log.init("Intake subsystem initialized!");
+		
+		Log.init("Initializing Agitator subsystem");
+		agitator = new Agitator(motorPWM_Agitator);
+		Log.init("Agitator subsystem iitialized!");
 
 		/* Initialize Sensor */
 

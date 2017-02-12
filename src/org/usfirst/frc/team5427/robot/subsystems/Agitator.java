@@ -10,16 +10,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * This subsystem will be responsible for controlling the mechanism used to circulate
- * fuel in the ball storage area. It will be controlled with one motor.
+ * fuel in the hopper. It will be controlled with one motor.
  * 
- * @author Ethan Bennikutty
+ * @author Ethan Bennikutty 
  *
  */
-public class Stirrer extends Subsystem {
+public class Agitator extends Subsystem {
 
 	/**
-	 * SpeedController which is responsible for the blade that stir balls in
-	 * the ball storage area
+	 * SpeedController which is responsible for the blades that push balls in the hopper.
 	 */
 	public SpeedController motorPWM_Flywheel;
 
@@ -28,7 +27,7 @@ public class Stirrer extends Subsystem {
 	 * 
 	 * @param motorFlyWheel - The motor used to control the blade.
 	 */
-	public Stirrer(SpeedController motorFlyWheel) {
+	public Agitator(SpeedController motorFlyWheel) {
 		this.motorPWM_Flywheel = motorFlyWheel;
 	}
 

@@ -53,6 +53,7 @@ public class Config {
 	public static final int REAR_RIGHT_MOTOR	= 1;
 	public static final int SHOOTER_MOTOR		= 4;
 	public static final int INTAKE_MOTOR 		= 5;
+	public static final int AGITATOR_MOTOR 		= 6;
 
 	public static final double DRIVE_TRAIN_MULTIPLIER = .5;
 	
@@ -158,6 +159,7 @@ public class Config {
 	public static final int SWITCH_CAMERAS_BUTTON = 12;
 	public static final int START_INTAKE_BUTTON = 11;
 	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 12;
+	public static final int SPIN_BUTTON = 2;
 
 	/*-------------Ultrasonic Sensor---------*/
 	public static final int ULTRASONIC_PING_CHANNEL = 0;
