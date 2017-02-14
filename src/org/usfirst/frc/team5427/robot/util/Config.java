@@ -172,5 +172,5 @@ public class Config {
 	public static final long retractedToIntake = 1;
 	public static final long intakeToGear = 1;
 	public static final long gearToRetracted = 1;
-	public static final double FLAP_SPEED = 1;
+	public static final double FLAP_SPEED = .05;
 }
