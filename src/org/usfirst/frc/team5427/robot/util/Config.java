@@ -99,6 +99,7 @@ public class Config {
 	public static final double INTAKE_MOTOR_SPEED = -.80;
 	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=.1;
 	public static final double SHOOTER_MOTOR_SPEED = 1;
+	public static final double AGITATOR_SPEED = .5;
 
 	/* ----------Controller Ports---------- */
 	// Joystick
@@ -155,13 +156,14 @@ public class Config {
 	
 	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON = 1;
-	//public static final int PULL_BUTTON = 8;
-	//public static final int SWITCH_CAMERAS_BUTTON = 12;
-	public static final int START_INTAKE_BUTTON = 11;
-	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 12;
+	public static final int PULL_BUTTON = 8;
+	public static final int SWITCH_CAMERAS_BUTTON = 3;
+	public static final int START_INTAKE_BUTTON = 4;
+	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 6;
 	public static final int SPIN_BUTTON = 2;
-	public static final int FLAP_REATRACTED = 9;
-	public static final int FLAP_GEAR = 10;
+	public static final int FLAP_REATRACTED = 7;
+	public static final int FLAP_GEAR = 9;
+	public static final int FLAP_INTAKE=11;
 
 	/*-------------Ultrasonic Sensor---------*/
 	public static final int ULTRASONIC_PING_CHANNEL = 0;

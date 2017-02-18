@@ -147,6 +147,7 @@ public class Robot extends IterativeRobot {
 	 * Camera server
 	 */
 	public static CameraServer server;
+	public static RobotCameras roboCams;
 	/**
 	 * USB Cameras for robot
 	 */
@@ -240,26 +241,34 @@ public class Robot extends IterativeRobot {
 		Log.init("OI Initialized!");
 
 		// camera code
+
+		
 		/* initialize server */
-		server = CameraServer.getInstance();
-		// initialize axis cam
-		axisCam = new AxisCamera("axisCamera", "10.54.27.11");
-		// init usb cam 0 and set fps
 		usbCam0 = new UsbCamera("cam0", 0);
 		usbCam0.setFPS(15);
-
-		// creates camera 1 and set fps and adds it to the server
 		usbCam1 = new UsbCamera("cam1", 1);
 		usbCam1.setFPS(15);
-		server.addCamera(usbCam1);
+		server = CameraServer.getInstance();
+		roboCams=new RobotCameras(usbCam0, usbCam1);
+		// initialize axis cam
+		//axisCam = new AxisCamera("axisCamera", "10.54.27.11");
+		// init usb cam 0 and set fps
+		//usbCam0 = new UsbCamera("cam0", 0);
+		//usbCam0.setFPS(15);
+
+		// creates camera 1 and set fps and adds it to the server
+	//	usbCam1 = new UsbCamera("cam1", 1);
+	//	usbCam1.setFPS(15);
+	//	server.addCamera(usbCam1);
 
 		// adds usb and axis camera to server
-		Robot.server.addCamera(usbCam0);
-		Robot.server.addCamera(axisCam);
+	//	Robot.server.addCamera(usbCam0);
+	//	Robot.server.addCamera(axisCam);
 
 		// start auto capture of camera 0 and camera 1
-		server.startAutomaticCapture(usbCam0);
-		server.startAutomaticCapture(usbCam1);
+	//	server.startAutomaticCapture(usbCam0);
+		//server.startAutomaticCapture(usbCam1);
+		
 
 		/**
 		 * TODO Add the different chooser selections for autonomous for Left,
