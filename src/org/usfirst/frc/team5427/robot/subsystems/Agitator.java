@@ -57,6 +57,9 @@ public class Agitator extends Subsystem {
 			speed = 1;
 		else if (speed < -1)
 			speed = -1;
+		
+		if(Math.abs(speed-0)<.15)
+			speed=0;
 
 		motorPWM_Flywheel.set(speed);
 	}

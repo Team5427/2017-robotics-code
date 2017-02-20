@@ -27,6 +27,8 @@ public class ChangeDirections extends Command{
 		// Make this return true when this Command no longer needs to run execute()
 		@Override
 		protected boolean isFinished() {
+			if (!Robot.oi.getJoy().getRawButton(Config.CHANGE_INTAKE_DIRECTION_BUTTON))
+				return true;
 			return false;
 		}
 

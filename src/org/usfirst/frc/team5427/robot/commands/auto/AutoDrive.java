@@ -29,6 +29,7 @@ public class AutoDrive extends Command {
 		Log.init("initialized Drive");
 	}
 
+	//TODO check this code for autonomous
 	// Called repeatedly when this Command is scheduled to run
 
 	@SuppressWarnings("all")

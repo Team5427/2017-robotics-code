@@ -30,7 +30,6 @@ public class PullRope extends Command {
 	protected void initialize() {
 		Log.init("Initialized Pull");
 		pullSpeed = Config.PULL_SPEED;
-
 		Robot.ropeClimb.setPullSpeed(pullSpeed);
 	}
 

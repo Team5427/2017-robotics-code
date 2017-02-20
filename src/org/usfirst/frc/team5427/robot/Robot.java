@@ -87,7 +87,7 @@ public class Robot extends IterativeRobot {
 	public static SpeedController motorPWM_RearRight;
 
 	/**
-	 * DriveTrain subsystem to control the drive train
+	 * SpeedControllers for TODO
 	 */
 	public static SpeedController motorPWM_Flywheel;
 	public static SpeedController motorPWM_Flywheel2;
@@ -109,7 +109,9 @@ public class Robot extends IterativeRobot {
 	 */
 	public static Drive drive;
 	/**
-	 * Command that sets the intake speed of the robot
+	 * Command that sets the intake speed of the robot 
+	 * NOTE: Currently unused, but if we do decide to use it, the command below can be made to reun for the 
+	 * entire teleop period and.or the entire autonomous period
 	 */
 	public static SetIntakeSpeed si;
 
@@ -127,43 +129,33 @@ public class Robot extends IterativeRobot {
 	 */
 	public static MultiFlap mFlap;
 	
-	// public static SetIntakeSpeed si;//to be used if we want to keep the
-	// intake always on
-
-	public static DigitalInput digI = new DigitalInput(Config.ULTRASONIC_ECHO_CHANNEL);
-	public static DigitalOutput digO = new DigitalOutput(Config.ULTRASONIC_PING_CHANNEL);
+	
 
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	//SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/* -------Sensors------- */
-	/**
-	 * Ultrasonic Range Finder to find the distance between the sensor and
-	 * target
-	 */
+	/**DIO ports for the ultrasonic sensor*/
+	public static DigitalInput digI = new DigitalInput(Config.ULTRASONIC_ECHO_CHANNEL);
+	public static DigitalOutput digO = new DigitalOutput(Config.ULTRASONIC_PING_CHANNEL);
+	/** Ultrasonic Range Finder to find the distance between the sensor and target*/
 	public static Ultrasonic ultrasonic = new Ultrasonic(digO, digI);
 
-	/**
-	 * Camera server
-	 */
+	/**Camera server*/
 	public static CameraServer server;
+	/**Camera subsystem*/
 	public static RobotCameras roboCams;
-	/**
-	 * USB Cameras for robot
-	 */
+	/** USB Cameras for robot*/
 	public static UsbCamera usbCam0, usbCam1;
 
-	/**
-	 * IP Camera
-	 */
+	/** IP Camera*/
 	public static AxisCamera axisCam;
 	
 	public static Client c;
 
-	/**
-	 * Current camera in use
-	 */
+	/** Current camera in use*/
 	public static int currentCamera = 0;
+	
 	// NI USB interface numbers for the cameras
 	// int devForCam0=2,devForCam1=3;
 
@@ -176,38 +168,49 @@ public class Robot extends IterativeRobot {
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 
-		/* Initialize Steel Talon Motors */
-		try {
-			Log.init("Initializing connection to the driver station...");
-			c = new Client();
-			c.start();
-			if (c.isConnected())
-				Log.init("Connection successfully established with the driver station.");
-			else
-				Log.init("Connection failed to establish. Client will continue to connect with the driver station.");
-		} catch (Exception e) {
-			Log.error(e.getMessage());
-		}
+		/** Initialize Networking */
+//		TODO actually use this code
+//		try {
+//			Log.init("Initializing connection to the driver station...");
+//			c = new Client();
+//			c.start();
+//			if (c.isConnected())
+//				Log.init("Connection successfully established with the driver station.");
+//			else
+//				Log.init("Connection failed to establish. Client will continue to connect with the driver station.");
+//		} catch (Exception e) {
+//			Log.error(e.getMessage());
+//		}
+		
+		/** Initialize Steel Talon Motors */
 		Log.init("Initializing SteelTalon Motors");
-
-		Log.init("Initializing Drive Train");
 		motorPWM_FrontLeft = new SteelTalon(Config.FRONT_LEFT_MOTOR, Config.OFFSET_FRONT_LEFT_MOTOR_BACKWARD, Config.OFFSET_FRONT_LEFT_MOTOR_FORWARD, Config.BIAS_FRONT_LEFT_MOTOR_BACKWARD, Config.BIAS_FRONT_LEFT_MOTOR_FORWARD);
 		motorPWM_RearLeft = new SteelTalon(Config.REAR_LEFT_MOTOR, Config.OFFSET_REAR_LEFT_MOTOR_BACKWARD, Config.OFFSET_REAR_LEFT_MOTOR_FORWARD, Config.BIAS_REAR_LEFT_MOTOR_BACKWARD, Config.BIAS_REAR_LEFT_MOTOR_FORWARD);
 		motorPWM_FrontRight = new SteelTalon(Config.FRONT_RIGHT_MOTOR, Config.OFFSET_FRONT_RIGHT_MOTOR_BACKWARD,Config.OFFSET_FRONT_RIGHT_MOTOR_FORWARD, Config.BIAS_FRONT_RIGHT_MOTOR_BACKWARD,Config.BIAS_FRONT_RIGHT_MOTOR_FORWARD);
 		motorPWM_RearRight = new SteelTalon(Config.REAR_RIGHT_MOTOR, Config.OFFSET_REAR_RIGHT_MOTOR_BACKWARD, Config.OFFSET_REAR_RIGHT_MOTOR_FORWARD, Config.BIAS_REAR_RIGHT_MOTOR_BACKWARD, Config.BIAS_REAR_RIGHT_MOTOR_FORWARD);
-		motorPWM_Intake = new SteelSpark(Config.INTAKE_MOTOR, 0, 0);
+		Log.init("Initializing Flywheels...Shooter");
+		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);	
+		motorPWM_Flywheel2 = new SteelTalon(Config.ROPE_CLIMB_MOTOR);
+		Log.init("Initialized all SteelTalon Motors!");
+			
+		
+		/** Initialize SteelSpark but actually SteelTalon Motors */
+		Log.init("Initializing SteelSpark but actually Talon Motors");
+		motorPWM_Intake = new SteelTalon(Config.INTAKE_MOTOR, 0, 0);
 		motorPWM_Agitator = new SteelTalon(Config.AGITATOR_MOTOR,0,0);
+		
+//		/** Initialize Steel Spark Motors */
+//		Log.init("Initializing SteelSpark Motors");
+//		motorPWM_Intake = new SteelSpark(Config.INTAKE_MOTOR, 0, 0);
+//		motorPWM_Agitator = new SteelSpark(Config.AGITATOR_MOTOR,0,0);
 
+		
+		/**Initialize Drive Train*/
+		Log.init("Initializing Drive Train");
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
-
-		Log.init("Initializing Flywheels");
-		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);
-		// motorPWM_Flywheel2 = new SteelTalon(Config.SHOOTER_MOTOR);
-
-		Log.init("Initialized all SteelTalon Motors!");
-
-		/* Initialize Subsystem */
+		
+		/** Initialize Subsystems*/
 		Log.init("Initializing Subsystems");
 
 		Log.init("Initializing Launcher subsystem");
@@ -227,29 +230,21 @@ public class Robot extends IterativeRobot {
 		Log.init("Agitator subsystem iitialized!");
 
 		/* Initialize Sensor */
-
-		// Ultrasonic
-		// ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL,
-		// Config.ULTRASONIC_ECHO_CHANNEL);
+		//TODO Test Cameras
+		// ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL, Config.ULTRASONIC_ECHO_CHANNEL);
 		ultrasonic.setAutomaticMode(true);
 		ultrasonic.setEnabled(true);
+		Log.init("Ultrasonic initialized!");
 
-		// server = CameraServer.getInstance();
-
-		Log.init("Initializing OI");
-		oi = new OI();
-		Log.init("OI Initialized!");
-
-		// camera code
-
-		
-		/* initialize server */
-		usbCam0 = new UsbCamera("cam0", 0);
-		usbCam0.setFPS(15);
-		usbCam1 = new UsbCamera("cam1", 1);
-		usbCam1.setFPS(15);
-		server = CameraServer.getInstance();
-		roboCams=new RobotCameras(usbCam0, usbCam1);
+//		/** camera code*/
+//		/* initialize cameras */
+//		usbCam0 = new UsbCamera("cam0", 0);
+//		usbCam0.setFPS(15);
+//		usbCam1 = new UsbCamera("cam1", 1);
+//		usbCam1.setFPS(15);
+//		/* initialize server*/
+//		server = CameraServer.getInstance();
+//		roboCams=new RobotCameras(usbCam0, usbCam1);
 		// initialize axis cam
 		//axisCam = new AxisCamera("axisCamera", "10.54.27.11");
 		// init usb cam 0 and set fps
@@ -269,19 +264,24 @@ public class Robot extends IterativeRobot {
 	//	server.startAutomaticCapture(usbCam0);
 		//server.startAutomaticCapture(usbCam1);
 		
+		//TODO un-comment camera stuff
 
 		/**
 		 * TODO Add the different chooser selections for autonomous for Left,
 		 * Middle, and Right.
 		 */
-		chooser = new SendableChooser();
-//		
+		//chooser = new SendableChooser();
+		
 //		chooser.addDefault("", 0);
 //		chooser.addObject("AutoDriveLeft", 1);
 //		chooser.addObject("AutoDriveMiddle", 2);
 //		chooser.addObject("AutoDriveRight", 3);
 		
-		SmartDashboard.putData("Auto mode", chooser);
+		//SmartDashboard.putData("Auto mode", chooser);
+		
+		Log.init("Initializing OI");
+		oi = new OI();
+		Log.init("OI Initialized!");
 		
 	}
 
@@ -314,24 +314,29 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		//autonomousCommand = chooser.getSelected();
-
-		switch((Integer) oi.autoChooser.getSelected()){
 		
-		case 1:
-			new AutoDrive(Config.AUTO_LEFT).start();
-			break;
-		
-		case 2:
-			new AutoDrive(Config.AUTO_MIDDLE).start();
-			break;
-		
-		case 3:
-			new AutoDrive(Config.AUTO_RIGHT).start();
-			break;
-			
-		default:
-			break;
-		}
+		//TODO uncomment auto code
+		//TODO figure out autoChooser
+//		switch((Integer) oi.autoChooser.getSelected()){
+//		
+//		case 1:
+//			autonomousCommand=new AutoDrive(Config.AUTO_LEFT);
+//			autonomousCommand.start();
+//			break;
+//		
+//		case 2:
+//			autonomousCommand=new AutoDrive(Config.AUTO_MIDDLE);
+//			autonomousCommand.start();
+//			break;
+//		
+//		case 3:
+//			autonomousCommand=new AutoDrive(Config.AUTO_RIGHT);
+//			autonomousCommand.start();
+//			break;
+//			
+//		default:
+//			break;
+//		}
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -375,16 +380,16 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-		Log.init("ultrasonic1");
-
-		if (ultrasonic != null) {
-			// ultrasonic.ping();
-
-			Log.init("DiOutput" + digO.get());
-			Log.init("DiInput" + digI.get());
-			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonic.getRangeInches());
-			Log.init("" + ultrasonic.getRangeInches());
-		}
+		//TODO uncomment ultrasonic code
+//		Log.init("ultrasonic1");
+//		if (ultrasonic != null) {
+//			// ultrasonic.ping();
+//
+//			Log.init("DiOutput" + digO.get());
+//			Log.init("DiInput" + digI.get());
+//			SmartDashboard.putNumber("Ultrasonic Sensor (in):", ultrasonic.getRangeInches());
+//			Log.init("" + ultrasonic.getRangeInches());
+//		}
 		/*
 		 * if (ultrasonicAnalogInput != null) {
 		 * SmartDashboard.putNumber("Ultrasonic Sensor (in):",
