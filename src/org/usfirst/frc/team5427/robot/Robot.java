@@ -125,7 +125,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * Flap subsystem
 	 */
-	public static MultiFlap mFlap;
+//	public static MultiFlap ;
 	
 	// public static SetIntakeSpeed si;//to be used if we want to keep the
 	// intake always on
@@ -146,17 +146,17 @@ public class Robot extends IterativeRobot {
 	/**
 	 * Camera server
 	 */
-	public static CameraServer server;
-	public static RobotCameras roboCams;
+	//public static CameraServer server;
+//	public static RobotCameras roboCams;
 	/**
 	 * USB Cameras for robot
 	 */
-	public static UsbCamera usbCam0, usbCam1;
+//	public static UsbCamera usbCam0, usbCam1;
 
 	/**
 	 * IP Camera
 	 */
-	public static AxisCamera axisCam;
+	//public static AxisCamera axisCam;
 	
 	public static Client c;
 
@@ -244,12 +244,12 @@ public class Robot extends IterativeRobot {
 
 		
 		/* initialize server */
-		usbCam0 = new UsbCamera("cam0", 0);
-		usbCam0.setFPS(15);
-		usbCam1 = new UsbCamera("cam1", 1);
-		usbCam1.setFPS(15);
-		server = CameraServer.getInstance();
-		roboCams=new RobotCameras(usbCam0, usbCam1);
+	//	usbCam0 = new UsbCamera("cam0", 0);
+		//usbCam0.setFPS(15);
+		//usbCam1 = new UsbCamera("cam1", 1);
+		//usbCam1.setFPS(15);
+		//server = CameraServer.getInstance();
+		//roboCams=new RobotCameras(usbCam0, usbCam1);
 		// initialize axis cam
 		//axisCam = new AxisCamera("axisCamera", "10.54.27.11");
 		// init usb cam 0 and set fps

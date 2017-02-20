@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5427.robot.commands.AgitatorStart;
-import org.usfirst.frc.team5427.robot.commands.ChangeCameras;
+//import org.usfirst.frc.team5427.robot.commands.ChangeCameras
 //import org.usfirst.frc.team5427.robot.commands.ChangeCamera;
 import org.usfirst.frc.team5427.robot.commands.ChangeDirections;
 import org.usfirst.frc.team5427.robot.commands.PullRope;
-import org.usfirst.frc.team5427.robot.commands.SetFlapStage;
+//import org.usfirst.frc.team5427.robot.commands.SetFlapStage;
 import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
 import org.usfirst.frc.team5427.robot.commands.ShooterStart;
 import org.usfirst.frc.team5427.robot.subsystems.Agitator;
@@ -64,7 +64,7 @@ public class OI {
 	/**
 	 * Switches the camera view
 	 */
-	public Button switchCameras = new JoystickButton(joy, Config.SWITCH_CAMERAS_BUTTON);
+	//public Button switchCameras = new JoystickButton(joy, Config.SWITCH_CAMERAS_BUTTON);
 	/**
 	 * Changes the direction of the intake
 	 */
@@ -94,15 +94,15 @@ public class OI {
 	 */
 	public OI() {
 		shooter.whenPressed(new ShooterStart(Config.SHOOTER_MOTOR_SPEED * -1));
-		switchCameras.whenPressed(new ChangeCameras());
+		//switchCameras.whenPressed(new ChangeCameras());
 		startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		startIntake.whileHeld(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		changeIntakeDirection.whenPressed(new ChangeDirections());
 		pull.whenPressed(new PullRope());
 		spin.whenPressed(new AgitatorStart(Config.AGITATOR_SPEED));
-		FlapRetracted.whenPressed(new SetFlapStage(Config.stage.RETRACTED));
-		FlapGear.whenPressed(new SetFlapStage(Config.stage.GEAR));
-		FlapIntake.whenPressed(new SetFlapStage(Config.stage.INTAKE));
+		//FlapRetracted.whenPressed(new SetFlapStage(Config.stage.RETRACTED));
+		//FlapGear.whenPressed(new SetFlapStage(Config.stage.GEAR));
+		//FlapIntake.whenPressed(new SetFlapStage(Config.stage.INTAKE));
 		
 		
 		
