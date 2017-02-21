@@ -203,7 +203,7 @@ public class Robot extends IterativeRobot {
 
 		Log.init("Initializing Flywheels");
 		motorPWM_Flywheel = new SteelTalon(Config.SHOOTER_MOTOR);
-		// motorPWM_Flywheel2 = new SteelTalon(Config.SHOOTER_MOTOR);
+		motorPWM_Flywheel2 = new SteelTalon(Config.ROPE_CLIMB_MOTOR);
 
 		Log.init("Initialized all SteelTalon Motors!");
 
