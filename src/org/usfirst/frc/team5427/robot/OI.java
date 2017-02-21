@@ -78,15 +78,18 @@ public class OI {
 	 */
 	public Button shooter = new JoystickButton(joy, Config.SHOOT_BUTTON);
 	/**
-	 * Set intake speed
+	 * Commands for moveable flap
 	 */
-	public Button pull = new JoystickButton(joy, Config.PULL_BUTTON);
-	public Button spin = new JoystickButton(joy, Config.SPIN_BUTTON);
 	public Button FlapRetracted = new JoystickButton(joy, Config.FLAP_REATRACTED);
 	public Button FlapGear = new JoystickButton(joy, Config.FLAP_GEAR);
 	public Button FlapIntake = new JoystickButton(joy, Config.FLAP_INTAKE);
 	public SetIntakeSpeed si;
 
+	/**button for rope climb*/
+	public Button pull = new JoystickButton(joy, Config.PULL_BUTTON);
+	/**button for agitator climb*/
+	public Button spin = new JoystickButton(joy, Config.SPIN_BUTTON);
+	
 	SendableChooser<Integer> autoChooser= new SendableChooser<Integer>();
 	
 	/**
@@ -95,35 +98,33 @@ public class OI {
 	public OI() {
 		shooter.whenPressed(new ShooterStart(Config.SHOOTER_MOTOR_SPEED * -1));
 		//switchCameras.whenPressed(new ChangeCameras());
+
 		startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		startIntake.whileHeld(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		changeIntakeDirection.whenPressed(new ChangeDirections());
 		pull.whenPressed(new PullRope());
 		spin.whenPressed(new AgitatorStart(Config.AGITATOR_SPEED));
-		//FlapRetracted.whenPressed(new SetFlapStage(Config.stage.RETRACTED));
-		//FlapGear.whenPressed(new SetFlapStage(Config.stage.GEAR));
-		//FlapIntake.whenPressed(new SetFlapStage(Config.stage.INTAKE));
+
 		
 		
 		
+
+
+//		FlapRetracted.whenPressed(new SetFlapStage(Config.stage.RETRACTED));
+//		FlapGear.whenPressed(new SetFlapStage(Config.stage.GEAR));
+//		FlapIntake.whenPressed(new SetFlapStage(Config.stage.INTAKE));
 
 		
 		autoChooser.addDefault("              ", 0);
 		autoChooser.addObject("AutoDriveLeft  ", 1);
 		autoChooser.addObject("AutoDriveMiddle", 2);
 		autoChooser.addObject("AutoDriveRight ", 3);
- SmartDashboard.putData("Autonomous mode chooser", autoChooser);
-		
-		
+		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 		// TODO tie the right buttons to the right commands
-		// changeIntakeDirection.whenPressed(new ChangeDirections());
-		// startIntake.whenPressed(new
-		// SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED);
 	}
 
 	/**
 	 * returns the joystick object
-	 * 
 	 * @return the joystick
 	 */
 	public Joystick getJoy() {
@@ -133,7 +134,6 @@ public class OI {
 	/**
 	 * returns the right joystick if using 2 NOTE: not used for real, but used
 	 * elsewhere in code
-	 * 
 	 * @return the other joystick
 	 */
 	public Joystick getAltJoy() {

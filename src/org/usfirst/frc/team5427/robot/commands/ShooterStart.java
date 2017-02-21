@@ -28,8 +28,6 @@ public class ShooterStart extends Command {
 	 */
 	protected void initialize() {
 		Log.init("initialized Shoot");
-
-
 		Robot.launcher.setShootSpeed(shootSpeed);
 	}
 
