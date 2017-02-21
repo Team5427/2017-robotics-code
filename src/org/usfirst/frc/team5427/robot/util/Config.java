@@ -1,5 +1,5 @@
 package org.usfirst.frc.team5427.robot.util;
-
+//TODO FIXED CODE fEB 20 2017
 /**
  * This file will store ALL of the variables, offsets, measurements, etc. that
  * our robot will use during the year. All variables are to be static, and
@@ -42,20 +42,21 @@ public class Config {
 												// with this false
 	// Speeds for the different things that the robot needs to do
 	// Controlled by grip
-	public static final double PULL_SPEED = 1; // TODO change to correct value
+// TODO change to correct value
 												// later
 
 	// PWM PORTS
-	// TODO reassign motor values
-	public static final int FRONT_LEFT_MOTOR	= 2;
-	public static final int REAR_LEFT_MOTOR 	= 3;
+	// TODO reassign motor values	
 	public static final int FRONT_RIGHT_MOTOR 	= 0;
 	public static final int REAR_RIGHT_MOTOR	= 1;
-	public static final int SHOOTER_MOTOR		= 4;
+	public static final int FRONT_LEFT_MOTOR	= 2;
+	public static final int REAR_LEFT_MOTOR 	= 3;
+	public static final int SHOOTER_MOTOR		= 4;	
 	public static final int INTAKE_MOTOR 		= 5;
 	public static final int AGITATOR_MOTOR 		= 6;
+	public static final int ROPE_CLIMB_MOTOR    = 7;
 
-	public static final double DRIVE_TRAIN_MULTIPLIER = .5;
+	public static final double DRIVE_TRAIN_MULTIPLIER = 1;
 	
 	// Motor Bias
 	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARD  = .87;
@@ -96,10 +97,11 @@ public class Config {
 	public static final double OFFSET_INTAKE_MOTOR_BACKWARD = 0;
 
 	// motor speeds
-	public static final double INTAKE_MOTOR_SPEED = -.80;
-	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=.1;
-	public static final double SHOOTER_MOTOR_SPEED = 1;
+	public static final double INTAKE_MOTOR_SPEED = .80;
+	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-.1;
+	public static final double SHOOTER_MOTOR_SPEED = -1;
 	public static final double AGITATOR_SPEED = .5;
+	public static final double PULL_SPEED = -1; 
 
 	/* ----------Controller Ports---------- */
 	// Joystick
