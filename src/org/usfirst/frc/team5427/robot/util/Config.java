@@ -42,7 +42,9 @@ public class Config {
 												// with this false
 	// Speeds for the different things that the robot needs to do
 	// Controlled by grip
-// TODO change to correct value
+
+	 // TODO change to correct value
+
 												// later
 
 	// PWM PORTS
@@ -54,7 +56,10 @@ public class Config {
 	public static final int SHOOTER_MOTOR		= 4;	
 	public static final int INTAKE_MOTOR 		= 5;
 	public static final int AGITATOR_MOTOR 		= 6;
-	public static final int ROPE_CLIMB_MOTOR    = 7;
+
+	public static final int ROPE_CLIMB_MOTOR	= 7;
+
+
 
 	public static final double DRIVE_TRAIN_MULTIPLIER = 1;
 	
@@ -97,6 +102,7 @@ public class Config {
 	public static final double OFFSET_INTAKE_MOTOR_BACKWARD = 0;
 
 	// motor speeds
+
 	public static final double INTAKE_MOTOR_SPEED = .80;
 	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-.1;
 	public static final double SHOOTER_MOTOR_SPEED = -1;
