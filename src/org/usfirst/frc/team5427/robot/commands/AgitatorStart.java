@@ -6,39 +6,41 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShooterStart extends Command {
+public class AgitatorStart extends Command {
 
-	//speed of the shooter
-	private double shootSpeed;
+	//Speed of the blades.
+	private double spinSpeed;
 
 	/**
-	 * sets the speed of the launching mechanism to the speed defined in the
+	 * Sets the speed of the agitator to the speed defined in the
 	 * configuration file.
 	 */
-	public ShooterStart(double shootSpeed) {
+	public AgitatorStart(double spinSpeed) {
 		// Use requires() here to declare subsystem dependencies
-		this.shootSpeed=shootSpeed;
-		requires(Robot.launcher);
+		this.spinSpeed=spinSpeed;
+		requires(Robot.agitator);
 
 	}
 
 	/**
-	 * sets the speed of the launching mechanism to the speed defined in the
+	 * Sets the speed of the agitator to the speed defined in the
 	 * configuration file.
 	 */
 	protected void initialize() {
-		Log.init("initialized Shoot");
-		Robot.launcher.setShootSpeed(shootSpeed);
+		Log.init("initialized Spin");
+
+
+		Robot.agitator.setSpinSpeed(spinSpeed);
 	}
 
-	//sets shoot speed to speed specified in config
+	//sets spin speed to speed specified in config
 	protected void execute() {
-		Robot.launcher.setShootSpeed(shootSpeed);
+		Robot.agitator.setSpinSpeed(spinSpeed);
 	}
 
 	//returns true when the shoot button is released
 	protected boolean isFinished() {
-		if (!Robot.oi.getJoy().getRawButton(Config.SHOOT_BUTTON))
+		if (!Robot.oi.getJoy().getRawButton(Config.SPIN_BUTTON))
 			return true;
 		else
 			return false;
@@ -46,7 +48,7 @@ public class ShooterStart extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.launcher.stop();
+		Robot.agitator.stop();
 	}
 
 	// Called when another command which requires one or more of the same

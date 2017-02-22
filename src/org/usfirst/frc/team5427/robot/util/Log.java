@@ -70,6 +70,7 @@ public class Log {
 		if (Config.DEBUG_MODE)
 			log("[DEBUG]", text);
 	}
+	
 
 	/**
 	 * Logging more important warnings -- will still show up even if

@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5427.robot.OurClasses;
 
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Spark;
 
 /**
  * <p>
@@ -15,11 +15,9 @@ import edu.wpi.first.wpilibj.Talon;
  * of the basic functionality of the class given by WPI, but adds the ability to
  * add any offsets to help ensure that the robot is as precise as can be.
  * </p>
- * 
- * @author Andrew Kennedy, Bo Corman
  *
  */
-public class SteelTalon extends Talon {
+public class SteelSpark extends Spark {
 
 	/**
 	 * The doubles that will store the offsets for the motors, if any will be
@@ -41,7 +39,7 @@ public class SteelTalon extends Talon {
 	 * 
 	 * @param channel The PWM port that the speedcontroller is plugged into on the roborio.
 	 */
-	public SteelTalon(int channel) {
+	public SteelSpark(int channel) {
 		super(channel);
 
 		this.backwardoffset = 0;
@@ -56,7 +54,7 @@ public class SteelTalon extends Talon {
 	 * @param backwardOffset
 	 * @param forwardOffset
 	 */
-	public SteelTalon(int channel, double backwardOffset, double forwardOffset) {
+	public SteelSpark(int channel, double backwardOffset, double forwardOffset) {
 		super(channel);
 
 		this.backwardoffset = backwardOffset;
@@ -66,12 +64,11 @@ public class SteelTalon extends Talon {
 	}
 
 	/**
-	 * 
 	 * @param channel
 	 * @param backwardOffset
 	 * @param forwardOffset
 	 */
-	public SteelTalon(int channel, double backwardOffset, double forwardOffset, double backwardBias, double forwardBias) {
+	public SteelSpark(int channel, double backwardOffset, double forwardOffset, double backwardBias, double forwardBias) {
 		super(channel);
 
 		this.backwardoffset = backwardOffset;
