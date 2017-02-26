@@ -53,6 +53,9 @@ public class Robot extends IterativeRobot {
 	
 	//motor for agitator
 	public static SpeedController motorPWM_Agitator;
+	
+	//motor for flap
+	public static SpeedController motorPWM_Flap;
 
 	// PWM Motors for Drive Train
 	/**
@@ -61,6 +64,8 @@ public class Robot extends IterativeRobot {
 	 * to a positive value will cause the robot to move __________
 	 */
 	public static SpeedController motorPWM_FrontLeft;
+	
+	public static DigitalInput limitSwitchDoor;
 
 	// TODO fill in the blank in this comment after testing the robot.
 	/**
@@ -127,7 +132,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * Flap subsystem
 	 */
-//	public static MultiFlap ;
+	public static MultiFlap myFlap;
 	
 	
 
@@ -204,12 +209,14 @@ public class Robot extends IterativeRobot {
 		/** Initialize SteelSpark but actually SteelTalon Motors */
 		Log.init("Initializing SteelSpark but actually Talon Motors");
 		motorPWM_Intake = new SteelTalon(Config.INTAKE_MOTOR, 0, 0);
-		motorPWM_Agitator = new SteelTalon(Config.AGITATOR_MOTOR,0,0);
+		//motorPWM_Agitator = new SteelTalon(Config.AGITATOR_MOTOR,0,0);
+		
 		
 //		/** Initialize Steel Spark Motors */
 //		Log.init("Initializing SteelSpark Motors");
 //		motorPWM_Intake = new SteelSpark(Config.INTAKE_MOTOR, 0, 0);
-//		motorPWM_Agitator = new SteelSpark(Config.AGITATOR_MOTOR,0,0);
+		motorPWM_Agitator = new SteelSpark(Config.AGITATOR_MOTOR,0,0);
+		motorPWM_Flap = new SteelSpark(Config.FLAP_MOTOR,0,0);
 
 		
 		/**Initialize Drive Train*/
@@ -220,6 +227,9 @@ public class Robot extends IterativeRobot {
 
 		Log.init("Initialized all SteelTalon Motors!");
 
+		/* Initialize limit switches */
+		Log.init("Initializing Limit Switches");
+		limitSwitchDoor = new DigitalInput(Config.DIO_FLAP);
 
 		/* Initialize Subsystem */
 
@@ -239,7 +249,11 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Initializing Agitator subsystem");
 		agitator = new Agitator(motorPWM_Agitator);
-		Log.init("Agitator subsystem iitialized!");
+		Log.init("Agitator subsystem initialized!");
+		
+		Log.init("Initializing MultiFlap subsytem");
+		myFlap = new MultiFlap(motorPWM_Flap);
+		Log.init("MultiFlap subsystem initialized!");
 
 		/* Initialize Sensor */
 		//TODO Test Cameras
