@@ -36,10 +36,10 @@ public class SetIntakeSpeed extends Command {
 	//turns off when the button to start intake is not pressed
 	@Override
 	protected boolean isFinished() {
-		if (Robot.oi.getJoy().getRawButton(Config.START_INTAKE_BUTTON))
+		//if (Robot.oi.getJoy().getRawButton(Config.START_INTAKE_BUTTON))
 			return false;
-		else
-			return true;
+		//else
+			//return true;
 	}
 
 	// Called once after isFinished returns true

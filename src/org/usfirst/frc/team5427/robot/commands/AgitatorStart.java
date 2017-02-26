@@ -40,9 +40,9 @@ public class AgitatorStart extends Command {
 
 	//returns true when the shoot button is released
 	protected boolean isFinished() {
-		if (!Robot.oi.getJoy().getRawButton(Config.SPIN_BUTTON))
-			return true;
-		else
+		//if (!Robot.oi.getJoy().getRawButton(Config.SPIN_BUTTON))
+	//		return true;
+		//else
 			return false;
 	}
 
