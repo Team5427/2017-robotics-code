@@ -28,13 +28,13 @@ public class SetFlapStage extends Command{
 		if(target==Robot.myFlap.currentStage){
 			targetTime = 0;
 		}
-		if(target==Config.stage.OPEN){
+		else if(target==Config.stage.OPEN||Robot.limitSwitchDoorOpened.get()){
 			open = false;
-			targetTime=Config.FLAP_CLOSE_TIMEOUT;
+			targetTime=Config.FLAP_OPEN_TIMEOUT;
 		}
-		if(target==Config.stage.CLOSE){
-			targetTime = Config.FLAP_OPEN_TIMEOUT;
+		else if(target==Config.stage.CLOSE||Robot.limitSwitchDoorClosed.get()){
 			open = true;
+			targetTime = Config.FLAP_CLOSE_TIMEOUT;
 		}
 		
 		setTimeout(targetTime);
@@ -59,7 +59,13 @@ public class SetFlapStage extends Command{
 	
 	@Override
 	protected boolean isFinished(){
-		return isTimedOut()|| !Robot.limitSwitchDoor.get();
+		if(isTimedOut())
+			return true;
+		if(open&&!Robot.limitSwitchDoorOpened.get())
+			return true;
+		if(!open&&!Robot.limitSwitchDoorClosed.get())
+			return true;
+		return false;
 	}
 	
 	protected void close(){

@@ -65,7 +65,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public static SpeedController motorPWM_FrontLeft;
 	
-	public static DigitalInput limitSwitchDoor;
+	
 
 	// TODO fill in the blank in this comment after testing the robot.
 	/**
@@ -129,6 +129,9 @@ public class Robot extends IterativeRobot {
 	 * Agitator subsystem to spin balls inside the robot
 	 */
 	public static Agitator agitator;
+	
+	public static DigitalInput limitSwitchDoorOpened;
+	public static DigitalInput limitSwitchDoorClosed;
 	/**
 	 * Flap subsystem
 	 */
@@ -229,9 +232,10 @@ public class Robot extends IterativeRobot {
 
 		/* Initialize limit switches */
 		Log.init("Initializing Limit Switches");
-		limitSwitchDoor = new DigitalInput(Config.DIO_FLAP);
+		limitSwitchDoorOpened = new DigitalInput(Config.DIO_FLAP_OPENED);
+		limitSwitchDoorClosed = new DigitalInput(Config.DIO_FLAP_CLOSED);
 
-		/* Initialize Subsystem */
+		/* Initialize Subsystems */
 
 		Log.init("Initializing Subsystems");
 
