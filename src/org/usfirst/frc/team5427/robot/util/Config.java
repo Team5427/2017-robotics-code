@@ -54,6 +54,10 @@ public class Config {
 	public static final int INTAKE_MOTOR 		= 5;
 	public static final int AGITATOR_MOTOR 		= 6;
 	public static final int ROPE_CLIMB_MOTOR    = 7;
+	public static final int FLAP_MOTOR          = 8;
+	
+	//limit switches or flap
+	public static final int DIO_FLAP            = 0;
 
 
 	public static final double DRIVE_TRAIN_MULTIPLIER = 1;
@@ -128,6 +132,8 @@ public class Config {
 	public static final double LEFT_TIMEOUT = 60;
 	public static final double MIDDLE_TIMEOUT = 60;
 	public static final double RIGHT_TIMEOUT = 60;
+	public static final double FLAP_OPEN_TIMEOUT = 1;
+	public static final double FLAP_CLOSE_TIMEOUT= 1;
 	//Left Side
 	public static final double AUTO_LEFT_START_DRIVE_TIME = 0;
 	public static final double AUTO_LEFT_TURN_TIME = AUTO_LEFT_START_DRIVE_TIME+0;
@@ -173,7 +179,7 @@ public class Config {
 	public static final int ULTRASONIC_ECHO_CHANNEL = 1;
 
 	/*------------Mulipurpose Flap Vars------*/
-	public static enum stage {RETRACTED,INTAKE,GEAR};
+	public static enum stage {OPEN,CLOSE};
 	public static final long retractedToIntake = 1;
 	public static final long intakeToGear = 1;
 	public static final long gearToRetracted = 1;

@@ -14,28 +14,26 @@ import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 public class SetFlapStage extends Command{
-	private long startTime;
-	private long endTime;
-	private long targetTime;
+	private double targetTime;
 	private Config.stage target;
 	private boolean open = false;
 	
 	
 	public SetFlapStage(Config.stage target){
 		//change directions requires the intake system
-		requires(Robot.mFlap);
+		requires(Robot.myFlap);
 		
 		this.target = target;
 		
-		if(target==Robot.mFlap.currentStage){
+		if(target==Robot.myFlap.currentStage){
 			targetTime = 0;
 		}
 		if(target==Config.stage.OPEN){
 			open = false;
-			targetTime=Config.TIMEOUT_FLAP_CLOSE;
+			targetTime=Config.FLAP_CLOSE_TIMEOUT;
 		}
 		if(target==Config.stage.CLOSE){
-			targetTime = Config.TIMEOUT_FLAP_OPEN
+			targetTime = Config.FLAP_OPEN_TIMEOUT;
 			open = true;
 		}
 		
@@ -65,14 +63,14 @@ public class SetFlapStage extends Command{
 	}
 	
 	protected void close(){
-		Robot.mFlap.motorPWM_Flap.set(Config.FLAP_SPEED);
+		Robot.myFlap.motorPWM_Flap.set(Config.FLAP_SPEED);
 	}
 	protected void open(){
-		Robot.mFlap.motorPWM_Flap.set(-Config.FLAP_SPEED);
+		Robot.myFlap.motorPWM_Flap.set(-Config.FLAP_SPEED);
 	}
 	
 	protected void end(){
-		Robot.mFlap.motorPWM_Flap.stopMotor();
-		Robot.mFlap.currentStage = target;
+		Robot.myFlap.motorPWM_Flap.stopMotor();
+		Robot.myFlap.currentStage = target;
 	}
 }
