@@ -55,10 +55,10 @@ public class Config {
 	public static final int AGITATOR_MOTOR 		= 6;
 	public static final int ROPE_CLIMB_MOTOR    = 7;
 	public static final int FLAP_MOTOR          = 8;
+	
 	/*-------------Ultrasonic Sensor Ports---------*/
 	public static final int ULTRASONIC_PING_CHANNEL = 0;
 	public static final int ULTRASONIC_ECHO_CHANNEL = 1;
-	
 	//limit switches or flap
 	public static final int DIO_FLAP_OPENED            = 3;
 	public static final int DIO_FLAP_CLOSED            = 4;
