@@ -11,6 +11,7 @@ import org.usfirst.frc.team5427.robot.commands.AgitatorStart;
 //import org.usfirst.frc.team5427.robot.commands.ChangeCamera;
 import org.usfirst.frc.team5427.robot.commands.ChangeDirections;
 import org.usfirst.frc.team5427.robot.commands.PullRope;
+import org.usfirst.frc.team5427.robot.commands.SetFlapStage;
 //import org.usfirst.frc.team5427.robot.commands.SetFlapStage;
 import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
 import org.usfirst.frc.team5427.robot.commands.ShooterStart;
@@ -80,9 +81,8 @@ public class OI {
 	/**
 	 * Commands for moveable flap
 	 */
-	public Button FlapRetracted = new JoystickButton(joy, Config.FLAP_REATRACTED);
-	public Button FlapGear = new JoystickButton(joy, Config.FLAP_GEAR);
-	public Button FlapIntake = new JoystickButton(joy, Config.FLAP_INTAKE);
+	public Button flapOpen = new JoystickButton(joy, Config.FLAP_OPEN);
+	public Button flapClose = new JoystickButton(joy, Config.FLAP_CLOSE);
 	public SetIntakeSpeed si;
 
 	/**button for rope climb*/
@@ -96,16 +96,14 @@ public class OI {
 	 * Constructor for the OI class, defines the button-press events.
 	 */
 	public OI() {
-		shooter.whenPressed(new ShooterStart(Config.SHOOTER_MOTOR_SPEED * -1));
-		//switchCameras.whenPressed(new ChangeCameras());
+		shooter.whileHeld(new ShooterStart(Config.SHOOTER_MOTOR_SPEED * -1));
 
 		startIntake.toggleWhenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
-		changeIntakeDirection.whenPressed(new ChangeDirections());
+		changeIntakeDirection.toggleWhenPressed(new ChangeDirections());
 		pull.whenPressed(new PullRope());
 		spin.toggleWhenPressed(new AgitatorStart(Config.AGITATOR_SPEED));
-//		FlapRetracted.whenPressed(new SetFlapStage(Config.stage.RETRACTED));
-//		FlapGear.whenPressed(new SetFlapStage(Config.stage.GEAR));
-//		FlapIntake.whenPressed(new SetFlapStage(Config.stage.INTAKE));
+		flapOpen.whenPressed(new SetFlapStage(Config.stage.OPEN));
+		flapClose.whenPressed(new SetFlapStage(Config.stage.CLOSE));
 
 		
 		autoChooser.addDefault("              ", 0);
