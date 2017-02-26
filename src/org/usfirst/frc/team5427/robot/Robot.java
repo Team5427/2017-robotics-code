@@ -217,7 +217,9 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 
+
 		Log.init("Initialized all SteelTalon Motors!");
+
 
 		/* Initialize Subsystem */
 
