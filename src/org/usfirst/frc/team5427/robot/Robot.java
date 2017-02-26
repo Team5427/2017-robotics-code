@@ -127,7 +127,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * Flap subsystem
 	 */
-//	public static MultiFlap ;
+	public static MultiFlap mFlap;
 	
 	
 
