@@ -99,17 +99,10 @@ public class OI {
 		shooter.whenPressed(new ShooterStart(Config.SHOOTER_MOTOR_SPEED * -1));
 		//switchCameras.whenPressed(new ChangeCameras());
 
-		startIntake.whenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
-		startIntake.whileHeld(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
+		startIntake.toggleWhenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		changeIntakeDirection.whenPressed(new ChangeDirections());
 		pull.whenPressed(new PullRope());
-		spin.whenPressed(new AgitatorStart(Config.AGITATOR_SPEED));
-
-		
-		
-		
-
-
+		spin.toggleWhenPressed(new AgitatorStart(Config.AGITATOR_SPEED));
 //		FlapRetracted.whenPressed(new SetFlapStage(Config.stage.RETRACTED));
 //		FlapGear.whenPressed(new SetFlapStage(Config.stage.GEAR));
 //		FlapIntake.whenPressed(new SetFlapStage(Config.stage.INTAKE));
