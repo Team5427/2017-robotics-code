@@ -348,21 +348,24 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		
+		Log.info("Autonomous Start!");
+		
 		switch(oi.autoChooser.getSelected())
 		{
 		
 		case 1:
-			Log.info("Chose Auto_Left selection");
+			new AutoDrive(1).start();
 			break;
 		case 2:
-			Log.info("Chose Auto_Middle selection");
+			new AutoDrive(2).start();
 			break;
 		case 3:
-			Log.info("Chose Auto_Right selection");
+			new AutoDrive(3).start();
 			break;
-			
+		default:
+			Log.info("Did not chose an Autonomous mode");
 		}
-		
+		 
 		//autonomousCommand = chooser.getSelected();
 		
 		//TODO uncomment auto code
