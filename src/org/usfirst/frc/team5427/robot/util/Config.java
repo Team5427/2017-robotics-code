@@ -106,10 +106,10 @@ public class Config {
 
 	// motor speeds
 
-	public static final double INTAKE_MOTOR_SPEED = .80;
-	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-.1;
+	public static final double INTAKE_MOTOR_SPEED = .1;
+	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-.8;
 	public static final double SHOOTER_MOTOR_SPEED = -1;
-	public static final double AGITATOR_SPEED = .5;
+	public static final double AGITATOR_SPEED = -1;
 	public static final double PULL_SPEED = -1; 
 
 	/* ----------Controller Ports---------- */
