@@ -175,7 +175,7 @@ public class Config {
 	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 12;
 	public static final int SPIN_BUTTON = 2;
 	public static final int FLAP_OPEN = 5;
-	public static final int FLAP_CLOSE=3;
+	public static final int FLAP_CLOSE=3;;
 
 	
 

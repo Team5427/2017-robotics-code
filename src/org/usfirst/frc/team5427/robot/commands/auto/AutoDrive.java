@@ -20,6 +20,23 @@ public class AutoDrive extends Command {
 		// Use requires() here to declare subsystem dependencies
 
 		requires(Robot.driveTrain);
+		
+		switch(position)
+		{
+		
+		case 1:
+			Log.info("Chose Auto_Left selection");
+			break;
+		case 2:
+			Log.info("Chose Auto_Middle selection");
+			break;
+		case 3:
+			Log.info("Chose Auto_Right selection");
+			break;
+		default:
+			Log.info("Did not chose an Autonomous mode");
+		}
+		
 		startTime = System.nanoTime();
 		this.position = position;
 	}
@@ -34,6 +51,8 @@ public class AutoDrive extends Command {
 
 	@SuppressWarnings("all")
 	protected void execute() {
+		
+		Log.init("Starting Autonomous Drive");
 		if(position == Config.AUTO_LEFT)
 		{
 			//drive forwards for an amount of time

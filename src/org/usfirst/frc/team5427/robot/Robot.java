@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import sun.util.logging.resources.logging;
 import edu.wpi.first.wpilibj.Ultrasonic;
 
 import org.usfirst.frc.team5427.robot.OurClasses.*;
@@ -346,6 +347,25 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		
+		Log.info("Autonomous Start!");
+		
+		switch(oi.autoChooser.getSelected())
+		{
+		
+		case 1:
+			new AutoDrive(1).start();
+			break;
+		case 2:
+			new AutoDrive(2).start();
+			break;
+		case 3:
+			new AutoDrive(3).start();
+			break;
+		default:
+			Log.info("Did not chose an Autonomous mode");
+		}
+		 
 		//autonomousCommand = chooser.getSelected();
 		
 		//TODO uncomment auto code
