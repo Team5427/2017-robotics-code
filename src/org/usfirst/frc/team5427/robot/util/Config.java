@@ -44,7 +44,7 @@ public class Config {
 	// Controlled by grip
 												// later
 
-	// PWM PORTS
+	/*----------PWM PORTS-----------*/
 	// TODO reassign motor values	
 	public static final int FRONT_RIGHT_MOTOR 	= 0;
 	public static final int REAR_RIGHT_MOTOR	= 1;
@@ -63,8 +63,9 @@ public class Config {
 	public static final int DIO_FLAP_OPENED            = 3;
 	public static final int DIO_FLAP_CLOSED            = 4;
 
-
+	/*----------MULTIPLIERS AND DEADSETS----------*/
 	public static final double DRIVE_TRAIN_MULTIPLIER = 1;
+	public static final double DEADSET_DIF=.01;
 	
 	// Motor Bias
 	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARD  = .87;
@@ -176,9 +177,6 @@ public class Config {
 	public static final int SPIN_BUTTON = 2;
 	public static final int FLAP_OPEN = 5;
 	public static final int FLAP_CLOSE=3;;
-
-	public static final double DEADSET_DIF=.01;
-	
 
 	/*------------Mulipurpose Flap Vars------*/
 	public static enum stage {OPEN,CLOSE};
