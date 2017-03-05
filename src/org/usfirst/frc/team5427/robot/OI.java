@@ -89,6 +89,7 @@ public class OI {
 	public Button pull = new JoystickButton(joy, Config.PULL_BUTTON);
 	/**button for agitator climb*/
 	public Button spin = new JoystickButton(joy, Config.SPIN_BUTTON);
+	public Button spinBack = new JoystickButton(joy, Config.SPIN_OUT_BUTTON);
 	
 	SendableChooser<Integer> autoChooser= new SendableChooser<Integer>();
 	
@@ -101,7 +102,8 @@ public class OI {
 		startIntake.toggleWhenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		changeIntakeDirection.toggleWhenPressed(new ChangeDirections());
 		pull.whenPressed(new PullRope());
-		spin.toggleWhenPressed(new AgitatorStart(Config.AGITATOR_SPEED));
+		spin.whenPressed(new AgitatorStart(Config.AGITATOR_SPEED));
+		spinBack.whenPressed(new AgitatorStart(Config.AGITATOR_SPEED_BACKWARDS));
 		flapOpen.whenPressed(new SetFlapStage(Config.stage.OPEN));
 		flapClose.whenPressed(new SetFlapStage(Config.stage.CLOSE));
 
