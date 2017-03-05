@@ -168,15 +168,16 @@ public class Config {
 	public static final int AUTO_RIGHT = 2;
 	
 	/*---------------Buttons------------------- */
-	public static final int SHOOT_BUTTON = 7;
+	public static final int SHOOT_BUTTON = 1;
 	public static final int PULL_BUTTON = 8;
 	public static final int SWITCH_CAMERAS_BUTTON = 3;
-	public static final int START_INTAKE_BUTTON = 10;
-	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 12;
+	public static final int START_INTAKE_BUTTON = 4;
+	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 6;
 	public static final int SPIN_BUTTON = 2;
 	public static final int FLAP_OPEN = 5;
 	public static final int FLAP_CLOSE=3;;
 
+	public static final double DEADSET_DIF=.01;
 	
 
 	/*------------Mulipurpose Flap Vars------*/
