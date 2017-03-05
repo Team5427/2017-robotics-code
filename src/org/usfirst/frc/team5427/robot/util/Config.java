@@ -68,42 +68,42 @@ public class Config {
 	public static final double DEADSET_DIF=.01;
 	
 	// Motor Bias
-	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARD  = .87;
-	public static final double BIAS_FRONT_LEFT_MOTOR_BACKWARD = .94192;
+	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARD  = 1;//.87;
+	public static final double BIAS_FRONT_LEFT_MOTOR_BACKWARD = 1;//.94192;
 
-	public static final double BIAS_REAR_LEFT_MOTOR_FORWARD    = .87;
-	public static final double BIAS_REAR_LEFT_MOTOR_BACKWARD   = .94192;
+	public static final double BIAS_REAR_LEFT_MOTOR_FORWARD    = 1;//.87;
+	public static final double BIAS_REAR_LEFT_MOTOR_BACKWARD   = 1;//.94192;
 
-	public static final double BIAS_FRONT_RIGHT_MOTOR_FORWARD  = 1;
-	public static final double BIAS_FRONT_RIGHT_MOTOR_BACKWARD = 1;
+	public static final double BIAS_FRONT_RIGHT_MOTOR_FORWARD  = 1;//1
+	public static final double BIAS_FRONT_RIGHT_MOTOR_BACKWARD = 1;//1
 
-	public static final double BIAS_REAR_RIGHT_MOTOR_FORWARD   = 1;
-	public static final double BIAS_REAR_RIGHT_MOTOR_BACKWARD  = 1;
+	public static final double BIAS_REAR_RIGHT_MOTOR_FORWARD   = 1;//1
+	public static final double BIAS_REAR_RIGHT_MOTOR_BACKWARD  = 1;//1
 
-	public static final double BIAS_SHOOTER_MOTOR_FORWARD  	   = 1;
-	public static final double BIAS_SHOOTER_MOTOR_BACKWARD     = 1;
+	public static final double BIAS_SHOOTER_MOTOR_FORWARD  	   = 1;//1
+	public static final double BIAS_SHOOTER_MOTOR_BACKWARD     = 1;//1
 
-	public static final double BIAS_INTAKE_MOTOR_FORWARD       = 1;
-	public static final double BIAS_INTAKE_MOTOR_BACKWARD      = 1;
+	public static final double BIAS_INTAKE_MOTOR_FORWARD       = 1;//1
+	public static final double BIAS_INTAKE_MOTOR_BACKWARD      = 1;//1
 
 	// Motor Offset
-	public static final double OFFSET_FRONT_LEFT_MOTOR_FORWARD  = 0;
-	public static final double OFFSET_FRONT_LEFT_MOTOR_BACKWARD = 0;
+	public static final double OFFSET_FRONT_LEFT_MOTOR_FORWARD  = 0;//0
+	public static final double OFFSET_FRONT_LEFT_MOTOR_BACKWARD = 0;//0
 
-	public static final double OFFSET_REAR_LEFT_MOTOR_FORWARD    = 0;
-	public static final double OFFSET_REAR_LEFT_MOTOR_BACKWARD   = 0;
+	public static final double OFFSET_REAR_LEFT_MOTOR_FORWARD    = 0;//0
+	public static final double OFFSET_REAR_LEFT_MOTOR_BACKWARD   = 0;//0
 
-	public static final double OFFSET_FRONT_RIGHT_MOTOR_FORWARD  = 0;
-	public static final double OFFSET_FRONT_RIGHT_MOTOR_BACKWARD = 0;
+	public static final double OFFSET_FRONT_RIGHT_MOTOR_FORWARD  = 0;//0
+	public static final double OFFSET_FRONT_RIGHT_MOTOR_BACKWARD = 0;//0
 
-	public static final double OFFSET_REAR_RIGHT_MOTOR_FORWARD   = 0;
-	public static final double OFFSET_REAR_RIGHT_MOTOR_BACKWARD  = 0;
+	public static final double OFFSET_REAR_RIGHT_MOTOR_FORWARD   = 0;//0
+	public static final double OFFSET_REAR_RIGHT_MOTOR_BACKWARD  = 0;//0
 
-	public static final double OFFSET_SHOOTER_MOTOR_FORWARD  = 0;
-	public static final double OFFSET_SHOOTER_MOTOR_BACKWARD = 0;
+	public static final double OFFSET_SHOOTER_MOTOR_FORWARD  = 0;//0
+	public static final double OFFSET_SHOOTER_MOTOR_BACKWARD = 0;//0
 
-	public static final double OFFSET_INTAKE_MOTOR_FORWARD  = 0;
-	public static final double OFFSET_INTAKE_MOTOR_BACKWARD = 0;
+	public static final double OFFSET_INTAKE_MOTOR_FORWARD  = 0;//0
+	public static final double OFFSET_INTAKE_MOTOR_BACKWARD = 0;//0
 
 	// motor speeds
 
