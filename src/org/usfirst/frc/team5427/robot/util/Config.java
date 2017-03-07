@@ -107,8 +107,8 @@ public class Config {
 
 	// motor speeds
 
-	public static final double INTAKE_MOTOR_SPEED = .1;
-	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-.8;
+	public static final double INTAKE_MOTOR_SPEED = 1;
+	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-1;
 	public static final double SHOOTER_MOTOR_SPEED = -1;
 	public static final double AGITATOR_SPEED = -1;
 	public static final double AGITATOR_SPEED_BACKWARDS = 1;
@@ -176,7 +176,7 @@ public class Config {
 	public static final int START_INTAKE_BUTTON = 4;
 	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 6;
 	public static final int SPIN_BUTTON = 2;
-	public static final int SPIN_OUT_BUTTON = 12;
+	public static final int SPIN_OUT_BUTTON = 7;
 	public static final int FLAP_OPEN = 5;
 	public static final int FLAP_CLOSE=3;;
 

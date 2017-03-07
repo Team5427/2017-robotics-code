@@ -6,7 +6,7 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AgitatorStart extends Command {
+public class AgiBack extends Command {
 
 	//Speed of the blades.
 	private double spinSpeed;
@@ -15,7 +15,7 @@ public class AgitatorStart extends Command {
 	 * Sets the speed of the agitator to the speed defined in the
 	 * configuration file.
 	 */
-	public AgitatorStart(double spinSpeed) {
+	public AgiBack(double spinSpeed) {
 		// Use requires() here to declare subsystem dependencies
 		this.spinSpeed=spinSpeed;
 		requires(Robot.agitator);
@@ -40,7 +40,7 @@ public class AgitatorStart extends Command {
 
 	//returns true when the shoot button is released
 	protected boolean isFinished() {
-		if (!Robot.oi.getJoy().getRawButton(Config.SPIN_BUTTON))
+		if (!Robot.oi.getJoy().getRawButton(Config.SPIN_OUT_BUTTON))
 			return true;
 		//if (!Robot.oi.getJoy().getRawButton(Config.SPIN_OUT_BUTTON))
 		//	return true;

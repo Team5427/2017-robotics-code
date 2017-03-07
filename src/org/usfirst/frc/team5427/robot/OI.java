@@ -6,7 +6,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+//import org.usfirst.frc.team5427.robot.commands.AgitatorBack;
 import org.usfirst.frc.team5427.robot.commands.AgitatorStart;
+import org.usfirst.frc.team5427.robot.commands.AgiBack;
 //import org.usfirst.frc.team5427.robot.commands.ChangeCameras
 //import org.usfirst.frc.team5427.robot.commands.ChangeCamera;
 import org.usfirst.frc.team5427.robot.commands.ChangeDirections;
@@ -102,8 +104,8 @@ public class OI {
 		startIntake.toggleWhenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		changeIntakeDirection.toggleWhenPressed(new ChangeDirections());
 		pull.whenPressed(new PullRope());
-		spin.whenPressed(new AgitatorStart(Config.AGITATOR_SPEED));
-		spinBack.whenPressed(new AgitatorStart(Config.AGITATOR_SPEED_BACKWARDS));
+		spin.whileHeld(new AgitatorStart(Config.AGITATOR_SPEED));
+		spinBack.whileHeld(new AgiBack(Config.AGITATOR_SPEED_BACKWARDS));
 		flapOpen.whenPressed(new SetFlapStage(Config.stage.OPEN));
 		flapClose.whenPressed(new SetFlapStage(Config.stage.CLOSE));
 
