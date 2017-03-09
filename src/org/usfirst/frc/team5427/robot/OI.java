@@ -99,7 +99,7 @@ public class OI {
 	 * Constructor for the OI class, defines the button-press events.
 	 */
 	public OI() {
-		shooter.whileHeld(new ShooterStart(Config.SHOOTER_MOTOR_SPEED * -1));
+		shooter.whileHeld(new ShooterStart(Config.SHOOTER_MOTOR_SPEED));
 
 		startIntake.toggleWhenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		changeIntakeDirection.toggleWhenPressed(new ChangeDirections());
@@ -110,10 +110,10 @@ public class OI {
 		flapClose.whenPressed(new SetFlapStage(Config.stage.CLOSE));
 
 		
-		autoChooser.addDefault("              ", 0);
-		autoChooser.addObject("AutoDriveLeft  ", 1);
-		autoChooser.addObject("AutoDriveMiddle", 2);
-		autoChooser.addObject("AutoDriveRight ", 3);
+		autoChooser.addDefault("              ",	Config.AUTO_NONE);
+		autoChooser.addObject("AutoDriveLeft  ", Config.AUTO_LEFT);
+		autoChooser.addObject("AutoDriveMiddle", Config.AUTO_MIDDLE);
+		autoChooser.addObject("AutoDriveRight ", Config.AUTO_RIGHT);
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 		// TODO tie the right buttons to the right commands
 	}
