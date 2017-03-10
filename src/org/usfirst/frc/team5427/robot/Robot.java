@@ -139,8 +139,16 @@ public class Robot extends IterativeRobot {
 	 */
 	public static MultiFlap myFlap;
 	
+	/**
+	 * Client for networking
+	 */
 	public static Client client;
 
+	/**
+	 * Network interpreter
+	 */
+	public static SteamworkInterpreter swip;
+	
 	Command autonomousCommand;
 	//SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -314,7 +322,8 @@ public class Robot extends IterativeRobot {
 		
 		//SmartDashboard.putData("Auto mode", chooser);
 		
-		client = new Client(new SteamworkInterpreter());
+		swip =  new SteamworkInterpreter();
+		client = new Client(swip);
         client.start();
 		
 		Log.init("Initializing OI");
