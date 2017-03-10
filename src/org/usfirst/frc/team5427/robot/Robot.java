@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import sun.util.logging.resources.logging;
 import edu.wpi.first.wpilibj.Ultrasonic;
 
 import org.usfirst.frc.team5427.robot.OurClasses.*;
@@ -53,6 +54,9 @@ public class Robot extends IterativeRobot {
 	
 	//motor for agitator
 	public static SpeedController motorPWM_Agitator;
+	
+	//motor for flap
+	public static SpeedController motorPWM_Flap;
 
 	// PWM Motors for Drive Train
 	/**
@@ -61,6 +65,8 @@ public class Robot extends IterativeRobot {
 	 * to a positive value will cause the robot to move __________
 	 */
 	public static SpeedController motorPWM_FrontLeft;
+	
+	
 
 	// TODO fill in the blank in this comment after testing the robot.
 	/**
@@ -124,10 +130,13 @@ public class Robot extends IterativeRobot {
 	 * Agitator subsystem to spin balls inside the robot
 	 */
 	public static Agitator agitator;
+	
+	public static DigitalInput limitSwitchDoorOpened;
+	public static DigitalInput limitSwitchDoorClosed;
 	/**
 	 * Flap subsystem
 	 */
-//	public static MultiFlap ;
+	public static MultiFlap myFlap;
 	
 	
 
@@ -204,12 +213,14 @@ public class Robot extends IterativeRobot {
 		/** Initialize SteelSpark but actually SteelTalon Motors */
 		Log.init("Initializing SteelSpark but actually Talon Motors");
 		motorPWM_Intake = new SteelTalon(Config.INTAKE_MOTOR, 0, 0);
-		motorPWM_Agitator = new SteelTalon(Config.AGITATOR_MOTOR,0,0);
+		//motorPWM_Agitator = new SteelTalon(Config.AGITATOR_MOTOR,0,0);
+		
 		
 //		/** Initialize Steel Spark Motors */
 //		Log.init("Initializing SteelSpark Motors");
 //		motorPWM_Intake = new SteelSpark(Config.INTAKE_MOTOR, 0, 0);
-//		motorPWM_Agitator = new SteelSpark(Config.AGITATOR_MOTOR,0,0);
+		motorPWM_Agitator = new SteelSpark(Config.AGITATOR_MOTOR,0,0);
+		motorPWM_Flap = new SteelSpark(Config.FLAP_MOTOR,0,0);
 
 		
 		/**Initialize Drive Train*/
@@ -217,7 +228,15 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain(motorPWM_FrontLeft, motorPWM_RearLeft, motorPWM_FrontRight, motorPWM_RearRight);
 		Log.init("driveTrain initialized!");
 
-		/* Initialize Subsystem */
+
+		Log.init("Initialized all SteelTalon Motors!");
+
+		/* Initialize limit switches */
+		Log.init("Initializing Limit Switches");
+		limitSwitchDoorOpened = new DigitalInput(Config.DIO_FLAP_OPENED);
+		limitSwitchDoorClosed = new DigitalInput(Config.DIO_FLAP_CLOSED);
+
+		/* Initialize Subsystems */
 
 		Log.init("Initializing Subsystems");
 
@@ -235,7 +254,11 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Initializing Agitator subsystem");
 		agitator = new Agitator(motorPWM_Agitator);
-		Log.init("Agitator subsystem iitialized!");
+		Log.init("Agitator subsystem initialized!");
+		
+		Log.init("Initializing MultiFlap subsytem");
+		myFlap = new MultiFlap(motorPWM_Flap);
+		Log.init("MultiFlap subsystem initialized!");
 
 		/* Initialize Sensor */
 		//TODO Test Cameras
@@ -324,6 +347,25 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		
+		Log.info("Autonomous Start!");
+		
+		switch(oi.autoChooser.getSelected())
+		{
+		
+		case 1:
+			new AutoDrive(1).start();
+			break;
+		case 2:
+			new AutoDrive(2).start();
+			break;
+		case 3:
+			new AutoDrive(3).start();
+			break;
+		default:
+			Log.info("Did not chose an Autonomous mode");
+		}
+		 
 		//autonomousCommand = chooser.getSelected();
 		
 		//TODO uncomment auto code

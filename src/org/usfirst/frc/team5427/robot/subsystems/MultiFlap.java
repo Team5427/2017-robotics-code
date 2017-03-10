@@ -15,6 +15,7 @@ public class MultiFlap extends Subsystem{
 	
 	public MultiFlap(SpeedController motorFlap) {
 		this.motorPWM_Flap = motorFlap;
+		currentStage=Config.FLAP_START_STAGE;
 	}
 		
 	@Override

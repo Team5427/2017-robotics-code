@@ -44,7 +44,7 @@ public class Config {
 	// Controlled by grip
 												// later
 
-	// PWM PORTS
+	/*----------PWM PORTS-----------*/
 	// TODO reassign motor values	
 	public static final int FRONT_RIGHT_MOTOR 	= 0;
 	public static final int REAR_RIGHT_MOTOR	= 1;
@@ -54,54 +54,64 @@ public class Config {
 	public static final int INTAKE_MOTOR 		= 5;
 	public static final int AGITATOR_MOTOR 		= 6;
 	public static final int ROPE_CLIMB_MOTOR    = 7;
+	public static final int FLAP_MOTOR          = 8;
+	
+	/*-------------Ultrasonic Sensor Ports---------*/
+	public static final int ULTRASONIC_PING_CHANNEL = 0;
+	public static final int ULTRASONIC_ECHO_CHANNEL = 1;
+	//limit switches or flap
+	public static final int DIO_FLAP_OPENED            = 3;
+	public static final int DIO_FLAP_CLOSED            = 4;
 
-
+	/*----------MULTIPLIERS AND DEADSETS----------*/
 	public static final double DRIVE_TRAIN_MULTIPLIER = 1;
+	public static final double DEADSET_DIF=.01;
 	
 	// Motor Bias
-	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARD  = .87;
-	public static final double BIAS_FRONT_LEFT_MOTOR_BACKWARD = .94192;
+	public static final double BIAS_FRONT_LEFT_MOTOR_FORWARD  = 1;//.87;
+	public static final double BIAS_FRONT_LEFT_MOTOR_BACKWARD = 1;//.94192;
 
-	public static final double BIAS_REAR_LEFT_MOTOR_FORWARD    = .87;
-	public static final double BIAS_REAR_LEFT_MOTOR_BACKWARD   = .94192;
+	public static final double BIAS_REAR_LEFT_MOTOR_FORWARD    = 1;//.87;
+	public static final double BIAS_REAR_LEFT_MOTOR_BACKWARD   = 1;//.94192;
 
-	public static final double BIAS_FRONT_RIGHT_MOTOR_FORWARD  = 1;
-	public static final double BIAS_FRONT_RIGHT_MOTOR_BACKWARD = 1;
+	public static final double BIAS_FRONT_RIGHT_MOTOR_FORWARD  = 1;//1
+	public static final double BIAS_FRONT_RIGHT_MOTOR_BACKWARD = 1;//1
 
-	public static final double BIAS_REAR_RIGHT_MOTOR_FORWARD   = 1;
-	public static final double BIAS_REAR_RIGHT_MOTOR_BACKWARD  = 1;
+	public static final double BIAS_REAR_RIGHT_MOTOR_FORWARD   = 1;//1
+	public static final double BIAS_REAR_RIGHT_MOTOR_BACKWARD  = 1;//1
 
-	public static final double BIAS_SHOOTER_MOTOR_FORWARD  	   = 1;
-	public static final double BIAS_SHOOTER_MOTOR_BACKWARD     = 1;
+	public static final double BIAS_SHOOTER_MOTOR_FORWARD  	   = 1;//1
+	public static final double BIAS_SHOOTER_MOTOR_BACKWARD     = 1;//1
 
-	public static final double BIAS_INTAKE_MOTOR_FORWARD       = 1;
-	public static final double BIAS_INTAKE_MOTOR_BACKWARD      = 1;
+	public static final double BIAS_INTAKE_MOTOR_FORWARD       = 1;//1
+	public static final double BIAS_INTAKE_MOTOR_BACKWARD      = 1;//1
 
 	// Motor Offset
-	public static final double OFFSET_FRONT_LEFT_MOTOR_FORWARD  = 0;
-	public static final double OFFSET_FRONT_LEFT_MOTOR_BACKWARD = 0;
+	public static final double OFFSET_FRONT_LEFT_MOTOR_FORWARD  = 0;//0
+	public static final double OFFSET_FRONT_LEFT_MOTOR_BACKWARD = 0;//0
 
-	public static final double OFFSET_REAR_LEFT_MOTOR_FORWARD    = 0;
-	public static final double OFFSET_REAR_LEFT_MOTOR_BACKWARD   = 0;
+	public static final double OFFSET_REAR_LEFT_MOTOR_FORWARD    = 0;//0
+	public static final double OFFSET_REAR_LEFT_MOTOR_BACKWARD   = 0;//0
 
-	public static final double OFFSET_FRONT_RIGHT_MOTOR_FORWARD  = 0;
-	public static final double OFFSET_FRONT_RIGHT_MOTOR_BACKWARD = 0;
+	public static final double OFFSET_FRONT_RIGHT_MOTOR_FORWARD  = 0;//0
+	public static final double OFFSET_FRONT_RIGHT_MOTOR_BACKWARD = 0;//0
 
-	public static final double OFFSET_REAR_RIGHT_MOTOR_FORWARD   = 0;
-	public static final double OFFSET_REAR_RIGHT_MOTOR_BACKWARD  = 0;
+	public static final double OFFSET_REAR_RIGHT_MOTOR_FORWARD   = 0;//0
+	public static final double OFFSET_REAR_RIGHT_MOTOR_BACKWARD  = 0;//0
 
-	public static final double OFFSET_SHOOTER_MOTOR_FORWARD  = 0;
-	public static final double OFFSET_SHOOTER_MOTOR_BACKWARD = 0;
+	public static final double OFFSET_SHOOTER_MOTOR_FORWARD  = 0;//0
+	public static final double OFFSET_SHOOTER_MOTOR_BACKWARD = 0;//0
 
-	public static final double OFFSET_INTAKE_MOTOR_FORWARD  = 0;
-	public static final double OFFSET_INTAKE_MOTOR_BACKWARD = 0;
+	public static final double OFFSET_INTAKE_MOTOR_FORWARD  = 0;//0
+	public static final double OFFSET_INTAKE_MOTOR_BACKWARD = 0;//0
 
 	// motor speeds
 
-	public static final double INTAKE_MOTOR_SPEED = .80;
-	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-.1;
+	public static final double INTAKE_MOTOR_SPEED = 1;
+	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-1;
 	public static final double SHOOTER_MOTOR_SPEED = -1;
-	public static final double AGITATOR_SPEED = .5;
+	public static final double AGITATOR_SPEED = -1;
+	public static final double AGITATOR_SPEED_BACKWARDS = 1;
 	public static final double PULL_SPEED = -1; 
 
 	/* ----------Controller Ports---------- */
@@ -128,6 +138,8 @@ public class Config {
 	public static final double LEFT_TIMEOUT = 60;
 	public static final double MIDDLE_TIMEOUT = 60;
 	public static final double RIGHT_TIMEOUT = 60;
+	public static final double FLAP_OPEN_TIMEOUT = 1;
+	public static final double FLAP_CLOSE_TIMEOUT= 1;
 	//Left Side
 	public static final double AUTO_LEFT_START_DRIVE_TIME = 0;
 	public static final double AUTO_LEFT_TURN_TIME = AUTO_LEFT_START_DRIVE_TIME+0;
@@ -164,16 +176,13 @@ public class Config {
 	public static final int START_INTAKE_BUTTON = 4;
 	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 6;
 	public static final int SPIN_BUTTON = 2;
-	public static final int FLAP_REATRACTED = 7;
-	public static final int FLAP_GEAR = 9;
-	public static final int FLAP_INTAKE=11;
-
-	/*-------------Ultrasonic Sensor---------*/
-	public static final int ULTRASONIC_PING_CHANNEL = 0;
-	public static final int ULTRASONIC_ECHO_CHANNEL = 1;
+	public static final int SPIN_OUT_BUTTON = 7;
+	public static final int FLAP_OPEN = 5;
+	public static final int FLAP_CLOSE=3;;
 
 	/*------------Mulipurpose Flap Vars------*/
-	public static enum stage {RETRACTED,INTAKE,GEAR};
+	public static enum stage {OPEN,CLOSE};
+	public static stage FLAP_START_STAGE=stage.CLOSE;
 	public static final long retractedToIntake = 1;
 	public static final long intakeToGear = 1;
 	public static final long gearToRetracted = 1;
