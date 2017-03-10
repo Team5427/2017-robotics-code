@@ -52,9 +52,9 @@ public class Drive extends Command {
 		
 		if(Robot.oi.getJoy().getRawButton(Config.AUTO_ADJUST_BUTTON))
 		{
-			if(true) //TODO: condition for if robot picks up data from vision processing
+			if(System.nanoTime()-Robot.swip.lastRecievedTime<500000000) //less than half a second since last recieved data
 			{
-				double horAngle = 0;  //TODO: get the horizontal angle in degrees
+				double horAngle = Robot.swip.horizontalAngle;  //horizontal angle from center
 				
 				if(horAngle<-1*Config.DEGREE_THRESHOLD) //robot is to the left
 				{
