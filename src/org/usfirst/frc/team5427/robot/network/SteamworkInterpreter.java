@@ -6,10 +6,23 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import java.util.ArrayList;
 
+///////////////////////////////////////////////////////////////////////////////////////////
 
 public class SteamworkInterpreter extends Interpreter {
 
     public volatile ArrayList<Object> recievedObjects = new ArrayList<>();
+
+    public volatile long lastRecievedTime = 0;
+
+    /**
+     * Horizontal angle received from the network
+     */
+    public volatile double horizontalAngle = 0;
+
+    /**
+     * Distance received from the network
+     */
+    public volatile double distance = 0;
 
     @Override
     public void interpret(byte[] buff, int numFromStream) {
@@ -27,6 +40,8 @@ public class SteamworkInterpreter extends Interpreter {
             case ByteDictionary.OBJECT:
                 recievedObjects.add( deserialize(buff, 1, buff.length - 1) );
                 break;
+            case ByteDictionary.TARGET_DATA:
+                // Code here
             default:
                 Log.debug("Invalid dictionary: " + toStringByteArray(buff));
                 break;
