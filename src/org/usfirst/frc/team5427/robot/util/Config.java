@@ -167,6 +167,9 @@ public class Config {
 	public static final int AUTO_MIDDLE = 1;
 	public static final int AUTO_RIGHT = 2;
 	
+	/*---------------autonomous aiming------------------- */
+	public static final double DEGREE_THRESHOLD = 3.0;
+	
 	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON = 7;
 	public static final int PULL_BUTTON = 8;
@@ -175,9 +178,8 @@ public class Config {
 	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 12;
 	public static final int SPIN_BUTTON = 2;
 	public static final int FLAP_OPEN = 5;
-	public static final int FLAP_ClOSE=3;;
-
-	
+	public static final int FLAP_ClOSE = 3;
+	public static final int AUTO_ADJUST_BUTTON = 13;
 
 	/*------------Mulipurpose Flap Vars------*/
 	public static enum stage {OPEN,CLOSE};
