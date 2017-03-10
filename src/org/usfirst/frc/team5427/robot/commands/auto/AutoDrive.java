@@ -20,20 +20,46 @@ public class AutoDrive extends Command {
 		// Use requires() here to declare subsystem dependencies
 
 		requires(Robot.driveTrain);
-		startTime = System.nanoTime();
+		
+		switch(position)
+		{
+		
+		case Config.AUTO_LEFT:
+			Log.info("Chose Auto_Left selection");
+			break;
+		case Config.AUTO_MIDDLE:
+			Log.info("Chose Auto_Middle selection");
+			break;
+		case Config.AUTO_RIGHT:
+			Log.info("Chose Auto_Right selection");
+			break;
+		default:
+			Log.info("Did not chose an Autonomous mode");
+		}
+		
 		this.position = position;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Log.init("initialized Drive");
+		startTime = System.nanoTime();
 	}
 
 	//TODO check this code for autonomous
 	// Called repeatedly when this Command is scheduled to run
 
+	private double forwardStartTime = -1;
+	
+	/**
+	 * TODO comment
+	 */
 	@SuppressWarnings("all")
 	protected void execute() {
+		
+		Log.info("Time:"+getTime());
+		Log.info("Pos:"+position);
+		;
 		if(position == Config.AUTO_LEFT)
 		{
 			//drive forwards for an amount of time
@@ -77,32 +103,70 @@ public class AutoDrive extends Command {
 		}
 		else if(position == Config.AUTO_MIDDLE)
 		{
-			if(getTime()<Config.AUTO_MIDDLE_START_DRIVE_TIME)
+			Log.init("Starting Autonomous Middle");
+			if(getTime()<=Config.AUTO_MIDDLE_START_DRIVE_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+//				Log.info("DRIVING FORWARD");
+				
+				if (forwardStartTime == -1) {
+					forwardStartTime = getTime();
+					Log.debug("Start forward time: " + forwardStartTime);
+				}
+				
+				Robot.driveTrain.setLeftSpeed(-.25);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_GEAR_WAIT_TIME)
 			{
+				Log.debug("Time finished: " + getTime() + " Time difference: " + (getTime() - forwardStartTime));
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
+//				return;
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_BACK_OFF_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
-				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD);
+				Log.debug("Middle back wait time: " + Config.AUTO_MIDDLE_BACK_OFF_TIME);
+				Robot.driveTrain.setLeftSpeed(.26);
+				Robot.driveTrain.setRightSpeed(.30);
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
-				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
+			}
+			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME)
+			{
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+			}
+			else if (getTime() < Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) 
+			{
+				Robot.driveTrain.setLeftSpeed(-.25);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_SHOOT_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
+				double firstTime=getTime();
+				while(getTime()-firstTime<=5&&getTime()<Config.AUTO_MIDDLE_SHOOT_TIME)
+				{
+					if(0==(int)(Math.abs(getTime()-firstTime))%2)
+						Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
+					else if(1==(int)(Math.abs(getTime()-firstTime)%2))
+						Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
+				}
 			}
+			else
+			{
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+				Robot.launcher.setShootSpeed(0);
+				Robot.agitator.setSpinSpeed(0);
+			
+			}
+				
 		}
 		else if(position == Config.AUTO_RIGHT)
 		{
@@ -150,8 +214,8 @@ public class AutoDrive extends Command {
 	 * 
 	 * @return returns the number of miliseconds since autonomous started
 	 */
-	protected int getTime() {
-		return (int) ((System.nanoTime() - startTime) / 1000000);
+	protected double getTime() {
+		return (double) ((System.nanoTime() - startTime) / 1000000000f);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -174,12 +238,15 @@ public class AutoDrive extends Command {
 				return true;
 			return false;
 		}
-		return true;
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.driveTrain.stop();
+		Robot.launcher.stop();
+		Robot.agitator.stop();
+	
 	}
 
 	// Called when another command which requires one or more of the same

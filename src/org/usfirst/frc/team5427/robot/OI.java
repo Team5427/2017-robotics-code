@@ -6,7 +6,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+//import org.usfirst.frc.team5427.robot.commands.AgitatorBack;
 import org.usfirst.frc.team5427.robot.commands.AgitatorStart;
+import org.usfirst.frc.team5427.robot.commands.AgiBack;
 //import org.usfirst.frc.team5427.robot.commands.ChangeCameras
 //import org.usfirst.frc.team5427.robot.commands.ChangeCamera;
 import org.usfirst.frc.team5427.robot.commands.ChangeDirections;
@@ -89,6 +91,7 @@ public class OI {
 	public Button pull = new JoystickButton(joy, Config.PULL_BUTTON);
 	/**button for agitator climb*/
 	public Button spin = new JoystickButton(joy, Config.SPIN_BUTTON);
+	public Button spinBack = new JoystickButton(joy, Config.SPIN_OUT_BUTTON);
 	
 	SendableChooser<Integer> autoChooser= new SendableChooser<Integer>();
 	
@@ -96,20 +99,21 @@ public class OI {
 	 * Constructor for the OI class, defines the button-press events.
 	 */
 	public OI() {
-		shooter.whileHeld(new ShooterStart(Config.SHOOTER_MOTOR_SPEED * -1));
+		shooter.whileHeld(new ShooterStart(Config.SHOOTER_MOTOR_SPEED));
 
 		startIntake.toggleWhenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
 		changeIntakeDirection.toggleWhenPressed(new ChangeDirections());
 		pull.whenPressed(new PullRope());
-		spin.toggleWhenPressed(new AgitatorStart(Config.AGITATOR_SPEED));
+		spin.whileHeld(new AgitatorStart(Config.AGITATOR_SPEED));
+		spinBack.whileHeld(new AgiBack(Config.AGITATOR_SPEED_BACKWARDS));
 		flapOpen.whenPressed(new SetFlapStage(Config.stage.OPEN));
 		flapClose.whenPressed(new SetFlapStage(Config.stage.CLOSE));
 
 		
-		autoChooser.addDefault("              ", 0);
-		autoChooser.addObject("AutoDriveLeft  ", 1);
-		autoChooser.addObject("AutoDriveMiddle", 2);
-		autoChooser.addObject("AutoDriveRight ", 3);
+		autoChooser.addDefault("              ",	Config.AUTO_NONE);
+		autoChooser.addObject("AutoDriveLeft  ", Config.AUTO_LEFT);
+		autoChooser.addObject("AutoDriveMiddle", Config.AUTO_MIDDLE);
+		autoChooser.addObject("AutoDriveRight ", Config.AUTO_RIGHT);
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 		// TODO tie the right buttons to the right commands
 	}
