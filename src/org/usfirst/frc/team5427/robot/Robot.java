@@ -35,6 +35,7 @@ import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 import org.usfirst.frc.team5427.robot.network.Client;
+import org.usfirst.frc.team5427.robot.network.SteamworkInterpreter;
 import org.usfirst.frc.team5427.robot.subsystems.*;
 
 /**
@@ -138,7 +139,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public static MultiFlap myFlap;
 	
-	
+	public static Client client;
 
 	Command autonomousCommand;
 	//SendableChooser<Command> chooser = new SendableChooser<>();
@@ -312,6 +313,9 @@ public class Robot extends IterativeRobot {
 //		chooser.addObject("AutoDriveRight", 3);
 		
 		//SmartDashboard.putData("Auto mode", chooser);
+		
+		client = new Client(new SteamworkInterpreter());
+        client.start();
 		
 		Log.init("Initializing OI");
 		oi = new OI();
