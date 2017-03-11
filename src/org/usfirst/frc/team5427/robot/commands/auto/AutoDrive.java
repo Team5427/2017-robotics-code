@@ -2,6 +2,7 @@ package org.usfirst.frc.team5427.robot.commands.auto;
 
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5427.robot.Robot;
 import org.usfirst.frc.team5427.robot.util.Config;
@@ -15,7 +16,7 @@ public class AutoDrive extends Command {
 
 	private int position;
 	private long startTime;
-	//private SteelPID pidDrive;
+	private boolean gyroReset = false;
 	
 	public AutoDrive(int position) {
 		// Use requires() here to declare subsystem dependencies
@@ -59,6 +60,8 @@ public class AutoDrive extends Command {
 	protected void initialize() {
 		Log.init("initialized Drive");
 		startTime = System.nanoTime();
+		
+		
 	}
 
 	//TODO check this code for autonomous
@@ -74,7 +77,8 @@ public class AutoDrive extends Command {
 		
 		Log.info("Time:"+getTime());
 		Log.info("Pos:"+position);
-	
+		SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
+		
 		if(position == Config.BLUE_AUTO_LEFT)
 		{
 			if(getTime()<Config.AUTO_LEFT_START_DRIVE_TIME)
@@ -153,10 +157,25 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(.26);
 				Robot.driveTrain.setRightSpeed(.30);
 			}
+			else if(getTime()< Config.AUTO_MIDDLE_AFTER_BACK_DELAY)
+			{
+				if (!gyroReset) {
+					Robot.gyro.reset();
+					gyroReset = true;
+				}
+				
+				Log.debug("Time finished: " + getTime() + " Time difference: " + (getTime() - forwardStartTime));
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+			}
 			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
 			{
-				while(Robot.gyro.getAngle()>Config.MIDDLE_TURN_ANGLE)
+//				int turnDirection = 1;
+				
+				while(Robot.gyro.getAngle()<Config.MIDDLE_TURN_ANGLE)
 				{
+					SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
+					Log.debug("Turning robot - Angle: " + Robot.gyro.getAngle());
 					Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
 					Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
 				}
@@ -167,32 +186,32 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if (getTime() < Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) 
-			{
-				Robot.driveTrain.setLeftSpeed(-.25);
-				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
-			}
-			else if(getTime()<Config.AUTO_MIDDLE_SHOOT_TIME)
-			{
-				//if(horizontal==Config.DEGREE_THRESHOLD)
-				//{
-				Robot.driveTrain.setLeftSpeed(0);
-				Robot.driveTrain.setRightSpeed(0);
-				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
-				double firstTime=getTime();
-				while(getTime()-firstTime<=5&&getTime()<Config.AUTO_MIDDLE_SHOOT_TIME)
-				{
-					if(0==(int)(Math.abs(getTime()-firstTime))%2)
-						Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
-					else if(1==(int)(Math.abs(getTime()-firstTime)%2))
-						Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
-				}
-				//}
-				//else
-				//{
-					
-				//}
-			}
+//			else if (getTime() < Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) 
+//			{
+//				Robot.driveTrain.setLeftSpeed(-.25);
+//				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+//			}
+//			else if(getTime()<Config.AUTO_MIDDLE_SHOOT_TIME)
+//			{
+//				//if(horizontal==Config.DEGREE_THRESHOLD)
+//				//{
+//				Robot.driveTrain.setLeftSpeed(0);
+//				Robot.driveTrain.setRightSpeed(0);
+//				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
+//				double firstTime=getTime();
+//				while(getTime()-firstTime<=5&&getTime()<Config.AUTO_MIDDLE_SHOOT_TIME)
+//				{
+//					if(0==(int)(Math.abs(getTime()-firstTime))%2)
+//						Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
+//					else if(1==(int)(Math.abs(getTime()-firstTime)%2))
+//						Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
+//				}
+//				//}
+//				//else
+//				//{
+//					
+//				//}
+//			}
 			else
 			{
 				Robot.driveTrain.setLeftSpeed(0);

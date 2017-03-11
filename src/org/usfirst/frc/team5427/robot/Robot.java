@@ -328,6 +328,7 @@ public class Robot extends IterativeRobot {
 		
 		//TODO Add a port if need be
 		gyro= new ADXRS450_Gyro();
+		gyro.calibrate();
 		
 		swip =  new SteamworkInterpreter();
 		client = new Client(swip);
@@ -371,7 +372,6 @@ public class Robot extends IterativeRobot {
 		Log.info("Autonomous Start!");
 		
 		
-		gyro.reset();
 		Log.info("Gyro was reset!");
 		
 		

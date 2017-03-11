@@ -155,8 +155,9 @@ public class Config {
 	public static final double AUTO_MIDDLE_START_DRIVE_TIME = 2.3;
 	public static final double AUTO_MIDDLE_GEAR_WAIT_TIME = AUTO_MIDDLE_START_DRIVE_TIME + AUTO_GEAR_WAIT_TIME;
 	public static final double AUTO_MIDDLE_BACK_OFF_TIME = AUTO_MIDDLE_GEAR_WAIT_TIME + 1;//+AUTO_BACK_OFF_TIME;
-	public static final double MIDDLE_TURN_ANGLE= -5;
-	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME =AUTO_MIDDLE_BACK_OFF_TIME + 1;
+	public static final double AUTO_MIDDLE_AFTER_BACK_DELAY = AUTO_MIDDLE_BACK_OFF_TIME + AUTO_DELAY;
+	public static final double MIDDLE_TURN_ANGLE= 90;
+	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME = AUTO_MIDDLE_AFTER_BACK_DELAY + 1;
 	public static final double AUTO_MIDDLE_TURN_WAIT_TIME = AUTO_MIDDLE_TURN_TO_GOAL_TIME + AUTO_DELAY;
 	public static final double AUTO_MIDDLE_DRIVE_GOAL_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + 0.4;
 	public static final double AUTO_MIDDLE_SHOOT_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + 10;//+AUTO_SHOOT_TIME;
