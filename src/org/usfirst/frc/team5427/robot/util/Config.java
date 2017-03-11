@@ -191,7 +191,7 @@ public class Config {
 	public static final int SPIN_BUTTON = 2;
 	public static final int SPIN_OUT_BUTTON = 7;
 	public static final int FLAP_OPEN = 5;
-	public static final int FLAP_ClOSE = 3;
+	public static final int FLAP_CLOSE = 3;
 	public static final int AUTO_ADJUST_BUTTON = 13;
 
 	/*------------Mulipurpose Flap Vars------*/
