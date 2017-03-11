@@ -32,7 +32,8 @@ public class AutoDrive extends Command {
 		SteelTalon a= new SteelTalon(0);
 		SteelTalon b= new SteelTalon(1);
 		leftMotors=new SteelPIDOutput(Robot.motorPWM_FrontLeft, Robot.motorPWM_RearLeft);
-		leftSide= new PIDController(Config.p, Config.i, Config.d, Robot.gyro, leftMotors);
+		leftSide= new PIDController(SmartDashboard.getNumber("LEFT_PID_P", Config.PIDLeftP), SmartDashboard.getNumber("LEFT_PID_I", Config.PIDLeftI),
+				SmartDashboard.getNumber("LEFT_PID_D", Config.PIDLeftD), Robot.gyro, leftMotors);
 		leftSide.disable();
 		
 		switch(position)
@@ -151,7 +152,7 @@ public class AutoDrive extends Command {
 				if(!leftSide.isEnabled())
 				{
 					leftSide.enable();
-					leftSide.setSetpoint(Config.SETPOINT_STRAIGHT_FORWARD);
+					leftSide.setSetpoint(SmartDashboard.getNumber("LEFT_PID_F", Config.PIDLeftF));
 				}
 				/*Robot.driveTrain.setLeftSpeed(-.25);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);*/
