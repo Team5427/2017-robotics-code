@@ -1,10 +1,13 @@
 package org.usfirst.frc.team5427.robot.commands.auto;
 
 
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.OurClasses.SteelPIDOutput;
+import org.usfirst.frc.team5427.robot.OurClasses.SteelTalon;
 import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
@@ -17,6 +20,8 @@ public class AutoDrive extends Command {
 	private int position;
 	private long startTime;
 	private boolean gyroReset = false;
+	private SteelPIDOutput leftMotors;
+	private PIDController leftSide;
 	
 	public AutoDrive(int position) {
 		// Use requires() here to declare subsystem dependencies
@@ -24,9 +29,11 @@ public class AutoDrive extends Command {
 		requires(Robot.driveTrain);
 		requires(Robot.launcher);
 		requires(Robot.agitator);
-		
-		//pidDrive= new SteelPID()
-		
+		SteelTalon a= new SteelTalon(0);
+		SteelTalon b= new SteelTalon(1);
+		leftMotors=new SteelPIDOutput(Robot.motorPWM_FrontLeft, Robot.motorPWM_RearLeft);
+		leftSide= new PIDController(Config.p, Config.i, Config.d, Robot.gyro, leftMotors);
+		leftSide.disable();
 		
 		switch(position)
 		{
@@ -136,17 +143,24 @@ public class AutoDrive extends Command {
 			{
 //				Log.info("DRIVING FORWARD");
 				
-				if (forwardStartTime == -1) {
-					forwardStartTime = getTime();
-					Log.debug("Start forward time: " + forwardStartTime);
-				}
-				
-				Robot.driveTrain.setLeftSpeed(-.25);
+//				if (forwardStartTime == -1) {
+//					forwardStartTime = getTime();
+//					Log.debug("Start forward time: " + forwardStartTime);
+//				}
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
+				if(!leftSide.isEnabled())
+				{
+					leftSide.enable();
+					leftSide.setSetpoint(Config.SETPOINT_STRAIGHT_FORWARD);
+				}
+				/*Robot.driveTrain.setLeftSpeed(-.25);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);*/
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_GEAR_WAIT_TIME)
 			{
 				Log.debug("Time finished: " + getTime() + " Time difference: " + (getTime() - forwardStartTime));
+				if(leftSide.isEnabled())
+				{leftSide.disable();}
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 //				return;

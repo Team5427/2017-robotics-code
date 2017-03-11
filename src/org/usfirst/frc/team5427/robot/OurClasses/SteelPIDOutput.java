@@ -1,7 +1,8 @@
 package org.usfirst.frc.team5427.robot.OurClasses;
 
 import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PWMSpeedController;;
+import edu.wpi.first.wpilibj.PWMSpeedController;
+import edu.wpi.first.wpilibj.SpeedController;;
 
 /**
  * Allows multiple PWMSpeedControllers for a single PIDOutput
@@ -11,9 +12,9 @@ import edu.wpi.first.wpilibj.PWMSpeedController;;
  */
 public class SteelPIDOutput implements PIDOutput{
 
-	PWMSpeedController[] controllers;
+	SpeedController[] controllers;
 	
-	public SteelPIDOutput(PWMSpeedController... controllers)
+	public SteelPIDOutput(SpeedController ... controllers)
 	{
 		this.controllers = controllers;
 	}
@@ -21,7 +22,7 @@ public class SteelPIDOutput implements PIDOutput{
 	@Override
 	public void pidWrite(double output) {
 		// TODO Auto-generated method stub
-		for (PWMSpeedController i : controllers) {
+		for (SpeedController i : controllers) {
 			i.pidWrite(output);
 		}
 	}
