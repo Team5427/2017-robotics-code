@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Client implements Runnable {
 
-    public static final String DEFAULT_IP = "localhost";// "10.54.27.236";
+    public static final String DEFAULT_IP = "10.54.27.22";// "10.54.27.236";
     public static final int DEFAULT_PORT = 25565;
 
     public static String ip;

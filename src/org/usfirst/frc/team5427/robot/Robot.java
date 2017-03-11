@@ -364,31 +364,8 @@ public class Robot extends IterativeRobot {
 		
 		Log.info("Autonomous Start!");
 		
-		switch(oi.autoChooser.getSelected())
-		{
+		new AutoDrive(oi.autoChooser.getSelected()).start();
 		
-		case 1:
-			new AutoDrive(1).start();
-			break;
-		case 2:
-			new AutoDrive(2).start();
-			break;
-		case 3:
-			new AutoDrive(3).start();
-			break;
-		case 4:
-			new AutoDrive(4).start();
-			break;
-		case 5:
-			new AutoDrive(5).start();
-			break;
-		case 6:
-			new AutoDrive(6).start();
-			break;
-		default:
-			Log.info("Did not chose an Autonomous mode");
-		}
-		 
 		//autonomousCommand = chooser.getSelected();
 		
 		//TODO uncomment auto code

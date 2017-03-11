@@ -84,7 +84,8 @@ public class OI {
 	 * Commands for moveable flap
 	 */
 	public Button flapOpen = new JoystickButton(joy, Config.FLAP_OPEN);
-	public Button flapClose = new JoystickButton(joy, Config.FLAP_CLOSE);
+	public Button flapClose = new JoystickButton(joy, Config.FLAP_ClOSE);
+//	public Button flapClose = new JoystickButton(joy, Config.FLAP_CLOSE);
 	public SetIntakeSpeed si;
 
 	/**button for rope climb*/
