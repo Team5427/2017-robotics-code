@@ -208,5 +208,6 @@ public class Config {
 	public static final double p = 0;
 	public static final double i = 0;
 	public static final double d = 0;
+	public static final double SETPOINT_STRAIGHT_FORWARD = 0;
 	
 }

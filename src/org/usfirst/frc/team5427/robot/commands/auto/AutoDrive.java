@@ -151,7 +151,7 @@ public class AutoDrive extends Command {
 				if(!leftSide.isEnabled())
 				{
 					leftSide.enable();
-					leftSide.setSetpoint(0);
+					leftSide.setSetpoint(Config.SETPOINT_STRAIGHT_FORWARD);
 				}
 				/*Robot.driveTrain.setLeftSpeed(-.25);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);*/
