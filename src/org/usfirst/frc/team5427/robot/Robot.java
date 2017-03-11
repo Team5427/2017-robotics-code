@@ -9,6 +9,7 @@ import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.cscore.VideoSource;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -159,7 +160,8 @@ public class Robot extends IterativeRobot {
 	public static DigitalOutput digO = new DigitalOutput(Config.ULTRASONIC_PING_CHANNEL);
 	/** Ultrasonic Range Finder to find the distance between the sensor and target*/
 	public static Ultrasonic ultrasonic = new Ultrasonic(digO, digI);
-
+	/**Gyro for autonomous*/
+	public static ADXRS450_Gyro gyro;
 
 	/**
 	 * Camera server
@@ -323,6 +325,10 @@ public class Robot extends IterativeRobot {
 		
 		//SmartDashboard.putData("Auto mode", chooser);
 		
+		
+		//TODO Add a port if need be
+		gyro= new ADXRS450_Gyro();
+		
 		swip =  new SteamworkInterpreter();
 		client = new Client(swip);
         client.start();
@@ -363,6 +369,11 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		
 		Log.info("Autonomous Start!");
+		
+		
+		gyro.reset();
+		Log.info("Gyro was reset!");
+		
 		
 		new AutoDrive(oi.autoChooser.getSelected()).start();
 		
