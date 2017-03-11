@@ -15,11 +15,17 @@ public class AutoDrive extends Command {
 
 	private int position;
 	private long startTime;
+	//private SteelPID pidDrive;
 	
 	public AutoDrive(int position) {
 		// Use requires() here to declare subsystem dependencies
    
 		requires(Robot.driveTrain);
+		requires(Robot.launcher);
+		requires(Robot.agitator);
+		
+		//pidDrive= new SteelPID()
+		
 		
 		switch(position)
 		{
