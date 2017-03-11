@@ -208,5 +208,5 @@ public class Config {
 	public static double PIDLeftP = 0;
 	public static double PIDLeftI = 0;
 	public static double PIDLeftD = 0;
-	public static double PIDLeftF = 0;
+	public static double PIDLeftSetPointForward = 0;
 }

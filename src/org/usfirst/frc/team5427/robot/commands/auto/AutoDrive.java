@@ -152,7 +152,7 @@ public class AutoDrive extends Command {
 				if(!leftSide.isEnabled())
 				{
 					leftSide.enable();
-					leftSide.setSetpoint(SmartDashboard.getNumber("LEFT_PID_F", Config.PIDLeftF));
+					leftSide.setSetpoint(SmartDashboard.getNumber("LEFT_PID_SETPOINT", Config.PIDLeftSetPointForward));
 				}
 				/*Robot.driveTrain.setLeftSpeed(-.25);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);*/

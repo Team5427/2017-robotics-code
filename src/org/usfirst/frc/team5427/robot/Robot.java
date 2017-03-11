@@ -276,7 +276,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Left_PID_P", Config.PIDLeftP);
 		SmartDashboard.putNumber("Left_PID_I", Config.PIDLeftI);
 		SmartDashboard.putNumber("Left_PID_D", Config.PIDLeftD);
-		SmartDashboard.putNumber("Left_PID_F", Config.PIDLeftF);
+		SmartDashboard.putNumber("LEFT_PID_SETPOINT", Config.PIDLeftSetPointForward);
 		
 		/* Initialize Sensor */
 		//TODO Test Cameras
