@@ -149,8 +149,12 @@ public class AutoDrive extends Command {
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
-				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
+				while(Robot.gyro.getAngle()>Config.MIDDLE_TURN_ANGLE)
+				{
+					Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
+					Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
+				}
+				Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME=getTime();
 			}
 			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME)
 			{
