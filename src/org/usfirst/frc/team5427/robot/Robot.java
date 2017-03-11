@@ -272,6 +272,12 @@ public class Robot extends IterativeRobot {
 		myFlap = new MultiFlap(motorPWM_Flap);
 		Log.init("MultiFlap subsystem initialized!");
 
+		/*---PID Left Side---*/
+		SmartDashboard.putNumber("Left_PID_P", Config.PIDLeftP);
+		SmartDashboard.putNumber("Left_PID_I", Config.PIDLeftI);
+		SmartDashboard.putNumber("Left_PID_D", Config.PIDLeftD);
+		SmartDashboard.putNumber("Left_PID_F", Config.PIDLeftF);
+		
 		/* Initialize Sensor */
 		//TODO Test Cameras
 		// ultrasonic = new Ultrasonic(Config.ULTRASONIC_PING_CHANNEL, Config.ULTRASONIC_ECHO_CHANNEL);
@@ -444,6 +450,10 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
+		if (gyro != null) {
+			SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
+		}
+		
 		//TODO uncomment ultrasonic code
 //		Log.init("ultrasonic1");
 //		if (ultrasonic != null) {
