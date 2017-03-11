@@ -376,6 +376,15 @@ public class Robot extends IterativeRobot {
 		case 3:
 			new AutoDrive(3).start();
 			break;
+		case 4:
+			new AutoDrive(4).start();
+			break;
+		case 5:
+			new AutoDrive(5).start();
+			break;
+		case 6:
+			new AutoDrive(6).start();
+			break;
 		default:
 			Log.info("Did not chose an Autonomous mode");
 		}

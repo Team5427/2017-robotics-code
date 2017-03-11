@@ -110,10 +110,10 @@ public class Config {
 	public static final double INTAKE_MOTOR_SPEED = 1;
 	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-1;
 	public static final double SHOOTER_MOTOR_SPEED = 1;
-	public static final double AGITATOR_SPEED = -1;
-	public static final double AGITATOR_SPEED_BACKWARDS = 1;
+	public static final double AGITATOR_SPEED = -.3;
+	public static final double AGITATOR_SPEED_BACKWARDS = .3;
 	public static final double PULL_SPEED = -1; 
-
+ 
 	/* ----------Controller Ports---------- */
 	// Joystick
 	public static final int JOYSTICK_PORT = 0;
@@ -168,9 +168,16 @@ public class Config {
 	
 	/*-----------spot-----------*/
 	public static final int AUTO_NONE = -1;
-	public static final int AUTO_LEFT = 0;
-	public static final int AUTO_MIDDLE = 1;
-	public static final int AUTO_RIGHT = 2;
+	public static final int BLUE_AUTO_LEFT = 0; 
+	public static final int BLUE_AUTO_MIDDLE = 1;
+	public static final int BLUE_AUTO_RIGHT = 2;
+	public static final int RED_AUTO_LEFT = 3;
+	public static final int RED_AUTO_MIDDLE = 4;
+	public static final int RED_AUTO_RIGHT = 5;
+	
+	
+	/*----------autonomous aiming------*/
+	public static final double DEGREE_THRESHOLD = 3.0;
 	
 	/*---------------autonomous aiming------------------- */
 	public static final double DEGREE_THRESHOLD = 3.0;
@@ -191,7 +198,7 @@ public class Config {
 	public static enum stage {OPEN,CLOSE};
 	public static stage FLAP_START_STAGE=stage.CLOSE;
 	public static final long retractedToIntake = 1;
-	public static final long intakeToGear = 1;
+	public static final long intakeToGear = (long) .5;
 	public static final long gearToRetracted = 1;
 	public static final double FLAP_SPEED = .05;
 }

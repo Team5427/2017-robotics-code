@@ -111,9 +111,12 @@ public class OI {
 
 		
 		autoChooser.addDefault("              ",	Config.AUTO_NONE);
-		autoChooser.addObject("AutoDriveLeft  ", Config.AUTO_LEFT);
-		autoChooser.addObject("AutoDriveMiddle", Config.AUTO_MIDDLE);
-		autoChooser.addObject("AutoDriveRight ", Config.AUTO_RIGHT);
+		autoChooser.addObject("BlueAutoDriveLeft  ", Config.BLUE_AUTO_LEFT);
+		autoChooser.addObject("BlueAutoDriveMiddle", Config.BLUE_AUTO_MIDDLE);
+		autoChooser.addObject("BlueAutoDriveRight ", Config.BLUE_AUTO_RIGHT);
+		autoChooser.addObject("RedAutoDriveLeft ", Config.RED_AUTO_LEFT);
+		autoChooser.addObject("RedAutoDriveMiddle ", Config.RED_AUTO_MIDDLE);
+		autoChooser.addObject("RedAutoDriveRight ", Config.RED_AUTO_RIGHT);
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 		// TODO tie the right buttons to the right commands
 	}
