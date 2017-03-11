@@ -179,9 +179,6 @@ public class Config {
 	/*----------autonomous aiming------*/
 	public static final double DEGREE_THRESHOLD = 3.0;
 	
-	/*---------------autonomous aiming------------------- */
-	public static final double DEGREE_THRESHOLD = 3.0;
-	
 	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON = 1;
 	public static final int PULL_BUTTON = 8;
