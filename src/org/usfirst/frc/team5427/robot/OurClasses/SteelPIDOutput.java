@@ -12,19 +12,19 @@ import edu.wpi.first.wpilibj.SpeedController;;
  */
 public class SteelPIDOutput implements PIDOutput{
 
-	SpeedController[] controllers;
+	private SpeedController front;
+	private SpeedController rear;
 	
-	public SteelPIDOutput(SpeedController ... controllers)
+	public SteelPIDOutput(SpeedController front, SpeedController rear)
 	{
-		this.controllers = controllers;
+		this.front=front;
+		this.rear=rear;
 	}
 	
 	@Override
 	public void pidWrite(double output) {
-		// TODO Auto-generated method stub
-		for (SpeedController i : controllers) {
-			i.pidWrite(output);
-		}
+		front.pidWrite(output);
+		//rear.pidWrite(-output);
 	}
 	
 }

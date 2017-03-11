@@ -205,7 +205,7 @@ public class Config {
 	public static final double FLAP_SPEED = .05;
 	
 	/*----------PID For left motors on the drive train----------*/
-	public static double PIDLeftP = 0;
+	public static double PIDLeftP = .5;
 	public static double PIDLeftI = 0;
 	public static double PIDLeftD = 0;
 	public static double PIDLeftSetPointForward = 0;

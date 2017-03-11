@@ -22,6 +22,7 @@ public class AutoDrive extends Command {
 	private boolean gyroReset = false;
 	private SteelPIDOutput leftMotors;
 	private PIDController leftSide;
+	private boolean conditionGyroReset=false;
 	
 	public AutoDrive(int position) {
 		// Use requires() here to declare subsystem dependencies
@@ -29,8 +30,6 @@ public class AutoDrive extends Command {
 		requires(Robot.driveTrain);
 		requires(Robot.launcher);
 		requires(Robot.agitator);
-		SteelTalon a= new SteelTalon(0);
-		SteelTalon b= new SteelTalon(1);
 		leftMotors=new SteelPIDOutput(Robot.motorPWM_FrontLeft, Robot.motorPWM_RearLeft);
 		leftSide= new PIDController(SmartDashboard.getNumber("LEFT_PID_P", Config.PIDLeftP), SmartDashboard.getNumber("LEFT_PID_I", Config.PIDLeftI),
 				SmartDashboard.getNumber("LEFT_PID_D", Config.PIDLeftD), Robot.gyro, leftMotors);
@@ -138,8 +137,14 @@ public class AutoDrive extends Command {
 		}
 		else if(position == Config.BLUE_AUTO_MIDDLE)
 		{
+			if(!conditionGyroReset)
+			{
+				Robot.gyro.reset();
+				conditionGyroReset=true;
+			}
 			int horizontal =0; //TODO: GET ANGLE FROM CHARLIE
 			Log.init("Starting Autonomous Middle");
+			
 			if(getTime()<=Config.AUTO_MIDDLE_START_DRIVE_TIME)
 			{
 //				Log.info("DRIVING FORWARD");
@@ -151,9 +156,10 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);
 				if(!leftSide.isEnabled())
 				{
-					leftSide.enable();
 					leftSide.setSetpoint(SmartDashboard.getNumber("LEFT_PID_SETPOINT", Config.PIDLeftSetPointForward));
+					leftSide.enable();
 				}
+				Log.info("Speed of FrontRT in BMAuto"+ Robot.motorPWM_FrontRight.get());
 				/*Robot.driveTrain.setLeftSpeed(-.25);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD);*/
 			}
@@ -166,41 +172,41 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setRightSpeed(0);
 //				return;
 			}
-			else if(getTime()<Config.AUTO_MIDDLE_BACK_OFF_TIME)
-			{
-				Log.debug("Middle back wait time: " + Config.AUTO_MIDDLE_BACK_OFF_TIME);
-				Robot.driveTrain.setLeftSpeed(.26);
-				Robot.driveTrain.setRightSpeed(.30);
-			}
-			else if(getTime()< Config.AUTO_MIDDLE_AFTER_BACK_DELAY)
-			{
-				if (!gyroReset) {
-					Robot.gyro.reset();
-					gyroReset = true;
-				}
-				
-				Log.debug("Time finished: " + getTime() + " Time difference: " + (getTime() - forwardStartTime));
-				Robot.driveTrain.setLeftSpeed(0);
-				Robot.driveTrain.setRightSpeed(0);
-			}
-			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
-			{
-//				int turnDirection = 1;
-				
-				while(Robot.gyro.getAngle()<Config.MIDDLE_TURN_ANGLE)
-				{
-					SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
-					Log.debug("Turning robot - Angle: " + Robot.gyro.getAngle());
-					Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
-					Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
-				}
-				Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME=getTime();
-			}
-			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME)
-			{
-				Robot.driveTrain.setLeftSpeed(0);
-				Robot.driveTrain.setRightSpeed(0);
-			}
+//			else if(getTime()<Config.AUTO_MIDDLE_BACK_OFF_TIME)
+//			{
+//				Log.debug("Middle back wait time: " + Config.AUTO_MIDDLE_BACK_OFF_TIME);
+//				Robot.driveTrain.setLeftSpeed(.26);
+//				Robot.driveTrain.setRightSpeed(.30);
+//			}
+//			else if(getTime()< Config.AUTO_MIDDLE_AFTER_BACK_DELAY)
+//			{
+//				if (!gyroReset) {
+//					Robot.gyro.reset();
+//					gyroReset = true;
+//				}
+//				
+//				Log.debug("Time finished: " + getTime() + " Time difference: " + (getTime() - forwardStartTime));
+//				Robot.driveTrain.setLeftSpeed(0);
+//				Robot.driveTrain.setRightSpeed(0);
+//			}
+//			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
+//			{
+////				int turnDirection = 1;
+//				
+//				while(Robot.gyro.getAngle()<Config.MIDDLE_TURN_ANGLE)
+//				{
+//					SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
+//					Log.debug("Turning robot - Angle: " + Robot.gyro.getAngle());
+//					Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
+//					Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
+//				}
+//				Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME=getTime();
+//			}
+//			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME)
+//			{
+//				Robot.driveTrain.setLeftSpeed(0);
+//				Robot.driveTrain.setRightSpeed(0);
+//			}
 //			else if (getTime() < Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) 
 //			{
 //				Robot.driveTrain.setLeftSpeed(-.25);
