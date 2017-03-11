@@ -203,4 +203,10 @@ public class Config {
 	public static final long intakeToGear = (long) .5;
 	public static final long gearToRetracted = 1;
 	public static final double FLAP_SPEED = .05;
+	
+	/*----------PID Stuff---------*/
+	public static final double p = 0;
+	public static final double i = 0;
+	public static final double d = 0;
+	
 }
