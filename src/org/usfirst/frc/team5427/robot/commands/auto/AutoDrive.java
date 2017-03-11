@@ -164,25 +164,49 @@ public class AutoDrive extends Command {
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_SHOOT_TIME)
 			{
-				//if(horizontal==Config.DEGREE_THRESHOLD)
-				//{
-				Robot.driveTrain.setLeftSpeed(0);
-				Robot.driveTrain.setRightSpeed(0);
-				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
-				double firstTime=getTime();
-				while(getTime()-firstTime<=5&&getTime()<Config.AUTO_MIDDLE_SHOOT_TIME)
+				if(getTime()-Robot.swip.lastRecievedTime<500000000) //less than half a second since last recieved data
 				{
-					if(0==(int)(Math.abs(getTime()-firstTime))%2)
-						Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
-					else if(1==(int)(Math.abs(getTime()-firstTime)%2))
-						Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
-				}
-				//}
-				//else
-				//{
+					double horAngle = Robot.swip.horizontalAngle;  //horizontal angle from center
 					
-				//}
+					if(horAngle<-1*Config.DEGREE_THRESHOLD) //robot is to the left
+					{
+						//TODO: replace values with config values
+						if(horAngle>-5)
+							Robot.driveTrain.setLeftSpeed(.1);
+						else if(horAngle>-10)
+							Robot.driveTrain.setLeftSpeed(.4);
+						else
+							Robot.driveTrain.setLeftSpeed(.7);
+					}
+					else if(horAngle>Config.DEGREE_THRESHOLD) //robot is to the right
+					{
+						//TODO: replace values with config values
+						if(horAngle>5)
+							Robot.driveTrain.setLeftSpeed(.1);
+						else if(horAngle>10)
+							Robot.driveTrain.setLeftSpeed(.4);
+						else
+							Robot.driveTrain.setLeftSpeed(.7);
+					}
+					else if(horAngle==Config.DEGREE_THRESHOLD)
+					{
+						Robot.driveTrain.setLeftSpeed(0);
+						Robot.driveTrain.setRightSpeed(0);
+						Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
+						double firstTime=getTime();
+						while(getTime()-firstTime<=5&&getTime()<Config.AUTO_MIDDLE_SHOOT_TIME)
+						{
+							if(0==(int)(Math.abs(getTime()-firstTime))%2)
+								Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
+							else if(1==(int)(Math.abs(getTime()-firstTime)%2))
+								Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
+						}
+					}
+				}
+				
+				
 			}
+				
 			else
 			{
 				Robot.driveTrain.setLeftSpeed(0);
