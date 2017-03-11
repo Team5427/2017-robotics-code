@@ -84,7 +84,7 @@ public class OI {
 	 * Commands for moveable flap
 	 */
 	public Button flapOpen = new JoystickButton(joy, Config.FLAP_OPEN);
-	public Button flapClose = new JoystickButton(joy, Config.FLAP_ClOSE);
+	//public Button flapClose = new JoystickButton(joy, Config.FLAP_ClOSE);
 //	public Button flapClose = new JoystickButton(joy, Config.FLAP_CLOSE);
 	public SetIntakeSpeed si;
 
@@ -108,7 +108,7 @@ public class OI {
 		spin.whileHeld(new AgitatorStart(Config.AGITATOR_SPEED));
 		spinBack.whileHeld(new AgiBack(Config.AGITATOR_SPEED_BACKWARDS));
 		flapOpen.whenPressed(new SetFlapStage(Config.stage.OPEN));
-		flapClose.whenPressed(new SetFlapStage(Config.stage.CLOSE));
+		//flapClose.whenPressed(new SetFlapStage(Config.stage.CLOSE));
 
 		
 		autoChooser.addDefault("              ",	Config.AUTO_NONE);
