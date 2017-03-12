@@ -1,30 +1,30 @@
 <xml version="1.0">
 <dashboard>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="3" y="133"/>
-		<width>480</width>
-		<height>514</height>
-		<property name="Camera Choice" value=""/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="473" y="167"/>
-		<width>522</width>
-		<height>509</height>
-		<property name="Camera Choice" value="cam1"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="983" y="229"/>
-		<width>615</width>
-		<height>410</height>
-		<property name="Camera Choice" value="cam0"/>
-	</static-widget>
+	<widget field="Gryoscope: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="384" y="10"/>
+	</widget>
+	<widget field="statuS:" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="84"/>
+	</widget>
+	<widget field="testval" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="63"/>
+	</widget>
+	<widget field="Left_PID_P" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="3" y="108"/>
+	</widget>
 	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="21"/>
 	</widget>
 	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="0" y="0"/>
 	</widget>
+	<widget field="Autonomous mode chooser" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="219" y="3"/>
+	</widget>
 </dashboard>
 <live-window>
 </live-window>
+	<hidden field="LEFT_PID_SETPOINT"/>
+	<hidden field="Left_PID_I"/>
+	<hidden field="Left_PID_D"/>
 </xml>
