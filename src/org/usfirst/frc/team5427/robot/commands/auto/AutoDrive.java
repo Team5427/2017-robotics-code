@@ -98,7 +98,7 @@ public class AutoDrive extends Command {
 			}
 			else if (getTime() < Config.AUTO_LEFT_TURN_TO_GEAR_TIME)
 			{				
-				while(Robot.gyro.getAngle() > -Config.A_RT_TURN_GEAR_DEG)
+				while(Robot.gyro.getAngle() > -Config.A_LT_TURN_GEAR_DEG)
 				{
 					SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
 					Log.debug("Turning robot - Angle: " + Robot.gyro.getAngle());
@@ -112,7 +112,7 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime()<Config.AUTO_LEFT_DRIVE_TO_GEAR_TIME)
+			else if(getTime()< Config.AUTO_LEFT_DRIVE_TO_GEAR_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD_RIGHT);
@@ -359,7 +359,7 @@ public class AutoDrive extends Command {
 			}
 			else if(getTime()<Config.AUTO_LEFT_TURN_TO_GEAR_TIME)
 			{				
-				while(Robot.gyro.getAngle()>-Config.A_RT_TURN_GEAR_DEG)
+				while(Robot.gyro.getAngle()>-Config.A_LT_TURN_GEAR_DEG)
 				{
 					SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
 					Log.debug("Turning robot - Angle: " + Robot.gyro.getAngle());
