@@ -96,9 +96,9 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime()<Config.AUTO_LEFT_TURN_TO_GEAR_TIME)
+			else if (getTime() < Config.AUTO_LEFT_TURN_TO_GEAR_TIME)
 			{				
-				while(Robot.gyro.getAngle()>-Config.A_RT_TURN_GEAR_DEG)
+				while(Robot.gyro.getAngle() > -Config.A_RT_TURN_GEAR_DEG)
 				{
 					SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
 					Log.debug("Turning robot - Angle: " + Robot.gyro.getAngle());
@@ -124,7 +124,7 @@ public class AutoDrive extends Command {
 		}
 		else if(position == Config.BLUE_AUTO_MIDDLE)
 		{
-			Log.init("Starting Autonomous Middle");
+			Log.init("Starting Blue Autonomous Middle");
 			if(getTime()<Config.AUTO_MIDDLE_START_DRIVE_TIME)
 			{				
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
@@ -137,8 +137,8 @@ public class AutoDrive extends Command {
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_BACK_OFF_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(.26);
-				Robot.driveTrain.setRightSpeed(.30);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD_LEFT);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD_RIGHT);
 			}
 			else if(getTime()< Config.AUTO_MIDDLE_AFTER_BACK_DELAY)
 			{
@@ -185,10 +185,10 @@ public class AutoDrive extends Command {
 						Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
 					}
 			}
-			else
-			{end();}
+			else {
+				end();
+			}
 
-				
 		}
 		else if(position == Config.BLUE_AUTO_RIGHT)
 		{
@@ -246,13 +246,12 @@ public class AutoDrive extends Command {
 					gyroReset = true;
 				}
 				
-				//Log.debug("Time finished: " + getTime() + " Time difference: " + (getTime() - forwardStartTime));
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime()<Config.AUTO_RIGHT_TURN_TO_GEAR_TIME)
+			else if (getTime() < Config.AUTO_RIGHT_TURN_TO_GEAR_TIME)
 			{				
-				while(Robot.gyro.getAngle()<Config.A_RT_TURN_GEAR_DEG)
+				while(Robot.gyro.getAngle() < Config.A_RT_TURN_GEAR_DEG)
 				{
 					SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
 					Log.debug("Turning robot - Angle: " + Robot.gyro.getAngle());
@@ -261,7 +260,7 @@ public class AutoDrive extends Command {
 				}
 				Config.AUTO_RIGHT_TURN_TO_GEAR_TIME=getTime();
 			}
-			else if(getTime()< Config.AUTO_RIGHT_AFTER_TURN_DELAY)
+			else if(getTime() < Config.AUTO_RIGHT_AFTER_TURN_DELAY)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
@@ -276,7 +275,7 @@ public class AutoDrive extends Command {
 		}
 		else if(position == Config.RED_AUTO_MIDDLE)
 		{
-			Log.init("Starting Autonomous Middle");
+			Log.init("Starting Red Autonomous Middle");
 			if(getTime()<Config.AUTO_MIDDLE_START_DRIVE_TIME)
 			{
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
@@ -289,8 +288,8 @@ public class AutoDrive extends Command {
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_BACK_OFF_TIME)
 			{
-				Robot.driveTrain.setLeftSpeed(.26);
-				Robot.driveTrain.setRightSpeed(.30);
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD_LEFT);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD_RIGHT);
 			}
 			else if(getTime()< Config.AUTO_MIDDLE_AFTER_BACK_DELAY)
 			{
@@ -328,22 +327,17 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
-//				double firstTime=getTime();
-				
-				/*if (getTime() < Config.AUTO_MIDDLE_DRIVE_GOAL_TIME+2)
-				{
-					Robot.agitator.setSpinSpeed(0);
-				} else*/
-					double t = (double)(getTime() - Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) % 3.5;
-					
-					if (t < 2f) {
-						Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
-					} else {
-						Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
-					}
+				double t = (double) (getTime() - Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) % 3.5;
+
+				if (t < 2f) {
+					Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
+				} else {
+					Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
+				}
 			}
-			else
-			{end();}
+			else {
+				end();
+			}
 
 		}
 		else if(position == Config.RED_AUTO_LEFT)
@@ -393,7 +387,7 @@ public class AutoDrive extends Command {
 	
 	/**
 	 * 
-	 * @return returns the number of miliseconds since autonomous started
+	 * @return returns the number of milliseconds since autonomous started
 	 */
 	protected double getTime() {
 		return (double) ((System.nanoTime() - startTime) / 1000000000f);

@@ -127,9 +127,14 @@ public class Config {
 															// ONE_JOYSTICK or
 	
 	/*------------speed for auto-------*/
-	public static final double AUTO_FULL_SPEED_FORWARD_LEFT = -.25;
-	public static final double AUTO_FULL_SPEED_FORWARD_RIGHT = -.3;
+	public static final double AUTO_FULL_SPEED_FORWARD_LEFT  = -.25;
+	public static final double AUTO_FULL_SPEED_FORWARD_RIGHT = -.30;
+	@Deprecated
 	public static final double AUTO_FULL_SPEED_BACKWARD = .3;
+	
+	public static final double AUTO_FULL_SPEED_BACKWARD_LEFT  = .26;
+	public static final double AUTO_FULL_SPEED_BACKWARD_RIGHT = .30;
+	
 	public static final double AUTO_FULL_TURN_SPEED_RIGHT = .3;
 	public static final double AUTO_FULL_TURN_SPEED_LEFT = .3;	
 
