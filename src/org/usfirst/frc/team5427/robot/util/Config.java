@@ -130,8 +130,8 @@ public class Config {
 	public static final double AUTO_FULL_SPEED_FORWARD_LEFT = -.25;
 	public static final double AUTO_FULL_SPEED_FORWARD_RIGHT = -.3;
 	public static final double AUTO_FULL_SPEED_BACKWARD = .3;
-	public static final double AUTO_FULL_TURN_SPEED_RIGHT = .5;
-	public static final double AUTO_FULL_TURN_SPEED_LEFT = .5;	
+	public static final double AUTO_FULL_TURN_SPEED_RIGHT = .3;
+	public static final double AUTO_FULL_TURN_SPEED_LEFT = .3;	
 
 	
 	/*------------timings for auto-------*/
