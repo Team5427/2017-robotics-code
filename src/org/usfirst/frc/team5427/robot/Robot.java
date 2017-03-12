@@ -193,6 +193,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		// Debug
+		SmartDashboard.putNumber("testval", .14);
+//		SmartDashboard.getNumber("testval", 99);
+		
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 
