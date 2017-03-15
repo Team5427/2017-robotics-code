@@ -1,28 +1,20 @@
 <xml version="1.0">
 <dashboard>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="3" y="133"/>
-		<width>480</width>
-		<height>514</height>
-		<property name="Camera Choice" value=""/>
+	<widget field="Gryoscope: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="224" y="200"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="48" y="157"/>
+		<property name="Image File" value="C:\Users\art\Desktop\GitHub\2017-Vision-Processing\resources\images\icon\oths.png"/>
 	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="473" y="167"/>
-		<width>522</width>
-		<height>509</height>
-		<property name="Camera Choice" value="cam1"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="983" y="229"/>
-		<width>615</width>
-		<height>410</height>
-		<property name="Camera Choice" value="cam0"/>
-	</static-widget>
-	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="21"/>
+	<widget field="testval" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="63"/>
 	</widget>
 	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="0" y="0"/>
+	</widget>
+	<widget field="Autonomous mode chooser" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="219" y="3"/>
 	</widget>
 </dashboard>
 <live-window>

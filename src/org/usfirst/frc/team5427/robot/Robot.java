@@ -9,6 +9,7 @@ import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.cscore.VideoSource;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -35,6 +36,8 @@ import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 import org.usfirst.frc.team5427.robot.network.Client;
+//import org.usfirst.frc.team5427.robot.network.SteamworkInterpreter;
+import org.usfirst.frc.team5427.robot.network.SteamworkInterpreter;
 import org.usfirst.frc.team5427.robot.subsystems.*;
 
 /**
@@ -138,8 +141,16 @@ public class Robot extends IterativeRobot {
 	 */
 	public static MultiFlap myFlap;
 	
-	
+	/**
+	 * Client for networking
+	 */
+	public static Client client;
 
+	/**
+	 * Network interpreter
+	 */
+	public static SteamworkInterpreter swip;
+	
 	Command autonomousCommand;
 	//SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -149,7 +160,8 @@ public class Robot extends IterativeRobot {
 	public static DigitalOutput digO = new DigitalOutput(Config.ULTRASONIC_PING_CHANNEL);
 	/** Ultrasonic Range Finder to find the distance between the sensor and target*/
 	public static Ultrasonic ultrasonic = new Ultrasonic(digO, digI);
-
+	/**Gyro for autonomous*/
+	public static ADXRS450_Gyro gyro;
 
 	/**
 	 * Camera server
@@ -181,6 +193,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		// Debug
+		SmartDashboard.putNumber("testval", 1);
+//		SmartDashboard.getNumber("testval", 99);
+		
 		// chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 
@@ -313,6 +329,15 @@ public class Robot extends IterativeRobot {
 		
 		//SmartDashboard.putData("Auto mode", chooser);
 		
+		
+		//TODO Add a port if need be
+		gyro= new ADXRS450_Gyro();
+		gyro.calibrate();
+		
+		swip =  new SteamworkInterpreter();
+		client = new Client(swip);
+        client.start();
+		
 		Log.init("Initializing OI");
 		oi = new OI();
 		Log.init("OI Initialized!");
@@ -350,22 +375,12 @@ public class Robot extends IterativeRobot {
 		
 		Log.info("Autonomous Start!");
 		
-		switch(oi.autoChooser.getSelected())
-		{
 		
-		case 1:
-			new AutoDrive(1).start();
-			break;
-		case 2:
-			new AutoDrive(2).start();
-			break;
-		case 3:
-			new AutoDrive(3).start();
-			break;
-		default:
-			Log.info("Did not chose an Autonomous mode");
-		}
-		 
+		//Log.info("Gyro was reset!");
+		
+		
+		new AutoDrive(oi.autoChooser.getSelected()).start();
+		
 		//autonomousCommand = chooser.getSelected();
 		
 		//TODO uncomment auto code

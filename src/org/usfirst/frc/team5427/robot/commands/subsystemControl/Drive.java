@@ -49,15 +49,46 @@ public class Drive extends Command {
 
 	@SuppressWarnings("all")
 	protected void execute() {
-		if (joystickMode == ONE_JOYSTICK) {
-			driveTrain.driveJoystick(joystick.getZ(), joystick.getY());
+		
+		if(Robot.oi.getJoy().getRawButton(Config.AUTO_ADJUST_BUTTON))
+		{
+			if(System.nanoTime()-Robot.swip.lastRecievedTime<500000000) //less than half a second since last recieved data
+			{
+				double horAngle = Robot.swip.horizontalAngle;  //horizontal angle from center
+				
+				if(horAngle<-1*Config.DEGREE_THRESHOLD) //robot is to the left
+				{
+					//TODO: replace values with config values
+					if(horAngle>-5)
+						Robot.driveTrain.setLeftSpeed(.1);
+					else if(horAngle>-10)
+						Robot.driveTrain.setLeftSpeed(.4);
+					else
+						Robot.driveTrain.setLeftSpeed(.7);
+				}
+				else if(horAngle>Config.DEGREE_THRESHOLD) //robot is to the right
+				{
+					//TODO: replace values with config values
+					if(horAngle>5)
+						Robot.driveTrain.setLeftSpeed(.1);
+					else if(horAngle>10)
+						Robot.driveTrain.setLeftSpeed(.4);
+					else
+						Robot.driveTrain.setLeftSpeed(.7);
+				}
+			}
 		}
-		if (joystickMode == TWO_JOYSTICKS) {
-			driveTrain.driveDualJoystick(joystick.getY(), altJoystick.getY());
-		}
+		else
+		{
+			if (joystickMode == ONE_JOYSTICK) {
+				driveTrain.driveJoystick(joystick.getZ(), joystick.getY());
+			}
+			if (joystickMode == TWO_JOYSTICKS) {
+				driveTrain.driveDualJoystick(joystick.getY(), altJoystick.getY());
+			}
 			// Log.init("DRIVING");
-
-
+		}
+		
 	}
 
 	//TODO Make this return true when this Command no longer needs to run execute()
@@ -74,5 +105,9 @@ public class Drive extends Command {
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		end();
+	}
+	
+	public void autoAdjust()
+	{
 	}
 }

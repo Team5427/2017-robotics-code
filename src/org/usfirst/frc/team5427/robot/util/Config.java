@@ -1,4 +1,7 @@
 package org.usfirst.frc.team5427.robot.util;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 //TODO FIXED CODE fEB 20 2017
 /**
  * This file will store ALL of the variables, offsets, measurements, etc. that
@@ -109,11 +112,11 @@ public class Config {
 
 	public static final double INTAKE_MOTOR_SPEED = 1;
 	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-1;
-	public static final double SHOOTER_MOTOR_SPEED = -1;
+	public static final double SHOOTER_MOTOR_SPEED = 1;
 	public static final double AGITATOR_SPEED = -1;
 	public static final double AGITATOR_SPEED_BACKWARDS = 1;
 	public static final double PULL_SPEED = -1; 
-
+ 
 	/* ----------Controller Ports---------- */
 	// Joystick
 	public static final int JOYSTICK_PORT = 0;
@@ -124,15 +127,21 @@ public class Config {
 															// ONE_JOYSTICK or
 	
 	/*------------speed for auto-------*/
-	public static final double AUTO_FULL_SPEED_FORWARD = .1;
-	public static final double AUTO_FULL_SPEED_BACKWARD = .1;
-	public static final double AUTO_FULL_TURN_SPEED_RIGHT = .1;
-	public static final double AUTO_FULL_TURN_SPEED_LEFT = .1;	
+	public static final double AUTO_FULL_SPEED_FORWARD_LEFT  = -.25;
+	public static final double AUTO_FULL_SPEED_FORWARD_RIGHT = -.30;
+	@Deprecated
+	public static final double AUTO_FULL_SPEED_BACKWARD = .3;
+	
+	public static final double AUTO_FULL_SPEED_BACKWARD_LEFT  = .26;
+	public static final double AUTO_FULL_SPEED_BACKWARD_RIGHT = .30;
+	
+	public static final double AUTO_FULL_TURN_SPEED_RIGHT = .3;
+	public static final double AUTO_FULL_TURN_SPEED_LEFT = .3;	
 
 	
 	/*------------timings for auto-------*/
 	//General Constants
-	public static final double AUTO_GEAR_WAIT_TIME = 0;
+	public static final double AUTO_GEAR_WAIT_TIME = 3;
 	public static final double AUTO_BACK_OFF_TIME = 0;
 	public static final double AUTO_SHOOT_TIME = 0;
 	public static final double LEFT_TIMEOUT = 60;
@@ -140,24 +149,37 @@ public class Config {
 	public static final double RIGHT_TIMEOUT = 60;
 	public static final double FLAP_OPEN_TIMEOUT = 1;
 	public static final double FLAP_CLOSE_TIMEOUT= 1;
+	public static final double AUTO_DELAY=.6;
+	public static final double MOMENTUM_OFFSET_TURNING_RIGHT=11;
+	public static final double MOMENTUM_OFFSET=6;
 	//Left Side
-	public static final double AUTO_LEFT_START_DRIVE_TIME = 0;
-	public static final double AUTO_LEFT_TURN_TIME = AUTO_LEFT_START_DRIVE_TIME+0;
-	public static final double AUTO_LEFT_DRIVE_TO_GEAR_TIME =AUTO_LEFT_TURN_TIME+0;
+	public static final double AUTO_LEFT_START_DRIVE_TIME = 1.7;
+	public static final double AUTO_LEFT_BEFORE_TURN_DELAY= AUTO_LEFT_START_DRIVE_TIME +AUTO_DELAY;
+	public static double AUTO_LEFT_TURN_TO_GEAR_TIME = AUTO_LEFT_BEFORE_TURN_DELAY+ .44;//.751;//.76;too much//.75 too little//.7;Too little//1;Too long//.5;Too short//0.332 Tooo short;
+	public static final double A_LT_TURN_GEAR_DEG= 58-MOMENTUM_OFFSET_TURNING_RIGHT;
+	public static final double AUTO_LEFT_AFTER_TURN_DELAY= AUTO_LEFT_TURN_TO_GEAR_TIME +AUTO_DELAY;
+	public static final double AUTO_LEFT_DRIVE_TO_GEAR_TIME =AUTO_LEFT_AFTER_TURN_DELAY + 2.1;//1.65;//1.6;Too little//1.3;Too little
 	public static final double AUTO_LEFT_GEAR_WAIT_TIME = AUTO_LEFT_DRIVE_TO_GEAR_TIME+AUTO_GEAR_WAIT_TIME;
 	public static final double AUTO_LEFT_BACK_OFF_TIME = AUTO_LEFT_GEAR_WAIT_TIME+0;//+AUTO_BACK_OFF_TIME;
 	public static final double AUTO_LEFT_TURN_TO_GOAL_TIME =AUTO_LEFT_BACK_OFF_TIME+ 0;
 	public static final double AUTO_LEFT_SHOOT_TIME =AUTO_LEFT_TURN_TO_GOAL_TIME+ 0;//+AUTO_SHOOT_TIME;
 	//Middle
-	public static final double AUTO_MIDDLE_START_DRIVE_TIME = 0;
-	public static final double AUTO_MIDDLE_GEAR_WAIT_TIME = AUTO_MIDDLE_START_DRIVE_TIME+AUTO_GEAR_WAIT_TIME;
-	public static final double AUTO_MIDDLE_BACK_OFF_TIME = AUTO_MIDDLE_GEAR_WAIT_TIME+0;//+AUTO_BACK_OFF_TIME;
-	public static final double AUTO_MIDDLE_TURN_TO_GOAL_TIME =AUTO_MIDDLE_BACK_OFF_TIME+ 0;
-	public static final double AUTO_MIDDLE_SHOOT_TIME =AUTO_MIDDLE_TURN_TO_GOAL_TIME+ 0;//+AUTO_SHOOT_TIME;
+	public static final double AUTO_MIDDLE_START_DRIVE_TIME = 2.3;
+	public static final double AUTO_MIDDLE_GEAR_WAIT_TIME = AUTO_MIDDLE_START_DRIVE_TIME + AUTO_GEAR_WAIT_TIME;
+	public static final double AUTO_MIDDLE_BACK_OFF_TIME = AUTO_MIDDLE_GEAR_WAIT_TIME + 1;//+AUTO_BACK_OFF_TIME;
+	public static final double AUTO_MIDDLE_AFTER_BACK_DELAY = AUTO_MIDDLE_BACK_OFF_TIME + AUTO_DELAY;
+	public static final double MIDDLE_TURN_ANGLE= 90-MOMENTUM_OFFSET;
+	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME = AUTO_MIDDLE_AFTER_BACK_DELAY + 1;
+	public static final double AUTO_MIDDLE_TURN_WAIT_TIME = AUTO_MIDDLE_TURN_TO_GOAL_TIME + AUTO_DELAY;
+	public static final double AUTO_MIDDLE_DRIVE_GOAL_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + SmartDashboard.getNumber("testval", .14); // .51 too much
+	public static final double AUTO_MIDDLE_SHOOT_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + 10;//+AUTO_SHOOT_TIME;
 	//Right Side
-	public static final double AUTO_RIGHT_START_DRIVE_TIME = 0;
-	public static final double AUTO_RIGHT_TURN_TIME = AUTO_RIGHT_START_DRIVE_TIME+0;
-	public static final double AUTO_RIGHT_DRIVE_TO_GEAR_TIME =AUTO_RIGHT_TURN_TIME+0;
+	public static final double AUTO_RIGHT_START_DRIVE_TIME = 2.195;
+	public static final double AUTO_RIGHT_BEFORE_TURN_DELAY = AUTO_RIGHT_START_DRIVE_TIME+AUTO_DELAY;
+	public static double AUTO_RIGHT_TURN_TO_GEAR_TIME = AUTO_RIGHT_BEFORE_TURN_DELAY + 0.44;
+	public static final double A_RT_TURN_GEAR_DEG= 58.5-MOMENTUM_OFFSET;
+	public static final double AUTO_RIGHT_AFTER_TURN_DELAY = AUTO_RIGHT_TURN_TO_GEAR_TIME+AUTO_DELAY;
+	public static final double AUTO_RIGHT_DRIVE_TO_GEAR_TIME =AUTO_RIGHT_AFTER_TURN_DELAY+ 1.85;
 	public static final double AUTO_RIGHT_GEAR_WAIT_TIME = AUTO_RIGHT_DRIVE_TO_GEAR_TIME+AUTO_GEAR_WAIT_TIME;
 	public static final double AUTO_RIGHT_BACK_OFF_TIME = AUTO_RIGHT_GEAR_WAIT_TIME+0;//+AUTO_BACK_OFF_TIME;
 	public static final double AUTO_RIGHT_TURN_TO_GOAL_TIME =AUTO_RIGHT_BACK_OFF_TIME+ 0;
@@ -165,9 +187,17 @@ public class Config {
 
 	
 	/*-----------spot-----------*/
-	public static final int AUTO_LEFT = 0;
-	public static final int AUTO_MIDDLE = 1;
-	public static final int AUTO_RIGHT = 2;
+	public static final int AUTO_NONE = -1;
+	public static final int BLUE_AUTO_LEFT = 0; 
+	public static final int BLUE_AUTO_MIDDLE = 1;
+	public static final int BLUE_AUTO_RIGHT = 2;
+	public static final int RED_AUTO_LEFT = 3;
+	public static final int RED_AUTO_MIDDLE = 4;
+	public static final int RED_AUTO_RIGHT = 5;
+	
+	
+	/*----------autonomous aiming------*/
+	public static final double DEGREE_THRESHOLD = 3.0;
 	
 	/*---------------Buttons------------------- */
 	public static final int SHOOT_BUTTON = 1;
@@ -178,13 +208,14 @@ public class Config {
 	public static final int SPIN_BUTTON = 2;
 	public static final int SPIN_OUT_BUTTON = 7;
 	public static final int FLAP_OPEN = 5;
-	public static final int FLAP_CLOSE=3;;
+	public static final int FLAP_CLOSE = 3;
+	public static final int AUTO_ADJUST_BUTTON = 13;
 
 	/*------------Mulipurpose Flap Vars------*/
 	public static enum stage {OPEN,CLOSE};
 	public static stage FLAP_START_STAGE=stage.CLOSE;
 	public static final long retractedToIntake = 1;
-	public static final long intakeToGear = 1;
+	public static final long intakeToGear = (long) .5;
 	public static final long gearToRetracted = 1;
 	public static final double FLAP_SPEED = .05;
 }
