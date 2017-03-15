@@ -1,19 +1,14 @@
 <xml version="1.0">
 <dashboard>
-	<widget field="Gryoscope: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
-		<location x="384" y="10"/>
+	<widget field="Gryoscope: " type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="224" y="200"/>
 	</widget>
-	<widget field="statuS:" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="84"/>
-	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Image">
+		<location x="48" y="157"/>
+		<property name="Image File" value="C:\Users\art\Desktop\GitHub\2017-Vision-Processing\resources\images\icon\oths.png"/>
+	</static-widget>
 	<widget field="testval" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="63"/>
-	</widget>
-	<widget field="Left_PID_P" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="3" y="108"/>
-	</widget>
-	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="21"/>
 	</widget>
 	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="0" y="0"/>
@@ -24,7 +19,4 @@
 </dashboard>
 <live-window>
 </live-window>
-	<hidden field="LEFT_PID_SETPOINT"/>
-	<hidden field="Left_PID_I"/>
-	<hidden field="Left_PID_D"/>
 </xml>
