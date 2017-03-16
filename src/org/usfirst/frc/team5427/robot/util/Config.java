@@ -153,22 +153,22 @@ public class Config {
 	public static final double MOMENTUM_OFFSET_TURNING_RIGHT=11;
 	public static final double MOMENTUM_OFFSET=6;
 	//Left Side
-	public static final double AUTO_LEFT_START_DRIVE_TIME = 1.7;
+	public static final double AUTO_LEFT_START_DRIVE_TIME = 2.55;
 	public static final double AUTO_LEFT_BEFORE_TURN_DELAY= AUTO_LEFT_START_DRIVE_TIME +AUTO_DELAY;
 	public static double AUTO_LEFT_TURN_TO_GEAR_TIME = AUTO_LEFT_BEFORE_TURN_DELAY+ .44;//.751;//.76;too much//.75 too little//.7;Too little//1;Too long//.5;Too short//0.332 Tooo short;
-	public static final double A_LT_TURN_GEAR_DEG= 58-MOMENTUM_OFFSET_TURNING_RIGHT;
+	public static final double A_LT_TURN_GEAR_DEG= 67-MOMENTUM_OFFSET_TURNING_RIGHT;		// Actual good angle is 60
 	public static final double AUTO_LEFT_AFTER_TURN_DELAY= AUTO_LEFT_TURN_TO_GEAR_TIME +AUTO_DELAY;
-	public static final double AUTO_LEFT_DRIVE_TO_GEAR_TIME =AUTO_LEFT_AFTER_TURN_DELAY + 2.1;//1.65;//1.6;Too little//1.3;Too little
+	public static final double AUTO_LEFT_DRIVE_TO_GEAR_TIME =AUTO_LEFT_AFTER_TURN_DELAY + 1.6;//1.65;//1.6;Too little//1.3;Too little
 	public static final double AUTO_LEFT_GEAR_WAIT_TIME = AUTO_LEFT_DRIVE_TO_GEAR_TIME+AUTO_GEAR_WAIT_TIME;
 	public static final double AUTO_LEFT_BACK_OFF_TIME = AUTO_LEFT_GEAR_WAIT_TIME+0;//+AUTO_BACK_OFF_TIME;
 	public static final double AUTO_LEFT_TURN_TO_GOAL_TIME =AUTO_LEFT_BACK_OFF_TIME+ 0;
 	public static final double AUTO_LEFT_SHOOT_TIME =AUTO_LEFT_TURN_TO_GOAL_TIME+ 0;//+AUTO_SHOOT_TIME;
 	//Middle
-	public static final double AUTO_MIDDLE_START_DRIVE_TIME = 2.3;
+	public static final double AUTO_MIDDLE_START_DRIVE_TIME = 2.4;
 	public static final double AUTO_MIDDLE_GEAR_WAIT_TIME = AUTO_MIDDLE_START_DRIVE_TIME + AUTO_GEAR_WAIT_TIME;
 	public static final double AUTO_MIDDLE_BACK_OFF_TIME = AUTO_MIDDLE_GEAR_WAIT_TIME + 1;//+AUTO_BACK_OFF_TIME;
 	public static final double AUTO_MIDDLE_AFTER_BACK_DELAY = AUTO_MIDDLE_BACK_OFF_TIME + AUTO_DELAY;
-	public static final double MIDDLE_TURN_ANGLE= 90-MOMENTUM_OFFSET;
+	public static final double MIDDLE_TURN_ANGLE= 100-MOMENTUM_OFFSET;
 	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME = AUTO_MIDDLE_AFTER_BACK_DELAY + 1;
 	public static final double AUTO_MIDDLE_TURN_WAIT_TIME = AUTO_MIDDLE_TURN_TO_GOAL_TIME + AUTO_DELAY;
 	public static final double AUTO_MIDDLE_DRIVE_GOAL_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + SmartDashboard.getNumber("testval", .14); // .51 too much
