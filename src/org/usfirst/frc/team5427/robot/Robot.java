@@ -25,6 +25,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import sun.util.logging.resources.logging;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc.team5427.robot.OurClasses.*;
 
@@ -162,6 +164,11 @@ public class Robot extends IterativeRobot {
 	public static Ultrasonic ultrasonic = new Ultrasonic(digO, digI);
 	/**Gyro for autonomous*/
 	public static ADXRS450_Gyro gyro;
+	
+	/**P variable for PID*/
+	public static double Kp = 0.03;
+	/**Robot drive system - for PID*/
+	private RobotDrive myRobot = new RobotDrive(1,2);
 
 	/**
 	 * Camera server
@@ -342,6 +349,8 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		Log.init("OI Initialized!");
 		
+		myRobot.setExpiration(0.1);
+		
 	}
 
 	/**
@@ -375,11 +384,15 @@ public class Robot extends IterativeRobot {
 		
 		Log.info("Autonomous Start!");
 		
-		
 		//Log.info("Gyro was reset!");
 		
-		
-		new AutoDrive(oi.autoChooser.getSelected()).start();
+		gyro.reset();
+        while (isAutonomous()) {
+            double angle = gyro.getAngle();
+            myRobot.drive(-0.30, -angle*Kp); // drive towards heading 0
+            Timer.delay(0.004);
+        }
+        myRobot.drive(0.0, 0.0);
 		
 		//autonomousCommand = chooser.getSelected();
 		
