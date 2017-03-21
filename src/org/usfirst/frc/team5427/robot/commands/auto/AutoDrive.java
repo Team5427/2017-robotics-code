@@ -303,7 +303,7 @@ public class AutoDrive extends Command {
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
 			{
-				while(Robot.gyro.getAngle() > -(97.6 - 29))
+				while(Robot.gyro.getAngle() > -(90 - 10))		// too little 97.5
 				{
 					SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
 					Log.debug("Turning robot - Angle: " + Robot.gyro.getAngle());
