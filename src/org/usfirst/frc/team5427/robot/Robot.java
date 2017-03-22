@@ -155,10 +155,10 @@ public class Robot extends IterativeRobot {
 
 	/* -------Sensors------- */
 	/**DIO ports for the ultrasonic sensor*/
-	public static DigitalInput digI = new DigitalInput(Config.ULTRASONIC_ECHO_CHANNEL);
-	public static DigitalOutput digO = new DigitalOutput(Config.ULTRASONIC_PING_CHANNEL);
+	public static DigitalInput ultrasonicDigitalIn = new DigitalInput(Config.ULTRASONIC_ECHO_CHANNEL);
+	public static DigitalOutput ultrasonicDigitalOut = new DigitalOutput(Config.ULTRASONIC_PING_CHANNEL);
 	/** Ultrasonic Range Finder to find the distance between the sensor and target*/
-	public static Ultrasonic ultrasonic = new Ultrasonic(digO, digI);
+	public static Ultrasonic ultrasonic = new Ultrasonic(ultrasonicDigitalOut, ultrasonicDigitalIn);
 
 
 	/**
@@ -177,8 +177,6 @@ public class Robot extends IterativeRobot {
 	//public static AxisCamera axisCam;
 
 	
-	public static Client c;
-
 	/** Current camera in use*/
 	public static int currentCamera = 0;
 	
@@ -324,7 +322,7 @@ public class Robot extends IterativeRobot {
 		//SmartDashboard.putData("Auto mode", chooser);
 		
 		swip =  new SteamworkInterpreter();
-		client = new Client(swip);
+		client = new Client(Config.DRIVER_STATION_IP, Config.DRIVER_STATION_PORT, swip);
         client.start();
 		
 		Log.init("Initializing OI");
@@ -364,40 +362,7 @@ public class Robot extends IterativeRobot {
 		
 		Log.info("Autonomous Start!");
 		
-		new AutoDrive(oi.autoChooser.getSelected()).start();
-		
-		//autonomousCommand = chooser.getSelected();
-		
-		//TODO uncomment auto code
-		//TODO figure out autoChooser
-//		switch((Integer) oi.autoChooser.getSelected()){
-//		
-//		case 1:
-//			autonomousCommand=new AutoDrive(Config.AUTO_LEFT);
-//			autonomousCommand.start();
-//			break;
-//		
-//		case 2:
-//			autonomousCommand=new AutoDrive(Config.AUTO_MIDDLE);
-//			autonomousCommand.start();
-//			break;
-//		
-//		case 3:
-//			autonomousCommand=new AutoDrive(Config.AUTO_RIGHT);
-//			autonomousCommand.start();
-//			break;
-//			
-//		default:
-//			break;
-//		}
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
+		new AutoDrive(oi.autoChooser.getSelected()).start();		
 	}
 
 	/**
