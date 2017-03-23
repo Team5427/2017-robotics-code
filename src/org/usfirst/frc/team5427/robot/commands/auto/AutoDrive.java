@@ -74,6 +74,8 @@ public class AutoDrive extends Command {
 	 */
 	@SuppressWarnings("all")
 	protected void execute() {
+
+		
 		
 		Log.info("Time:"+getTime());
 		Log.info("Pos:"+position);

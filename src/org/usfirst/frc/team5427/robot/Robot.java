@@ -2,6 +2,8 @@
 package org.usfirst.frc.team5427.robot;
 
 import edu.wpi.cscore.AxisCamera;
+import edu.wpi.first.wpilibj.SPI;
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.cscore.CameraServerJNI;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
@@ -15,8 +17,12 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Timer;
 //import edu.wpi.first.wpilibj.NamedSendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -47,7 +53,7 @@ import org.usfirst.frc.team5427.robot.subsystems.*;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
-public class Robot extends IterativeRobot {
+public class Robot extends IterativeRobot implements PIDOutput {
 
 	public static OI oi;
 
@@ -162,13 +168,22 @@ public class Robot extends IterativeRobot {
 	public static Ultrasonic ultrasonic = new Ultrasonic(digO, digI);
 	/**Gyro for autonomous*/
 	public static ADXRS450_Gyro gyro;
+	public static AHRS ahrs;
+	public static  PIDController turnController;
+	  static final double kP = 0.03;
+	  static final double kI = 0.00;
+	  static final double kD = 0.00;
+	  static final double kF = 0.00;
+	  static final double kToleranceDegrees = 2.0f;
+	  double rotateToAngleRate;
+
 
 	/**
 	 * Camera server
 	 */
 	//public static CameraServer server;
 //	public static RobotCameras roboCams;
-	/**
+	/** 
 	 * USB Cameras for robot
 	 */
 //	public static UsbCamera usbCam0, usbCam1;
@@ -184,6 +199,8 @@ public class Robot extends IterativeRobot {
 	/** Current camera in use*/
 	public static int currentCamera = 0;
 	
+	public RobotDrive myRobot;
+	
 	// NI USB interface numbers for the cameras
 	// int devForCam0=2,devForCam1=3;
 
@@ -193,6 +210,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+	    myRobot = new RobotDrive(0, 1);
+	      myRobot.setExpiration(0.1);
 		// Debug
 		SmartDashboard.putNumber("testval", 1);
 //		SmartDashboard.getNumber("testval", 99);
@@ -337,6 +356,21 @@ public class Robot extends IterativeRobot {
 		swip =  new SteamworkInterpreter();
 		client = new Client(swip);
         client.start();
+        
+        //ahrs
+        try {
+            /* Communicate w/navX-MXP via the MXP SPI Bus.                                     */
+            /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
+            /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
+            ahrs = new AHRS(SPI.Port.kMXP); 
+        } catch (RuntimeException ex ) {
+          Log.debug("Error instantiating navX-MXP:  " + ex.getMessage());
+        }
+        turnController = new PIDController(kP, kI, kD, kF, ahrs, this);
+        turnController.setInputRange(-180.0f,  180.0f);
+        turnController.setOutputRange(-1.0, 1.0);
+        turnController.setAbsoluteTolerance(kToleranceDegrees);
+        turnController.setContinuous(true);
 		
 		Log.init("Initializing OI");
 		oi = new OI();
@@ -375,11 +409,55 @@ public class Robot extends IterativeRobot {
 		
 		Log.info("Autonomous Start!");
 		
+		 long startTime = System.nanoTime();
+	     myRobot.setSafetyEnabled(true);
+	      while (isOperatorControl() && isEnabled()) {
+	          boolean rotateToAngle = false;
+//	          if (oi.getJoy().getRawButton(1)) {
+//	              ahrs.reset();
+//	          }
+//	          if ( oi.getJoy().getRawButton(2)) {
+//	              turnController.setSetpoint(0.0f);
+//	              rotateToAngle = true;
+//	          } else if ( oi.getJoy().getRawButton(3)) {
+//	              turnController.setSetpoint(90.0f);
+//	              rotateToAngle = true;
+//	          } else if ( oi.getJoy().getRawButton(4)) {
+//	              turnController.setSetpoint(179.9f);
+//	              rotateToAngle = true;
+//	          } else if ( oi.getJoy().getRawButton(5)) {
+//	              turnController.setSetpoint(-90.0f);
+//	              rotateToAngle = true;
+//	          }
+	          turnController.setSetpoint(0.0f);
+              rotateToAngle = true;
+//	          double currentRotationRate;
+	          if ( rotateToAngle ) {
+	              turnController.enable();
+//	              currentRotationRate = rotateToAngleRate;
+	          } else {
+	              turnController.disable();
+//	              currentRotationRate = oi.getJoy().getTwist();
+	          }
+	          try {
+	              /* Use the joystick X axis for lateral movement,          */
+	              /* Y axis for forward movement, and the current           */
+	              /* calculated rotation rate (or joystick Z axis),         */
+	              /* depending upon whether "rotate to angle" is active.    */
+	        	  while(3 > (System.nanoTime()-startTime) )
+	              myRobot.drive( -.3, ahrs.getAngle() );
+	          } catch( RuntimeException ex ) {
+	            Log.debug("Error communicating with drive system:  " + ex.getMessage());
+	          }
+	          Timer.delay(0.005);		// wait for a motor update time
+	      }
+		
 		
 		//Log.info("Gyro was reset!");
 		
 		
-		new AutoDrive(oi.autoChooser.getSelected()).start();
+		//new AutoDrive(oi.autoChooser.getSelected()).start();
+
 		
 		//autonomousCommand = chooser.getSelected();
 		
@@ -472,5 +550,12 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
+
+	 public void pidWrite(double output) {
+	      rotateToAngleRate = output;
+	  }
+	 public void operatorControl() {
+		
+	  }
 
 }
