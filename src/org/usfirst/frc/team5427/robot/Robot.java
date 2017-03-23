@@ -165,8 +165,6 @@ public class Robot extends IterativeRobot {
 	/**Gyro for autonomous*/
 	public static ADXRS450_Gyro gyro;
 	
-	/**P variable for PID*/
-	public static double Kp = 0.03;
 	/**Robot drive system - for PID*/
 	private RobotDrive myRobot = new RobotDrive(1,2);
 
@@ -202,6 +200,10 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		// Debug
 		SmartDashboard.putNumber("testval", 1);
+		SmartDashboard.putNumber("P", Config.PID_P);
+		SmartDashboard.putNumber("I", Config.PID_I);
+		SmartDashboard.putNumber("D", Config.PID_D);
+		SmartDashboard.putNumber("SetPoint", Config.PID_SETPOINT);
 //		SmartDashboard.getNumber("testval", 99);
 		
 		// chooser.addDefault("Default Auto", new ExampleCommand());
@@ -389,7 +391,7 @@ public class Robot extends IterativeRobot {
 		gyro.reset();
         while (isAutonomous()) {
             double angle = gyro.getAngle();
-            myRobot.drive(-0.30, -angle*Kp); // drive towards heading 0
+            myRobot.drive(-0.30, -angle*Config.PID_P); // drive towards heading 0
             Timer.delay(0.004);
         }
         myRobot.drive(0.0, 0.0);

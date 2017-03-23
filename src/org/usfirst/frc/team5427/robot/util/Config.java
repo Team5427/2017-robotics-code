@@ -46,6 +46,12 @@ public class Config {
 	// Speeds for the different things that the robot needs to do
 	// Controlled by grip
 												// later
+	
+	/*------PID variables for the drive train----------*/
+	public static final double PID_P = 0.03;
+	public static final double PID_I = 0;
+	public static final double PID_D = 0;
+	public static final double PID_SETPOINT = 0;
 
 	/*----------PWM PORTS-----------*/
 	// TODO reassign motor values	
