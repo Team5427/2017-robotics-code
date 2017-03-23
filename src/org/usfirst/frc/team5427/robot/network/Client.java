@@ -47,7 +47,7 @@ public class Client implements Runnable {
         Client.port = port;
 
         interpreterList = new ArrayList<Interpreter>(interpreter.length);
-        for (int i = 0; i < interpreterList.size(); i++) {
+        for (int i = 0; i < interpreter.length; i++) {
             interpreterList.add(interpreter[i]);
         }
     }
@@ -224,6 +224,7 @@ public class Client implements Runnable {
      * @param numFromStream length of usable index from 0
      */
     public void interpretData(byte[] buff, int numFromStream) {
+    	Log.debug("Interpreting byte array. Size of Interpreter list: " + interpreterList.size());
         for (Interpreter i : interpreterList) {
             i.interpret(buff, numFromStream);
         }
@@ -274,6 +275,8 @@ public class Client implements Runnable {
                     }
 
                     int dataSize = Interpreter.byteArrayToInt(bufferSize);
+                    Log.debug("Size of array: " + dataSize);
+                    
                     byte[] dataBuffer = new byte[dataSize];
                     int numFromStream = is.read(dataBuffer, 0, dataBuffer.length);
                     interpretData(dataBuffer, numFromStream);
