@@ -325,10 +325,12 @@ public class Robot extends IterativeRobot {
 		client = new Client(Config.DRIVER_STATION_IP, Config.DRIVER_STATION_PORT, swip);
         client.start();
 		
+		SmartDashboard.putString("DriverStationIP", Config.DRIVER_STATION_IP);
+		SmartDashboard.getString("DriverStationIP", Config.DRIVER_STATION_IP);
+		
 		Log.init("Initializing OI");
 		oi = new OI();
 		Log.init("OI Initialized!");
-		
 	}
 
 	/**
