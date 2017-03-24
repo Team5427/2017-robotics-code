@@ -214,6 +214,8 @@ public class Robot extends IterativeRobot implements PIDOutput {
 	      myRobot.setExpiration(0.1);
 		// Debug
 		SmartDashboard.putNumber("testval", 1);
+		
+
 //		SmartDashboard.getNumber("testval", 99);
 		
 		// chooser.addDefault("Default Auto", new ExampleCommand());
@@ -371,6 +373,14 @@ public class Robot extends IterativeRobot implements PIDOutput {
         turnController.setOutputRange(-1.0, 1.0);
         turnController.setAbsoluteTolerance(kToleranceDegrees);
         turnController.setContinuous(true);
+        
+     
+       
+        SmartDashboard.putNumber("p", kP );
+        SmartDashboard.putNumber("i", kI );
+        SmartDashboard.putNumber("d", kD);
+        SmartDashboard.putNumber("f", kF );
+
 		
 		Log.init("Initializing OI");
 		oi = new OI();
