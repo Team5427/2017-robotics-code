@@ -203,6 +203,6 @@ public class Config {
 	public static final double FLAP_SPEED = .05;
 	
 	/*-------------Networking-------------*/
-	public static final String DRIVER_STATION_IP = "10.54.27.23";
+	public static final String DRIVER_STATION_IP = "10.54.27.22";
 	public static final int DRIVER_STATION_PORT = 25565;
 }
