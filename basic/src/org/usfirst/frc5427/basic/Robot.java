@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.Timer;
 
 import org.usfirst.frc5427.basic.commands.*;
@@ -194,6 +195,9 @@ public class Robot extends IterativeRobot implements PIDOutput {
 					turnControllerRotate.enable();
 				}
 				driveTrain.robotDrive41.arcadeDrive(0,currentRotationRate);
+				turnControllerStraight.updateTable();
+				SmartDashboard.putData("Table for PID", (Sendable) turnControllerStraight.getTable());
+			
 			}
 
 		} catch (RuntimeException ex) {
