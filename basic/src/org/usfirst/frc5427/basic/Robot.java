@@ -85,7 +85,6 @@ public class Robot extends IterativeRobot implements PIDOutput {
 			ahrs = new AHRS(SPI.Port.kMXP) {
 				@Override
 				public double pidGet() {
-
 					return getFusedHeading();
 				}
 			};
@@ -189,8 +188,11 @@ public class Robot extends IterativeRobot implements PIDOutput {
 			} 
 			else if (5 > ((System.nanoTime() - startTime) / 1000000000f)) {
 				//driveTrain.robotDrive41.drive(rotateToAngleRate, 90);
-				turnControllerStraight.disable();
-				turnControllerRotate.enable();
+				if(turnControllerStraight.isEnabled())
+				{
+					turnControllerStraight.disable();
+					turnControllerRotate.enable();
+				}
 				driveTrain.robotDrive41.arcadeDrive(0,currentRotationRate);
 			}
 
