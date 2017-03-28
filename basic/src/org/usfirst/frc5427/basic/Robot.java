@@ -57,7 +57,7 @@ public class Robot extends IterativeRobot implements PIDOutput {
 	static double kDS = 0f;
 	//static double kFS = 0.00;
 
-	static double kPR = .005;
+	static double kPR = .01;
 	static double kIR = 0f;
 	static double kDR = 0f;
 	//static double kFR = 0f;
@@ -354,8 +354,19 @@ public class Robot extends IterativeRobot implements PIDOutput {
 	@Override
 	public void pidWrite(double output) {
 		// TODO Auto-generated method stub
+		if(output!=0)
+		{
 		System.out.println("Output: "+output);
+		}
 		rotateToAngleRate = output;
 
+	}
+	public void testInit()
+	{
+		
+	}
+	public void testPeriodic()
+	{
+		System.out.println("Yaw: "+ahrs.getYaw());
 	}
 }
