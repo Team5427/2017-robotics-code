@@ -52,12 +52,12 @@ public class Robot extends IterativeRobot implements PIDOutput {
 	public static PIDController turnControllerRotate;
 	public int autoFinished;
 
-	static double kPS = .003;
+	static double kPS = .03;
 	static double kIS = 0f;
 	static double kDS = 0f;
 	//static double kFS = 0.00;
 
-	static double kPR = .02;
+	static double kPR = .005;
 	static double kIR = 0f;
 	static double kDR = 0f;
 	//static double kFR = 0f;
@@ -154,64 +154,65 @@ public class Robot extends IterativeRobot implements PIDOutput {
 	}
 
 
-	public void autonomousInit() {
-	//	turnControllerStraight.setPID(SmartDashboard.getNumber("p", kPS), SmartDashboard.getNumber("i", kIS),SmartDashboard.getNumber("d", kDS));
-
-		// schedule the autonomous command (example)
-		startTime = System.nanoTime();
-		startYaw = ahrs.getYaw();
-		
-		 ahrs.reset();
-
-		turnControllerStraight.enable();
-		turnControllerRotate.disable();
-		turnControllerStraight.setSetpoint(ahrs.getYaw());
-		turnControllerRotate.setSetpoint(90);
-	}
-
-	/**
-	 * This function is called periodically during autonomous
-	 */
-
-	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
-		driveTrain.robotDrive41.setSafetyEnabled(true);
-		double currentRotationRate = rotateToAngleRate;
-
-		try {
-			/* Use the joystick X axis for lateral movement, */
-			/* Y axis for forward movement, and the current */
-			/* calculated rotation rate (or joystick Z axis), */
-			/* depending upon whether "rotate to angle" is active. */
-			//SmartDashboard.putBoolean("isConnected", ahrs.isConnected());
-			//SmartDashboard.putNumber("CompassHeading", ahrs.getCompassHeading());
-			
-			
-		//	turnControllerStraight.updateTable();
-			//SmartDashboard.putData("Table for PID", (Sendable) turnControllerStraight.getTable());
-
-		//	LiveWindow.addActuator("DriveTrain", "TurnControllerStraight", turnControllerStraight);
-			//LiveWindow.run();
-
-			if (2.3 > ((System.nanoTime() - startTime) / 1000000000f)) {
-				driveTrain.robotDrive41.drive(-.3, ahrs.getFusedHeading());
-				} 
-			else if (3.8 > ((System.nanoTime() - startTime) / 1000000000f)) {
-				//driveTrain.robotDrive41.drive(rotateToAngleRate, 90);
-				if(turnControllerStraight.isEnabled())
-				{
-					turnControllerStraight.disable();
-					turnControllerRotate.enable();
-				}
-				driveTrain.robotDrive41.arcadeDrive(0,currentRotationRate);
-				
-			}
-
-		} catch (RuntimeException ex) {
-			DriverStation.reportError("Error communicating with drive system: ", true);
-		}
-		Timer.delay(0.005); // wait for a motor update time
-	}
+//	public void autonomousInit() {
+//	//	turnControllerStraight.setPID(SmartDashboard.getNumber("p", kPS), SmartDashboard.getNumber("i", kIS),SmartDashboard.getNumber("d", kDS));
+//
+//		// schedule the autonomous command (example)
+//		startTime = System.nanoTime();
+//		startYaw = ahrs.getYaw();
+//		
+//		 ahrs.reset();
+//
+//		turnControllerStraight.enable();
+//		turnControllerRotate.disable();
+//		turnControllerStraight.setSetpoint(ahrs.getYaw());
+//		turnControllerRotate.setSetpoint(90);
+//	}
+//
+//	/**
+//	 * This function is called periodically during autonomous
+//	 */
+//
+//	public void autonomousPeriodic() {
+//		Scheduler.getInstance().run();
+//		driveTrain.robotDrive41.setSafetyEnabled(true);
+//		double currentRotationRate = rotateToAngleRate;
+//
+//		try {
+//			/* Use the joystick X axis for lateral movement, */
+//			/* Y axis for forward movement, and the current */
+//			/* calculated rotation rate (or joystick Z axis), */
+//			/* depending upon whether "rotate to angle" is active. */
+//			//SmartDashboard.putBoolean("isConnected", ahrs.isConnected());
+//			//SmartDashboard.putNumber("CompassHeading", ahrs.getCompassHeading());
+//			
+//			
+//		//	turnControllerStraight.updateTable();
+//			//SmartDashboard.putData("Table for PID", (Sendable) turnControllerStraight.getTable());
+//
+//		//	LiveWindow.addActuator("DriveTrain", "TurnControllerStraight", turnControllerStraight);
+//			//LiveWindow.run();
+//
+//			if (2.3 > ((System.nanoTime() - startTime) / 1000000000f)) {
+//				driveTrain.robotDrive41.drive(-.3, ahrs.getFusedHeading());
+//				} 
+//			else if (3.8 > ((System.nanoTime() - startTime) / 1000000000f)) {
+//				//driveTrain.robotDrive41.drive(rotateToAngleRate, 90);
+//				if(turnControllerStraight.isEnabled())
+//				{
+//					turnControllerStraight.disable();
+//					turnControllerRotate.enable();
+//				}
+//			
+//				driveTrain.robotDrive41.arcadeDrive(0,currentRotationRate);
+//				
+//			}
+//
+//		} catch (RuntimeException ex) {
+//			DriverStation.reportError("Error communicating with drive system: ", true);
+//		}
+//		Timer.delay(0.005); // wait for a motor update time
+//	}
 
 	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
@@ -229,11 +230,40 @@ public class Robot extends IterativeRobot implements PIDOutput {
 		Scheduler.getInstance().run();
 
 	}
+	public void autonomousInit(){
+		//turnControllerStraight.setPID(SmartDashboard.getNumber("p", kPS), SmartDashboard.getNumber("i", kIS),SmartDashboard.getNumber("d", kDS));
+		turnControllerRotate.setSetpoint(90);
+		//turnControllerRotate.setSetpoint(SmartDashboard.getNumber("Rotate SetPoint",turnControllerRotate.getSetpoint()));
+		// schedule the autonomous command (example)
+		startTime = System.nanoTime();
+		startYaw = ahrs.getYaw();
+		
+		ahrs.reset();
+		 
+//			 LiveWindow.addActuator("DriveTrain", "FrontLeftMotor", (Talon) RobotMap.driveTrainFrontLeftMotor);	
+//			LiveWindow.addActuator("DriveTrain", "FrontRightMotor", (Talon) RobotMap.driveTrainFrontRightMotor);
+//			LiveWindow.addActuator("DriveTrain", "RearLeftMotor", (Talon) RobotMap.driveTrainRearLeftMotor);
+//			LiveWindow.addActuator("DriveTrain", "RearRightMotor", (Talon) RobotMap.driveTrainRearRightMotor);
+
+		//turnControllerStraight.enable();
+		turnControllerRotate.enable();
+		
+//		if(ahrs.getFusedHeading()>180)
+//			turnControllerStraight.setSetpoint(ahrs.getFusedHeading()-360);
+//		else if(ahrs.getFusedHeading()<-180)
+//			turnControllerStraight.setSetpoint(ahrs.getFusedHeading()+360);
+//		else
+			turnControllerStraight.setSetpoint(0);
+//		autoFinished=false;
+		//turnControllerRotate.startLiveWindowMode();
+		//turnControllerRotate.initTable(turnControllerRotate.getTable());
+	//	LiveWindow.setEnabled(true);
+	}
 
 	/**
 	 * This function is called periodically during test mode
 	 */
-	public void testPeriodic() {
+	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		driveTrain.robotDrive41.setSafetyEnabled(true);
 		double currentRotationRate = rotateToAngleRate;
@@ -261,9 +291,9 @@ public class Robot extends IterativeRobot implements PIDOutput {
 			SmartDashboard.putNumber("SetPoint", turnControllerStraight.getSetpoint());
 			
 			SmartDashboard.putNumber("Rotate SetPoint",turnControllerRotate.getSetpoint());
-			SmartDashboard.putNumber("PIDOutputRotate", rotateToAngleRate);
-			SmartDashboard.putNumber("PIDInputRotate", ahrs.getFusedHeading());
-			SmartDashboard.putNumber("AutoFinished", autoFinished);
+//			SmartDashboard.putNumber("PIDOutputRotate", rotateToAngleRate);
+//			SmartDashboard.putNumber("PIDInputRotate", ahrs.g());
+//			SmartDashboard.putNumber("AutoFinished", autoFinished);
 			
 	//		turnControllerStraight.updateTable();
 			//	SmartDashboard.putData("Table for PID", (Sendable) turnControllerStraight.getTable());
@@ -274,29 +304,37 @@ public class Robot extends IterativeRobot implements PIDOutput {
 //			LiveWindow.addActuator("DriveTrain", "TurnControllerStraight", turnControllerStraight);
 			
 
-			if (2.3 > ((System.nanoTime() - startTime) / 1000000000f)) {
-				driveTrain.robotDrive41.arcadeDrive(-.4, -currentRotationRate);
-				move = ahrs.getYaw() - startYaw;
-				} 
-			else if (5.3 > ((System.nanoTime() - startTime) / 1000000000f)) {
+//			if (2.3 > ((System.nanoTime() - startTime) / 1000000000f)) {
+////					driveTrain.robotDrive41.drive(-.4, -currentRotationRate);
+//				driveTrain.robotDrive41.drive(-.3, -currentRotationRate);
+//				
+//				
+//					move = ahrs.getYaw() - startYaw;
+//				} 
+			 if (2.3 > ((System.nanoTime() - startTime) / 1000000000f)) {
 				//driveTrain.robotDrive41.drive(rotateToAngleRate, 90);
-				if(turnControllerStraight.isEnabled())
-				{
-					turnControllerStraight.disable();
-					turnControllerRotate.enable();
-				}
-				
-				driveTrain.robotDrive41.arcadeDrive(0,-currentRotationRate);
-			}
-			else if (5.8 > ((System.nanoTime() - startTime) / 1000000000f)) {
-				driveTrain.robotDrive41.arcadeDrive(-.3, -currentRotationRate);
-				move = ahrs.getYaw() - startYaw;
+//				 if(turnControllerStraight.isEnabled())
+//				{
+//					turnControllerStraight.disable();
+//					turnControllerRotate.enable();
+//				}
 			
-				} 
+				System.out.println("currentRotationRate: "+currentRotationRate);
+				System.out.println("Setpoint: "+turnControllerRotate.getSetpoint());
+				System.out.println("Yaw: "+ahrs.getYaw());
+				
+				
+				driveTrain.robotDrive41.arcadeDrive(0,currentRotationRate);
+			}
+//			else if (5.8 > ((System.nanoTime() - startTime) / 1000000000f)) {
+//					driveTrain.ro	botDrive41.arcadeDrive(-.3, -currentRotationRate);
+//					move = ahrs.getYaw() - startYaw;
+//				} 
 			else
 			{
 				driveTrain.stop();
 				turnControllerRotate.disable();
+				turnControllerStraight.disable();
 				autoFinished=1;
 			}
 		
@@ -311,40 +349,12 @@ public class Robot extends IterativeRobot implements PIDOutput {
 		Timer.delay(0.005); // wait for a motor update time
 	}
 	
-	public void testInit(){
-		//turnControllerStraight.setPID(SmartDashboard.getNumber("p", kPS), SmartDashboard.getNumber("i", kIS),SmartDashboard.getNumber("d", kDS));
-		turnControllerRotate.setSetpoint(-135);
-		//turnControllerRotate.setSetpoint(SmartDashboard.getNumber("Rotate SetPoint",turnControllerRotate.getSetpoint()));
-		// schedule the autonomous command (example)
-		startTime = System.nanoTime();
-		startYaw = ahrs.getYaw();
-		
-		ahrs.reset();
-		 
-//			 LiveWindow.addActuator("DriveTrain", "FrontLeftMotor", (Talon) RobotMap.driveTrainFrontLeftMotor);	
-//			LiveWindow.addActuator("DriveTrain", "FrontRightMotor", (Talon) RobotMap.driveTrainFrontRightMotor);
-//			LiveWindow.addActuator("DriveTrain", "RearLeftMotor", (Talon) RobotMap.driveTrainRearLeftMotor);
-//			LiveWindow.addActuator("DriveTrain", "RearRightMotor", (Talon) RobotMap.driveTrainRearRightMotor);
 
-		turnControllerStraight.enable();
-		turnControllerRotate.disable();
-		
-//		if(ahrs.getFusedHeading()>180)
-//			turnControllerStraight.setSetpoint(ahrs.getFusedHeading()-360);
-//		else if(ahrs.getFusedHeading()<-180)
-//			turnControllerStraight.setSetpoint(ahrs.getFusedHeading()+360);
-//		else
-			turnControllerStraight.setSetpoint(0);
-//		autoFinished=false;
-		//turnControllerRotate.startLiveWindowMode();
-		//turnControllerRotate.initTable(turnControllerRotate.getTable());
-	//	LiveWindow.setEnabled(true);
-	}
 
 	@Override
 	public void pidWrite(double output) {
 		// TODO Auto-generated method stub
-
+		System.out.println("Output: "+output);
 		rotateToAngleRate = output;
 
 	}
