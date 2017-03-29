@@ -124,66 +124,72 @@ public class AutoDrive extends Command {
 		}
 		else if(position == Config.BLUE_AUTO_MIDDLE)
 		{
-			Log.init("Starting Blue Autonomous Middle");
-			if(getTime()<Config.AUTO_MIDDLE_START_DRIVE_TIME)
-			{				
-				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
-				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD_RIGHT);
-			}
-			else if(getTime()<Config.AUTO_MIDDLE_GEAR_WAIT_TIME)
+			//testing
+			if(getTime()<3)
 			{
-				Robot.driveTrain.setLeftSpeed(0);
-				Robot.driveTrain.setRightSpeed(0);
+				Robot.driveTrain.driveWPI(.4,0);
 			}
-			else if(getTime()<Config.AUTO_MIDDLE_BACK_OFF_TIME)
-			{
-				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD_LEFT);
-				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD_RIGHT);
-			}
-			else if(getTime()< Config.AUTO_MIDDLE_AFTER_BACK_DELAY)
-			{
-				if (!gyroReset) {
-					Robot.gyro.reset();
-					gyroReset = true;
-				}
-				
-				//Log.debug("Time finished: " + getTime() + " Time difference: " + (getTime() - forwardStartTime));
-				Robot.driveTrain.setLeftSpeed(0);
-				Robot.driveTrain.setRightSpeed(0);
-			}
-			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
-			{
-				while(Robot.gyro.getAngle()<Config.MIDDLE_TURN_ANGLE)
-				{
-					SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
-					Log.debug("Turning robot - Angle: " + Robot.gyro.getAngle());
-					Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
-					Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
-				}
-				Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME=getTime();
-			}
-			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME)
-			{
-				Robot.driveTrain.setLeftSpeed(0);
-				Robot.driveTrain.setRightSpeed(0);
-			}
-			else if(getTime()<Config.AUTO_MIDDLE_DRIVE_GOAL_TIME)
-			{
-				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
-				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD_RIGHT);
-			}
+			
+//			Log.init("Starting Blue Autonomous Middle");
+//			if(getTime()<Config.AUTO_MIDDLE_START_DRIVE_TIME)
+//			{				
+//				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
+//				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD_RIGHT);
+//			}
+//			else if(getTime()<Config.AUTO_MIDDLE_GEAR_WAIT_TIME)
+//			{
+//				Robot.driveTrain.setLeftSpeed(0);
+//				Robot.driveTrain.setRightSpeed(0);
+//			}
+//			else if(getTime()<Config.AUTO_MIDDLE_BACK_OFF_TIME)
+//			{
+//				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD_LEFT);
+//				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD_RIGHT);
+//			}
+//			else if(getTime()< Config.AUTO_MIDDLE_AFTER_BACK_DELAY)
+//			{
+//				if (!gyroReset) {
+//					Robot.gyro.reset();
+//					gyroReset = true;
+//				}
+//				
+//				//Log.debug("Time finished: " + getTime() + " Time difference: " + (getTime() - forwardStartTime));
+//				Robot.driveTrain.setLeftSpeed(0);
+//				Robot.driveTrain.setRightSpeed(0);
+//			}
+//			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
+//			{
+//				while(Robot.gyro.getAngle()<Config.MIDDLE_TURN_ANGLE)
+//				{
+//					SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
+//					Log.debug("Turning robot - Angle: " + Robot.gyro.getAngle());
+//					Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
+//					Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
+//				}
+//				Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME=getTime();
+//			}
+//			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME)
+//			{
+//				Robot.driveTrain.setLeftSpeed(0);
+//				Robot.driveTrain.setRightSpeed(0);
+//			}
+//			else if(getTime()<Config.AUTO_MIDDLE_DRIVE_GOAL_TIME)
+//			{
+//				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
+//				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD_RIGHT);
+//			}
 			else if(getTime() < 15 /*<Config.AUTO_MIDDLE_SHOOT_TIME*/)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
-				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
-					double t = (double)(getTime() - Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) % 3.5;
+			//	Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
+				//	double t = (double)(getTime() - Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) % 3.5;
 					
-					if (t < 2f) {
-						Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
-					} else {
-						Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
-					}
+				//	if (t < 2f) {
+				//		Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
+				//	} else {
+				//		Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
+				//	}
 			}
 			else {
 				end();
