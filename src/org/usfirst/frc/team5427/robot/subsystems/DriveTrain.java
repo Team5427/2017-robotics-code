@@ -59,6 +59,8 @@ public class DriveTrain extends Subsystem {
 		m_maxOutput = kDefaultMaxOutput;
 		// boolean m_allocatedSpeedControllers = true;
 	}
+//	RobotDrive robotDrive41 = new RobotDrive(0, 0);
+	
 
 	public void driveWPI(double outputMagnitude, double curve) {
 		final double leftOutput;
@@ -99,7 +101,7 @@ public class DriveTrain extends Subsystem {
 		// m_frontLeftMotor.set(limit(leftOutput) * m_maxOutput);
 		setLeftSpeed(limit(leftOutput) * m_maxOutput);
 		// m_frontRightMotor.set(-limit(rightOutput) * m_maxOutput);
-		setRightSpeed(-limit(rightOutput) * m_maxOutput);
+		setRightSpeed(limit(rightOutput) * m_maxOutput);
 	}
 
 	protected static double limit(double num) {
