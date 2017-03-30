@@ -211,7 +211,7 @@ public class Config {
 	public static final int FLAP_OPEN = 5;
 	public static final int FLAP_CLOSE = 3;
 	public static final int GATE_SWITCH = 9;
-	public static final int AUTO_ADJUST_BUTTON = 13;
+	public static final int AUTO_ADJUST_BUTTON = 10;
 
 	/*------------Mulipurpose Flap Vars------*/
 	public static enum stage {OPEN,CLOSE};

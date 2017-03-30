@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class MoveServo extends Command
 {
-	
+	public int position;
 	public MoveServo()
 	{
 		requires(Robot.gateSub);
@@ -17,16 +17,22 @@ public class MoveServo extends Command
 	protected void initialize()
 	{
 		Log.init("Initialized MoveServo");
+		if(position==1)
+			position=2;
+		else
+			position=1;
 	}
 	protected void execute()
 	{
-		Robot.gateSub.changePos();
+		Robot.gateSub.changePos(position);
 	}
 	@Override
 	protected boolean isFinished()
 	{
-		// TODO Auto-generated method stub
-		return true;
+		if(Robot.gateSub.getDesPos()==Robot.gateServo.get())
+			return true;
+		else
+			return false;
 	}
 	
 	protected void end()
