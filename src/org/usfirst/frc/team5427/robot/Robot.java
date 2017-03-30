@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Sendable;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.SpeedController;
 //import edu.wpi.first.wpilibj.NamedSendable;
 import edu.wpi.first.wpilibj.command.Command;
@@ -61,6 +62,12 @@ public class Robot extends IterativeRobot {
 	//motor for flap
 	public static SpeedController motorPWM_Flap;
 
+	//Servo for gate
+	public static Servo gateServo;
+	
+	//Subsytstem for gate
+	public static GateServo gateSub;
+	
 	// PWM Motors for Drive Train
 	/**
 	 * Motor utilized in the DriveTrain. It is located in the front left of the
@@ -237,6 +244,9 @@ public class Robot extends IterativeRobot {
 //		motorPWM_Intake = new SteelSpark(Config.INTAKE_MOTOR, 0, 0);
 		motorPWM_Agitator = new SteelSpark(Config.AGITATOR_MOTOR,0,0);
 		motorPWM_Flap = new SteelSpark(Config.FLAP_MOTOR,0,0);
+		
+		gateServo = new Servo(Config.GATE_SERVO);
+		
 
 		
 		/**Initialize Drive Train*/
@@ -275,6 +285,10 @@ public class Robot extends IterativeRobot {
 		Log.init("Initializing MultiFlap subsytem");
 		myFlap = new MultiFlap(motorPWM_Flap);
 		Log.init("MultiFlap subsystem initialized!");
+		
+		Log.init("Initializing Gate subsystem");
+		gateSub = new GateServo(gateServo);
+		Log.init("Gate subsystem initialized!");
 
 		/* Initialize Sensor */
 		//TODO Test Cameras

@@ -58,6 +58,7 @@ public class Config {
 	public static final int AGITATOR_MOTOR 		= 6;
 	public static final int ROPE_CLIMB_MOTOR    = 7;
 	public static final int FLAP_MOTOR          = 8;
+	public static final int GATE_SERVO			= 9;
 	
 	/*-------------Ultrasonic Sensor Ports---------*/
 	public static final int ULTRASONIC_PING_CHANNEL = 0;
@@ -209,6 +210,7 @@ public class Config {
 	public static final int SPIN_OUT_BUTTON = 7;
 	public static final int FLAP_OPEN = 5;
 	public static final int FLAP_CLOSE = 3;
+	public static final int GATE_SWITCH = 9;
 	public static final int AUTO_ADJUST_BUTTON = 13;
 
 	/*------------Mulipurpose Flap Vars------*/

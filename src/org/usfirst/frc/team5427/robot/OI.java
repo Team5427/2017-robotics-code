@@ -94,6 +94,9 @@ public class OI {
 	public Button spin = new JoystickButton(joy, Config.SPIN_BUTTON);
 	public Button spinBack = new JoystickButton(joy, Config.SPIN_OUT_BUTTON);
 	
+	//Button for Gate Switch
+	public Button gateSwitch = new JoystickButton(joy,Config.GATE_SWITCH);
+	
 	SendableChooser<Integer> autoChooser= new SendableChooser<Integer>();
 	
 	/**
