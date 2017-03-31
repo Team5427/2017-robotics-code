@@ -288,6 +288,7 @@ public class Robot extends IterativeRobot {
 		
 		Log.init("Initializing Gate subsystem");
 		gateSub = new GateServo(gateServo);
+		gateSub.changePos(Config.GATE_CLOSED);
 		Log.init("Gate subsystem initialized!");
 
 		/* Initialize Sensor */

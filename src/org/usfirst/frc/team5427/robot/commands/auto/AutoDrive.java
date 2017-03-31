@@ -25,7 +25,7 @@ public class AutoDrive extends Command {
    
 		requires(Robot.driveTrain);
 		requires(Robot.launcher);
-		requires(Robot.agitator);
+		requires(Robot.gateSub);
 		
 		switch(position)
 		{
@@ -105,12 +105,14 @@ public class AutoDrive extends Command {
 				}
 			else if(getTime()<15)
 			{
+				Robot.driveTrain.stop();
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
 				if (getTime() > (timetoTurn + .2 + 3.3+1))
 				{
 					if(!gyroReset)
 					{
-						Robot.gateSub.changePos(Config.GATE_OPEN);
+						Robot.gateSub.changePos(Config.GATE_OPEN); 
+						gyroReset=true;
 					}
 				}
 			}
@@ -158,18 +160,18 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD_RIGHT);
 			}
-			else if(getTime() < 15 /*<Config.AUTO_MIDDLE_SHOOT_TIME*/)
+			else if(getTime() < 15 )
 			{
-				Robot.driveTrain.setLeftSpeed(0);
-				Robot.driveTrain.setRightSpeed(0);
+				Robot.driveTrain.stop();
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
-					double t = (double)(getTime() - Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) % 3.5;
-					
-//					if (t < 2f) {
-//						Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
-//					} else {
-//						Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
-//					}
+				if (getTime() > (Config.AUTO_MIDDLE_DRIVE_GOAL_TIME+1))
+				{
+					if(!gyroReset)
+					{
+						Robot.gateSub.changePos(Config.GATE_OPEN); 
+						gyroReset=true;
+					}
+				}
 			}
 			else {
 				end();
@@ -211,6 +213,19 @@ public class AutoDrive extends Command {
 				System.out.print("turning");
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT * -1);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
+			}
+			else if(getTime()<15)
+			{
+				Robot.driveTrain.stop();
+				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
+				if (getTime() > (timetoTurnRed + .2 + 3.3+1))
+				{
+					if(!gyroReset)
+					{
+						Robot.gateSub.changePos(Config.GATE_OPEN); 
+						gyroReset=true;
+					}
+				}
 			}
 			else {
 				end();
@@ -255,14 +270,16 @@ public class AutoDrive extends Command {
 			}
 			else if(getTime() < 15 /*<Config.AUTO_MIDDLE_SHOOT_TIME*/)
 			{
-				Robot.driveTrain.setLeftSpeed(0);
-				Robot.driveTrain.setRightSpeed(0);
+				Robot.driveTrain.stop();
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
-//				if (t < 2f) {
-//					Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
-//				} else {
-//					Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
-//				}
+				if (getTime() > (Config.AUTO_MIDDLE_DRIVE_GOAL_TIME+1))
+				{
+					if(!gyroReset)
+					{
+						Robot.gateSub.changePos(Config.GATE_OPEN); 
+						gyroReset=true;
+					}
+				}
 			}
 			else {
 				end();
@@ -307,7 +324,7 @@ public class AutoDrive extends Command {
 	protected void end() {
 		Robot.driveTrain.stop();
 		Robot.launcher.stop();
-//		Robot.agitator.stop();
+		Robot.gateSub.changePos(Config.GATE_OPEN);
 	}
 
 	// Called when another command which requires one or more of the same
