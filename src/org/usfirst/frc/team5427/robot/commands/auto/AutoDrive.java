@@ -103,6 +103,17 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
 				}
+			else if(getTime()<15)
+			{
+				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
+				if (getTime() > (timetoTurn + .2 + 3.3+1))
+				{
+					if(!gyroReset)
+					{
+						Robot.gateSub.changePos(Config.GATE_OPEN);
+					}
+				}
+			}
 			else {
 				end();
 			}
