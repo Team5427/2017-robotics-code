@@ -151,7 +151,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * Client for networking
 	 */
-	public static Client client;
+//	public static Client client;
 
 	/**
 	 * Network interpreter
@@ -345,13 +345,13 @@ public class Robot extends IterativeRobot {
 		
 		
 		//TODO Add a port if need be
-		gyro= new ADXRS450_Gyro();
-		gyro.calibrate();
+//		gyro= new ADXRS450_Gyro();
+//		gyro.calibrate();
 		
-		swip =  new SteamworkInterpreter();
-		client = new Client(swip);
-        client.start();
-		
+	//	swip =  new SteamworkInterpreter();
+//		client = new Client(swip);
+//        client.start();
+//		
 		Log.init("Initializing OI");
 		oi = new OI();
 		Log.init("OI Initialized!");
