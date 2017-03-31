@@ -220,4 +220,8 @@ public class Config {
 	public static final long intakeToGear = (long) .5;
 	public static final long gearToRetracted = 1;
 	public static final double FLAP_SPEED = .05;
+	
+	/*-----------Servo Position Values-----*/
+	public static final int GATE_CLOSED = 1;
+	public static final int GATE_OPEN 	= 2;
 }

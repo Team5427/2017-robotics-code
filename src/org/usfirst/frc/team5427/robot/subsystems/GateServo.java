@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5427.robot.subsystems;
 
+import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.Servo;
@@ -9,13 +10,15 @@ public class GateServo extends Subsystem
 {
 
 	Servo servo;
+	
+	//Desired Position
 	private double desPos;
 	
 	public GateServo(Servo servo)
 	{
 		this.servo = servo;
 		servo.setSpeed(.3);
-		changePos(1);
+		changePos(Config.GATE_CLOSED);
 	}
 	
 	@Override
@@ -27,26 +30,18 @@ public class GateServo extends Subsystem
 	
 	public void changePos(int position)
 	{
-		if(position==1)
+		if(position==Config.GATE_CLOSED)
 		{
-			position=2;
+			position=Config.GATE_OPEN;
 			servo.set(.8);
 			setDesPos(.8);
-			
-//			while(servo.get()>.4)
-//			{
-//				
-//			}
-//			servo.setSpeed(0);
-			System.out.println("hOI im tEmmie");
+//			System.out.println("hOI im tEmmie");
 		}
-		else if(position==2)
+		else if(position==Config.GATE_OPEN)
 		{
-			position=1;
+			position=Config.GATE_CLOSED;
 			servo.set(.4);
 			setDesPos(.4);
-			//servo.setSpeed(.3);
-			System.out.print("hoi im tem!!");
 		}
 	}
 

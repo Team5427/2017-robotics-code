@@ -2,6 +2,7 @@ package org.usfirst.frc.team5427.robot.commands;
 
 
 import org.usfirst.frc.team5427.robot.Robot;
+import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,9 +19,9 @@ public class MoveServo extends Command
 	{
 		Log.init("Initialized MoveServo");
 		if(position==1)
-			position=2;
+			position=Config.GATE_OPEN;
 		else
-			position=1;
+			position=Config.GATE_CLOSED;
 	}
 	protected void execute()
 	{
