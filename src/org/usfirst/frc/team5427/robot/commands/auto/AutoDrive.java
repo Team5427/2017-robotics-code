@@ -69,14 +69,13 @@ public class AutoDrive extends Command {
 	//TODO check this code for autonomous
 	// Called repeatedly when this Command is scheduled to run
 
-	private double forwardStartTime = -1;
-	private double time = 3.5;
-	
 	/**i m
 	 * TODO comment
 	 */
 	@SuppressWarnings("all")
 	protected void execute() {
+		
+		SmartDashboard.putNumber("Time", getTime());
 		
 		Log.info("Time:"+getTime());
 		Log.info("Pos:"+position);
@@ -85,11 +84,10 @@ public class AutoDrive extends Command {
 		if(position == Config.BLUE_AUTO_LEFT)
 		{
 			Log.info("BL");
-			double timetoTurn = 7.8;
-			if(getTime()<4.6)	{ 
-				Robot.driveTrain.driveWPI(-0.3,.3);
-			}
-			else if(getTime()<4.6+3)	{ 
+			double timetoTurn = 6.8;
+			if (getTime() < 3.6) {
+				Robot.driveTrain.driveWPI(-0.3, .04);
+			} else if (getTime() < 3.6 + 3) {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			} else if (getTime() < timetoTurn) {
@@ -98,15 +96,19 @@ public class AutoDrive extends Command {
 				System.out.print("waiting to turn");
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
-			} else if (getTime() < (timetoTurn + .2 + 3.3)) {
+			} else if (getTime() < (timetoTurn + .2 + 3.7)) {
 				System.out.print("turning");
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
-				}
-			else {
+			}
+			else if (getTime() < 15) {
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
+//				double t = (double) (getTime() - Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) % 3.5;
+			} else if (getTime() > 15) {
 				end();
 			}
-
 		}
 		else if(position == Config.BLUE_AUTO_MIDDLE)
 		{
@@ -154,7 +156,7 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
-					double t = (double)(getTime() - Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) % 3.5;
+				double t = (double)(getTime() - Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) % 3.5;
 					
 //					if (t < 2f) {
 //						Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
@@ -261,16 +263,39 @@ public class AutoDrive extends Command {
 			}
 
 		}
-		else if(position == Config.RED_AUTO_LEFT)
-		{
-			//redLeft
-		if(getTime()<4.6)	{ 
-			Robot.driveTrain.driveWPI(-0.3, .3);
-		} 
-		else
-			{
-			end();
-		}
+		else if (position == Config.RED_AUTO_LEFT) {
+			// redLeft
+			Log.info("RL");
+			double timetoTurn = 6.8;
+			if (getTime() < 3.6) {
+				Robot.driveTrain.driveWPI(-0.3, -.04);
+			} else if (getTime() < 3.6 + 3) {
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+			} else if (getTime() < timetoTurn) {
+				Robot.driveTrain.driveWPI(0.3, 0);
+			} else if (getTime() < (timetoTurn + .2)) {
+				System.out.print("waiting to turn");
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+			} else if (getTime() < (timetoTurn + .2 + 3.7)) {
+				System.out.print("turning");
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT * -1f);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
+			} else if (getTime() < 15) {
+				Robot.driveTrain.setLeftSpeed(0);
+				Robot.driveTrain.setRightSpeed(0);
+				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
+//				double t = (double) (getTime() - Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) % 3.5;
+			} else if (getTime() > 15) {
+				end();
+			}
+			
+//			if (getTime() < 4.6) {
+//				Robot.driveTrain.driveWPI(-0.3, .3);
+//			} else {
+//				end();
+//			}
 		}
 
 	}
