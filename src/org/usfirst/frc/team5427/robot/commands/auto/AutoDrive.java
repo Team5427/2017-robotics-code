@@ -198,7 +198,7 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime() < (timetoTurnRed + .2 + 3.3))	{ 
+			else if(getTime() < (timetoTurnRed + .2 + 2.8))	{ 
 				System.out.print("turning");
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT * -1);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
@@ -267,7 +267,10 @@ public class AutoDrive extends Command {
 		if(getTime()<4.6)	{ 
 			Robot.driveTrain.driveWPI(-0.3, .3);
 		} 
+		else
+			{
 			end();
+		}
 		}
 
 	}
