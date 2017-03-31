@@ -135,7 +135,9 @@ public class AutoDrive extends Command {
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
 			{
-				Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME=getTime();
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
+
 			}
 			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME)
 			{
@@ -230,7 +232,8 @@ public class AutoDrive extends Command {
 			}
 			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
 			{
-				Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME=getTime();
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT );
 			}
 			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME)
 			{
