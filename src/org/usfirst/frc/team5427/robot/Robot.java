@@ -1,14 +1,6 @@
 
 package org.usfirst.frc.team5427.robot;
 
-import edu.wpi.cscore.AxisCamera;
-import edu.wpi.cscore.CameraServerJNI;
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.MjpegServer;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoMode.PixelFormat;
-import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -23,7 +15,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import sun.util.logging.resources.logging;
 import edu.wpi.first.wpilibj.Ultrasonic;
 
 import org.usfirst.frc.team5427.robot.OurClasses.*;
@@ -285,51 +276,6 @@ public class Robot extends IterativeRobot {
 
 	//	Log.init("Ultrasonic initialized!");
 
-//		/** camera code*/
-//		/* initialize cameras */
-//		usbCam0 = new UsbCamera("cam0", 0);
-//		usbCam0.setFPS(15);
-//		usbCam1 = new UsbCamera("cam1", 1);
-//		usbCam1.setFPS(15);
-//		/* initialize server*/
-//		server = CameraServer.getInstance();
-//		roboCams=new RobotCameras(usbCam0, usbCam1);
-
-		// initialize axis cam
-		//axisCam = new AxisCamera("axisCamera", "10.54.27.11");
-		// init usb cam 0 and set fps
-		//usbCam0 = new UsbCamera("cam0", 0);
-		//usbCam0.setFPS(15);
-
-		// creates camera 1 and set fps and adds it to the server
-	//	usbCam1 = new UsbCamera("cam1", 1);
-	//	usbCam1.setFPS(15);
-	//	server.addCamera(usbCam1);
-
-		// adds usb and axis camera to server
-	//	Robot.server.addCamera(usbCam0);
-	//	Robot.server.addCamera(axisCam);
-
-		// start auto capture of camera 0 and camera 1
-	//	server.startAutomaticCapture(usbCam0);
-		//server.startAutomaticCapture(usbCam1);
-		
-		//TODO un-comment camera stuff
-
-		/**
-		 * TODO Add the different chooser selections for autonomous for Left,
-		 * Middle, and Right.
-		 */
-		//chooser = new SendableChooser();
-		
-//		chooser.addDefault("", 0);
-//		chooser.addObject("AutoDriveLeft", 1);
-//		chooser.addObject("AutoDriveMiddle", 2);
-//		chooser.addObject("AutoDriveRight", 3);
-		
-		//SmartDashboard.putData("Auto mode", chooser);
-		
-		
 		//TODO Add a port if need be
 //		gyro= new ADXRS450_Gyro();
 //		gyro.calibrate();
@@ -379,40 +325,8 @@ public class Robot extends IterativeRobot {
 		//Log.info("Gyro was reset!");
 		
 		
-		new AutoDrive(oi.autoChooser.getSelected()).start();
-		
-		//autonomousCommand = chooser.getSelected();
-		
-		//TODO uncomment auto code
-		//TODO figure out autoChooser
-//		switch((Integer) oi.autoChooser.getSelected()){
-//		
-//		case 1:
-//			autonomousCommand=new AutoDrive(Config.AUTO_LEFT);
-//			autonomousCommand.start();
-//			break;
-//		
-//		case 2:
-//			autonomousCommand=new AutoDrive(Config.AUTO_MIDDLE);
-//			autonomousCommand.start();
-//			break;
-//		
-//		case 3:
-//			autonomousCommand=new AutoDrive(Config.AUTO_RIGHT);
-//			autonomousCommand.start();
-//			break;
-//			
-//		default:
-//			break;
-//		}
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
+		autonomousCommand = new AutoDrive(oi.autoChooser.getSelected());
+		autonomousCommand.start();
 	}
 
 	/**

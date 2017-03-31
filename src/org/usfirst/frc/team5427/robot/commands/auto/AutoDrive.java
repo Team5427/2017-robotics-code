@@ -54,15 +54,15 @@ public class AutoDrive extends Command {
 		this.position = position;
 		setTimeout(15);
 	}
-	private double mag=-.3;
-	private double curve=.3;
+
+	private double mag = -.3;
+	private double curve = .3;
+
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Log.init("initialized Drive");
-//		position = Config.BLUE_AUTO_LEFT;
-		startTime=System.nanoTime();
-
-		
+		// position = Config.BLUE_AUTO_LEFT;
+		startTime = System.nanoTime();
 		
 	}
 
@@ -159,122 +159,89 @@ public class AutoDrive extends Command {
 //					if (t < 2f) {
 //						Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
 //					} else {
-//						Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
-//					}
-			}
-			else {
+				// Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
+				// }
+			} else {
 				end();
 			}
 
-		}
-		else if(position == Config.BLUE_AUTO_RIGHT)
-		{
-			
-			//blue right
-			
-			if(getTime()<5.6)	{ 
-				Robot.driveTrain.driveWPI(-0.3,-.32);
-			}
-			else {
+		} else if (position == Config.BLUE_AUTO_RIGHT) {
+
+			// blue right
+
+			if (getTime() < 5.6) {
+				Robot.driveTrain.driveWPI(-0.3, -.32);
+			} else {
 				end();
 			}
 
-		}
-		else if(position == Config.RED_AUTO_RIGHT)
-		{
-			//red right
+		} else if (position == Config.RED_AUTO_RIGHT) {
+			// red right
 			double timetoTurnRed = 8.8;
-			if(getTime() < 5.6)	{ 
+			if (getTime() < 5.6) {
 				Robot.driveTrain.driveWPI(-0.3,-.32);
-			}
-			else if(getTime() < 5.6+3)	{ 
+			} else if (getTime() < 5.6 + 3) {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
-			}	
-			else if(getTime() < timetoTurnRed)	{ 
-				Robot.driveTrain.driveWPI(0.3,0);		}
-			else if(getTime() < (timetoTurnRed + .2) )	{ 
+			} else if (getTime() < timetoTurnRed) {
+				Robot.driveTrain.driveWPI(0.3, 0);
+			} else if (getTime() < (timetoTurnRed + .2)) {
 				System.out.print("waiting to turn");
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
-			}
-			else if(getTime() < (timetoTurnRed + .2 + 2.8))	{ 
+			} else if (getTime() < (timetoTurnRed + .2 + 2.8)) {
 				System.out.print("turning");
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT * -1);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
-			}
-			else {
+			} else {
 				end();
 			}
-		}
-		else if(position == Config.RED_AUTO_MIDDLE)
-		{
+		} else if (position == Config.RED_AUTO_MIDDLE) {
 			Log.init("Starting Red Autonomous Middle");
-			if(getTime()<Config.AUTO_MIDDLE_START_DRIVE_TIME)
-			{
+			if (getTime() < Config.AUTO_MIDDLE_START_DRIVE_TIME) {
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD_RIGHT);
-			}
-			else if(getTime()<Config.AUTO_MIDDLE_GEAR_WAIT_TIME)
-			{
+			} else if (getTime() < Config.AUTO_MIDDLE_GEAR_WAIT_TIME) {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
-			}
-			else if(getTime()<Config.AUTO_MIDDLE_BACK_OFF_TIME)
-			{
+			} else if (getTime() < Config.AUTO_MIDDLE_BACK_OFF_TIME) {
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_BACKWARD_LEFT);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_BACKWARD_RIGHT);
-			}
-			else if(getTime()< Config.AUTO_MIDDLE_AFTER_BACK_DELAY)
-			{
+			} else if (getTime() < Config.AUTO_MIDDLE_AFTER_BACK_DELAY) {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
-			}
-			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
-			{
-				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
-				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT );
-			}
-			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME)
-			{
+			} else if (getTime() < Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME) {
+				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT * -1);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
+			} else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME) {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
-			}
-			else if(getTime()<Config.AUTO_MIDDLE_DRIVE_GOAL_TIME)
-			{
+			} else if (getTime() < Config.AUTO_MIDDLE_DRIVE_GOAL_TIME) {
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD_RIGHT);
-			}
-			else if(getTime() < 15 /*<Config.AUTO_MIDDLE_SHOOT_TIME*/)
-			{
+			} else if (getTime() < 15 /* <Config.AUTO_MIDDLE_SHOOT_TIME */) {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
-//				if (t < 2f) {
-//					Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
-//				} else {
-//					Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
-//				}
-			}
-			else {
+				// if (t < 2f) {
+				// Robot.agitator.setSpinSpeed(-Config.AGITATOR_SPEED);
+				// } else {
+				// Robot.agitator.setSpinSpeed(Config.AGITATOR_SPEED);
+				// }
+			} else {
 				end();
 			}
 
-		}
-		else if(position == Config.RED_AUTO_LEFT)
-		{
-			//redLeft
-		if(getTime()<4.6)	{ 
-			Robot.driveTrain.driveWPI(-0.3, .3);
-		} 
-		else
-			{
-			end();
-		}
+		} else if (position == Config.RED_AUTO_LEFT) {
+			// redLeft
+			if (getTime() < 4.6) {
+				Robot.driveTrain.driveWPI(-0.3, .3);
+			} else {
+				end();
+			}
 		}
 
 	}
-
 	
 	
 	/**
