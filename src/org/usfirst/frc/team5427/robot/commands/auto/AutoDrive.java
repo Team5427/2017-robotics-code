@@ -87,45 +87,29 @@ public class AutoDrive extends Command {
 		
 //		if(position == Config.BLUE_AUTO_LEFT)
 //		{
-//			if(getTime()<Config.AUTO_LEFT_START_DRIVE_TIME)
-//			{
-//				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
-//				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD_RIGHT);
-//			}
-//			else if(getTime()<Config.AUTO_LEFT_BEFORE_TURN_DELAY)
-//			{
-//				if (!gyroReset) {
-//					Robot.gyro.reset();
-//					gyroReset = true;
-//				}
-//
-//				Robot.driveTrain.setLeftSpeed(0);
-//				Robot.driveTrain.setRightSpeed(0);
-//			}
-//			else if (getTime() < Config.AUTO_LEFT_TURN_TO_GEAR_TIME)
-//			{				
-//				while(Robot.gyro.getAngle() > -Config.A_LT_TURN_GEAR_DEG)
-//				{
-//					SmartDashboard.putNumber("Gryoscope: ", Robot.gyro.getAngle());
-//					Log.debug("Turning robot - Angle: " + Robot.gyro.getAngle());
-//					Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
-//					Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
-//				}
-//				Config.AUTO_LEFT_TURN_TO_GEAR_TIME=getTime();
-//			}
-//			else if(getTime()< Config.AUTO_LEFT_AFTER_TURN_DELAY)
-//			{
-//				Robot.driveTrain.setLeftSpeed(0);
-//				Robot.driveTrain.setRightSpeed(0);
-//			}
-//			else if(getTime()< Config.AUTO_LEFT_DRIVE_TO_GEAR_TIME)
-//			{
-//				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
-//				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_SPEED_FORWARD_RIGHT);
-//			}
-//			else
-//			{end();}
-//
+//			
+//		//blue left
+//		double timetoTurn = 7.8;
+//		if(getTime()<4.6)	{ 
+//Robot.driveTrain.driveWPI(-0.3,.3);
+//}
+//else if(getTime()<4.6+3)	{ 
+//	Robot.driveTrain.setLeftSpeed(0);
+//	Robot.driveTrain.setRightSpeed(0);
+//}	
+//else if(getTime() < timetoTurn)	{ 
+//	Robot.driveTrain.driveWPI(0.3,0);		}
+//else if(getTime() < (timetoTurn + .2) )	{ 
+//	System.out.print("waiting to turn");
+//	Robot.driveTrain.setLeftSpeed(0);
+//	Robot.driveTrain.setRightSpeed(0);
+//}
+//else if(getTime() < (timetoTurn + .2 + 3.3))	{ 
+//	System.out.print("turning");
+//	Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
+//Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
+//	
+//}
 //
 //		}
 //		else if(position == Config.BLUE_AUTO_MIDDLE)
@@ -167,28 +151,7 @@ public class AutoDrive extends Command {
 //		}
 //	
 //		
-//		//blue left
-//		double timetoTurn = 7.8;
-//				if(getTime()<4.6)	{ 
-//		Robot.driveTrain.driveWPI(-0.3,.3);
-//	}
-//		else if(getTime()<4.6+3)	{ 
-//			Robot.driveTrain.setLeftSpeed(0);
-//			Robot.driveTrain.setRightSpeed(0);
-//		}	
-//		else if(getTime() < timetoTurn)	{ 
-//			Robot.driveTrain.driveWPI(0.3,0);		}
-//		else if(getTime() < (timetoTurn + .2) )	{ 
-//			System.out.print("waiting to turn");
-//			Robot.driveTrain.setLeftSpeed(0);
-//			Robot.driveTrain.setRightSpeed(0);
-//		}
-//		else if(getTime() < (timetoTurn + .2 + 3.3))	{ 
-//			System.out.print("turning");
-//			Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
-//		Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT * -1);
-//			
-//		}
+//		
 		
 		
 //				
