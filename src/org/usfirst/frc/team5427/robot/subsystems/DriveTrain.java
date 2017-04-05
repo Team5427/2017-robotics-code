@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.hal.HAL;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.hal.FRCNetComm.tInstances;
 import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType;
 
@@ -128,6 +129,7 @@ public class DriveTrain extends Subsystem {
 	public void setLeftSpeed(double speed) {
 		motorPWM_FrontLeft.set(-speed * Config.DRIVE_TRAIN_MULTIPLIER);
 		motorPWM_RearLeft.set(-speed * Config.DRIVE_TRAIN_MULTIPLIER);
+		SmartDashboard.putNumber("Left Motors", speed);
 	}
 
 	/**
@@ -140,6 +142,7 @@ public class DriveTrain extends Subsystem {
 		Log.debug("Speed: " + speed);
 		motorPWM_FrontRight.set(speed * Config.DRIVE_TRAIN_MULTIPLIER);
 		MOTOR_PWM_BackRight.set(speed * Config.DRIVE_TRAIN_MULTIPLIER);
+		SmartDashboard.putNumber("Right Motors", speed);
 	}
 
 	/**

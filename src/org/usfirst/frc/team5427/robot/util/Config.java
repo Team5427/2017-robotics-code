@@ -58,6 +58,7 @@ public class Config {
 	public static final int AGITATOR_MOTOR 		= 6;
 	public static final int ROPE_CLIMB_MOTOR    = 7;
 	public static final int FLAP_MOTOR          = 8;
+	public static final int GATE_SERVO			= 9;
 	
 	/*-------------Ultrasonic Sensor Ports---------*/
 	public static final int ULTRASONIC_PING_CHANNEL = 0;
@@ -169,7 +170,7 @@ public class Config {
 	public static final double AUTO_MIDDLE_BACK_OFF_TIME = AUTO_MIDDLE_GEAR_WAIT_TIME + 1;//+AUTO_BACK_OFF_TIME;
 	public static final double AUTO_MIDDLE_AFTER_BACK_DELAY = AUTO_MIDDLE_BACK_OFF_TIME + AUTO_DELAY;
 	public static final double MIDDLE_TURN_ANGLE= 98.5-MOMENTUM_OFFSET;
-	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME = AUTO_MIDDLE_AFTER_BACK_DELAY + 2.6;
+	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME = AUTO_MIDDLE_AFTER_BACK_DELAY + 2.8;
 	public static final double AUTO_MIDDLE_TURN_WAIT_TIME = AUTO_MIDDLE_TURN_TO_GOAL_TIME + AUTO_DELAY;
 	public static final double AUTO_MIDDLE_DRIVE_GOAL_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + 1; // .51 too much
 	public static final double AUTO_MIDDLE_SHOOT_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + 10;//+AUTO_SHOOT_TIME;
@@ -200,16 +201,17 @@ public class Config {
 	public static final double DEGREE_THRESHOLD = 3.0;
 	
 	/*---------------Buttons------------------- */
-	public static final int SHOOT_BUTTON = 1;
-	public static final int PULL_BUTTON = 8;
-	public static final int SWITCH_CAMERAS_BUTTON = 3;
-	public static final int START_INTAKE_BUTTON = 4;
-	public static final int CHANGE_INTAKE_DIRECTION_BUTTON = 6;
-	public static final int SPIN_BUTTON = 2;
-	public static final int SPIN_OUT_BUTTON = 7;
-	public static final int FLAP_OPEN = 5;
-	public static final int FLAP_CLOSE = 3;
-	public static final int AUTO_ADJUST_BUTTON = 13;
+	public static final int SHOOT_BUTTON 					= 1;
+	public static final int SPIN_BUTTON 					= 2;
+	public static final int FLAP_CLOSE 						= 3;
+	public static final int SWITCH_CAMERAS_BUTTON 			= 3;
+	public static final int START_INTAKE_BUTTON 			= 4;
+	public static final int FLAP_OPEN 						= 5;
+	public static final int CHANGE_INTAKE_DIRECTION_BUTTON 	= 6;
+	public static final int SPIN_OUT_BUTTON			 		= 7;
+	public static final int PULL_BUTTON 					= 8;
+	public static final int GATE_SWITCH 					= 9;
+	public static final int AUTO_ADJUST_BUTTON 				= 13;
 
 	/*------------Mulipurpose Flap Vars------*/
 	public static enum stage {OPEN,CLOSE};
@@ -218,4 +220,8 @@ public class Config {
 	public static final long intakeToGear = (long) .5;
 	public static final long gearToRetracted = 1;
 	public static final double FLAP_SPEED = .05;
+	
+	/* Servo Motors */
+	public static final int GATE_CLOSED = 1;
+	public static final int GATE_OPEN	= 2;
 }

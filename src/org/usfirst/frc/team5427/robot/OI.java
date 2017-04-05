@@ -12,6 +12,7 @@ import org.usfirst.frc.team5427.robot.commands.AgiBack;
 //import org.usfirst.frc.team5427.robot.commands.ChangeCameras
 //import org.usfirst.frc.team5427.robot.commands.ChangeCamera;
 import org.usfirst.frc.team5427.robot.commands.ChangeDirections;
+import org.usfirst.frc.team5427.robot.commands.MoveServo;
 import org.usfirst.frc.team5427.robot.commands.PullRope;
 import org.usfirst.frc.team5427.robot.commands.SetFlapStage;
 //import org.usfirst.frc.team5427.robot.commands.SetFlapStage;
@@ -94,6 +95,8 @@ public class OI {
 	public Button spin = new JoystickButton(joy, Config.SPIN_BUTTON);
 	public Button spinBack = new JoystickButton(joy, Config.SPIN_OUT_BUTTON);
 	
+	public Button moveServo = new JoystickButton(joy, Config.GATE_SWITCH);
+	
 	SendableChooser<Integer> autoChooser= new SendableChooser<Integer>();
 	
 	/**
@@ -108,6 +111,7 @@ public class OI {
 		spin.whileHeld(new AgitatorStart(Config.AGITATOR_SPEED));
 		spinBack.whileHeld(new AgiBack(Config.AGITATOR_SPEED_BACKWARDS));
 		flapOpen.whenPressed(new SetFlapStage(Config.stage.OPEN));
+		moveServo.whenPressed(new MoveServo());
 		//flapClose.whenPressed(new SetFlapStage(Config.stage.CLOSE));
 
 		
