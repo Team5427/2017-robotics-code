@@ -33,9 +33,9 @@ public class GateServo extends Subsystem {
 		} 
 		else if (position == Config.GATE_OPEN) {
 //			position = Config.GATE_CLOSED;
-			servo.set(.57);
-			setDesPos(.57);
-			SmartDashboard.putNumber("Servo", .55);
+			servo.set(.63);
+			setDesPos(.63);
+			SmartDashboard.putNumber("Servo", .63);
 		}
 	}
 

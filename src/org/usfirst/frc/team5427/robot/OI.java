@@ -72,11 +72,11 @@ public class OI {
 	/**
 	 * Changes the direction of the intake
 	 */
-	public Button changeIntakeDirection = new JoystickButton(joy, Config.CHANGE_INTAKE_DIRECTION_BUTTON);
+	//public Button changeIntakeDirection = new JoystickButton(joy, Config.CHANGE_INTAKE_DIRECTION_BUTTON);
 	/**
 	 * Starts the intake
 	 */
-	public Button startIntake = new JoystickButton(joy, Config.START_INTAKE_BUTTON);
+	//public Button startIntake = new JoystickButton(joy, Config.START_INTAKE_BUTTON);
 	/**
 	 * Button to shoot the balls
 	 */
@@ -105,8 +105,8 @@ public class OI {
 	public OI() {
 		shooter.whileHeld(new ShooterStart(Config.SHOOTER_MOTOR_SPEED));
 
-		startIntake.toggleWhenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
-		changeIntakeDirection.toggleWhenPressed(new ChangeDirections());
+		//startIntake.toggleWhenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
+		//changeIntakeDirection.toggleWhenPressed(new ChangeDirections());
 		pull.whenPressed(new PullRope());
 		spin.whileHeld(new AgitatorStart(Config.AGITATOR_SPEED));
 		spinBack.whileHeld(new AgiBack(Config.AGITATOR_SPEED_BACKWARDS));
