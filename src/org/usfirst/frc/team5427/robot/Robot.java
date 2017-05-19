@@ -368,6 +368,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		Log.info("Autonomous Start!");
 		// Log.info("Gyro was reset!");
+		gateSub.changePos(Config.GATE_CLOSED);
 		new AutoDrive(oi.autoChooser.getSelected()).start();
 	}
 
