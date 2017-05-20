@@ -170,9 +170,9 @@ public class Config {
 	public static final double AUTO_MIDDLE_BACK_OFF_TIME = AUTO_MIDDLE_GEAR_WAIT_TIME + 1;//+AUTO_BACK_OFF_TIME;
 	public static final double AUTO_MIDDLE_AFTER_BACK_DELAY = AUTO_MIDDLE_BACK_OFF_TIME + AUTO_DELAY;
 	public static final double MIDDLE_TURN_ANGLE= 98.5-MOMENTUM_OFFSET;
-	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME = AUTO_MIDDLE_AFTER_BACK_DELAY + 1.35;
+	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME = AUTO_MIDDLE_AFTER_BACK_DELAY + 1.25;
 	public static final double AUTO_MIDDLE_TURN_WAIT_TIME = AUTO_MIDDLE_TURN_TO_GOAL_TIME + AUTO_DELAY;
-	public static final double AUTO_MIDDLE_DRIVE_GOAL_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + .5; 
+	public static final double AUTO_MIDDLE_DRIVE_GOAL_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + .4; 
 	public static final double AUTO_MIDDLE_SHOOT_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + 10;//+AUTO_SHOOT_TIME;
 	//Right Side
 	public static final double AUTO_RIGHT_START_DRIVE_TIME = 3.7;
@@ -212,7 +212,7 @@ public class Config {
 	public static final int AUTO_ADJUST_BUTTON 				= 13;
 
 	/*------------Mulipurpose Flap Vars------*/
-	public static enum stage {OPEN,CLOSE};
+	public static enum stage 	{OPEN,CLOSE};
 	public static stage FLAP_START_STAGE=stage.CLOSE;
 	public static final long retractedToIntake = 1;
 	public static final long intakeToGear = (long) .5;

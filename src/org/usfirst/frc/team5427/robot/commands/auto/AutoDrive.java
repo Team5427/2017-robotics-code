@@ -146,7 +146,7 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime()<Config.AUTO_MIDDLE_DRIVE_GOAL_TIME)
+			else if(getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME + .25)
 			{
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
