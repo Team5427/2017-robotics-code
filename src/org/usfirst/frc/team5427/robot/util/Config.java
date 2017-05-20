@@ -183,8 +183,8 @@ public class Config {
 	public static final double AUTO_RIGHT_SHOOT_TIME =AUTO_RIGHT_TURN_TO_GOAL_TIME+ 0;//+AUTO_SHOOT_TIME;
 
 	//Left
-	public static final double AUTO_RED_LEFT_START_DRIVE_TIME = 3.7;
-	public static final double AUTO_BLUE_LEFT_START_DRIVE_TIME = 3.7;
+	public static final double AUTO_RED_LEFT_START_DRIVE_TIME 	= 3.7;
+	public static final double AUTO_BLUE_LEFT_START_DRIVE_TIME 	= 4.0;
 	/*-----------spot-----------*/
 	public static final int AUTO_NONE = -1;
 	public static final int BLUE_AUTO_LEFT = 0; 
