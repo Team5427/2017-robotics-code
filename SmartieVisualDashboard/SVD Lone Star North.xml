@@ -1,5 +1,12 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Servo" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+		<location x="601" y="233"/>
+		<property name="Foreground" value="0.204.204.255"/>
+		<property name="Background" value="204.0.0.255"/>
+		<property name="Maximum" value="0.8"/>
+		<property name="Minimum" value="0.55"/>
+	</widget>
 	<widget field="Right Motors" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
 		<location x="550" y="19"/>
 		<property name="Upper Limit" value="1.0"/>
@@ -10,11 +17,6 @@
 		<location x="327" y="21"/>
 		<property name="Upper Limit" value="1.0"/>
 		<property name="Lower Limit" value="-1.0"/>
-		<property name="Tick Interval" value="0.1"/>
-	</widget>
-	<widget field="Servo" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
-		<location x="547" y="202"/>
-		<property name="Upper Limit" value="1.0"/>
 		<property name="Tick Interval" value="0.1"/>
 	</widget>
 	<widget field="Time" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
