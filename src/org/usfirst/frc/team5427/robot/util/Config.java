@@ -111,8 +111,8 @@ public class Config {
 
 	// motor speeds
 
-	public static final double INTAKE_MOTOR_SPEED = 1;
-	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-1;
+	public static final double INTAKE_MOTOR_SPEED = -1;
+	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=1;
 	public static final double SHOOTER_MOTOR_SPEED = 1;
 	public static final double AGITATOR_SPEED = -1;
 	public static final double AGITATOR_SPEED_BACKWARDS = 1;
@@ -128,7 +128,7 @@ public class Config {
 															// ONE_JOYSTICK or
 	
 	/*------------speed for auto-------*/
-	public static final double AUTO_FULL_SPEED_FORWARD_LEFT  = -.23;
+	public static final double AUTO_FULL_SPEED_FORWARD_LEFT  = -0.28; //too much-0.30;//Too little.23;
 	public static final double AUTO_FULL_SPEED_FORWARD_RIGHT = -.30;
 	@Deprecated
 	public static final double AUTO_FULL_SPEED_BACKWARD = .3;
@@ -165,15 +165,23 @@ public class Config {
 	public static final double AUTO_LEFT_TURN_TO_GOAL_TIME =AUTO_LEFT_BACK_OFF_TIME+ 0;
 	public static final double AUTO_LEFT_SHOOT_TIME =AUTO_LEFT_TURN_TO_GOAL_TIME+ 0;//+AUTO_SHOOT_TIME;
 	//Middle
-	public static final double AUTO_MIDDLE_START_DRIVE_TIME = 2.5;
+	public static final double AUTO_MIDDLE_START_DRIVE_TIME = 2.8;
 	public static final double AUTO_MIDDLE_GEAR_WAIT_TIME = AUTO_MIDDLE_START_DRIVE_TIME + AUTO_GEAR_WAIT_TIME;
 	public static final double AUTO_MIDDLE_BACK_OFF_TIME = AUTO_MIDDLE_GEAR_WAIT_TIME + 1;//+AUTO_BACK_OFF_TIME;
 	public static final double AUTO_MIDDLE_AFTER_BACK_DELAY = AUTO_MIDDLE_BACK_OFF_TIME + AUTO_DELAY;
 	public static final double MIDDLE_TURN_ANGLE= 98.5-MOMENTUM_OFFSET;
-	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME = AUTO_MIDDLE_AFTER_BACK_DELAY + 1.25;
-	public static final double AUTO_MIDDLE_TURN_WAIT_TIME = AUTO_MIDDLE_TURN_TO_GOAL_TIME + AUTO_DELAY;
-	public static final double AUTO_MIDDLE_DRIVE_GOAL_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + .4; 
-	public static final double AUTO_MIDDLE_SHOOT_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + 10;//+AUTO_SHOOT_TIME;
+	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME_BLUE = AUTO_MIDDLE_AFTER_BACK_DELAY + 1.56;
+	
+	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME_RED = AUTO_MIDDLE_AFTER_BACK_DELAY + 1.295;//1.38;Good, then too much//1.495 Too much
+	public static final double AUTO_MIDDLE_TURN_WAIT_TIME_RED = AUTO_MIDDLE_TURN_TO_GOAL_TIME_RED + AUTO_DELAY;
+	public static final double AUTO_MIDDLE_DRIVE_GOAL_TIME_RED = AUTO_MIDDLE_TURN_WAIT_TIME_RED + .4; 
+	
+	
+	
+	
+	public static final double AUTO_MIDDLE_TURN_WAIT_TIME_BLUE = AUTO_MIDDLE_TURN_TO_GOAL_TIME_BLUE + AUTO_DELAY;
+	public static final double AUTO_MIDDLE_DRIVE_GOAL_TIME_BLUE = AUTO_MIDDLE_TURN_WAIT_TIME_BLUE + .4; 
+	//public static final double AUTO_MIDDLE_SHOOT_TIME = AUTO_MIDDLE_TURN_WAIT_TIME + 10;//+AUTO_SHOOT_TIME;
 	//Right Side
 	public static final double AUTO_RIGHT_START_DRIVE_TIME = 3.7;
 	public static final double AUTO_RIGHT_GEAR_WAIT_TIME = AUTO_RIGHT_START_DRIVE_TIME +3;
@@ -184,7 +192,7 @@ public class Config {
 
 	//Left
 	public static final double AUTO_RED_LEFT_START_DRIVE_TIME 	= 3.7;
-	public static final double AUTO_BLUE_LEFT_START_DRIVE_TIME 	= 4.0;
+	public static final double AUTO_BLUE_LEFT_START_DRIVE_TIME 	= 4.3;
 	/*-----------spot-----------*/
 	public static final int AUTO_NONE = -1;
 	public static final int BLUE_AUTO_LEFT = 0; 

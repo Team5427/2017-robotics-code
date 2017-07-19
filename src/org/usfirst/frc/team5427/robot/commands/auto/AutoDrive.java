@@ -80,7 +80,9 @@ public class AutoDrive extends Command {
 			double timetoTurn = 7.7;
 			if(getTime() < Config.AUTO_BLUE_LEFT_START_DRIVE_TIME)	{ 
 				
-			Robot.driveTrain.driveWPI(-0.3,0.08);
+				Robot.driveTrain.driveWPI(-0.3, 0.205); //close, wide 0.23);//Tooo far in0.35);
+				//.5 Too narrow
+//				Robot.driveTrain.driveWPI(-0.3,0.08);//Wide curve 
 //				Robot.driveTrain.driveWPI(-0.3, .038875);
 			}else if (getTime() < Config.AUTO_BLUE_LEFT_START_DRIVE_TIME + 3) {
 				Robot.driveTrain.setLeftSpeed(0);
@@ -91,7 +93,7 @@ public class AutoDrive extends Command {
 				System.out.print("waiting to turn");
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
-			} else if (getTime() < (timetoTurn + .2 + 2.3)) {	// 7.4
+			} else if (getTime() < (timetoTurn + .2 + 2.6	)) {	// 7.4
 				System.out.print("turning");
 				Robot.driveTrain.setLeftSpeed(-Config.AUTO_FULL_TURN_SPEED_LEFT);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
@@ -135,18 +137,19 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setRightSpeed(0);
 				
 			}
-			else if(getTime()<Config.AUTO_MIDDLE_AFTER_BACK_DELAY + 1.85)
+			else if(getTime()<Config.AUTO_MIDDLE_AFTER_BACK_DELAY + 2.67)//too much2.8)//2.5 too little// 1.85)//off to side
 			{
+				//Rotates Robot BLUE
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT*-1);
 
 			}
-			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME)
+			else if (getTime() < Config.AUTO_MIDDLE_AFTER_BACK_DELAY+2.67+Config.AUTO_DELAY)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME + .25)
+			else if(getTime() < Config.AUTO_MIDDLE_AFTER_BACK_DELAY+2.67+Config.AUTO_DELAY + .25)
 			{
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
@@ -184,7 +187,8 @@ public class AutoDrive extends Command {
 			//red right
 		
 			if(getTime() < Config.AUTO_RIGHT_START_DRIVE_TIME )	{ 
-				Robot.driveTrain.driveWPI(-0.4,-.35);	// -.04 old too little
+				Robot.driveTrain.driveWPI(-0.4,-.18);	// -.04 old too little
+//				Robot.driveTrain.driveWPI(-0.4,-.25);	// too narrow
 //				Robot.driveTrain.driveWPI(-0.3,-.32);	// -.04 old too little
 			}
 			 else {
@@ -196,7 +200,8 @@ public class AutoDrive extends Command {
 			//red right
 			double timetoTurnRed = 8.2;
 			if(getTime() < Config.AUTO_RIGHT_START_DRIVE_TIME )	{ 
-				Robot.driveTrain.driveWPI(-0.4,-.35);	// -.04 old too little
+				Robot.driveTrain.driveWPI(-0.4,-.18);
+//				Robot.driveTrain.driveWPI(-0.4,-.25); //Curved in too much	// -.04 old too little
 //				Robot.driveTrain.driveWPI(-0.3,-.32);	// -.04 old too little
 			}
 			else if(getTime() < Config.AUTO_RIGHT_GEAR_WAIT_TIME)	{ 
@@ -251,17 +256,18 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME)
+			else if(getTime()<Config.AUTO_MIDDLE_TURN_TO_GOAL_TIME_RED)
 			{
+				//Rotate the Robot
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT*-1);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT );
 			}
-			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME)
+			else if (getTime() < Config.AUTO_MIDDLE_TURN_WAIT_TIME_RED)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime()<Config.AUTO_MIDDLE_DRIVE_GOAL_TIME)
+			else if(getTime()<Config.AUTO_MIDDLE_DRIVE_GOAL_TIME_RED)
 			{
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
@@ -283,7 +289,7 @@ public class AutoDrive extends Command {
 			
 			if(getTime() < Config.AUTO_RED_LEFT_START_DRIVE_TIME)	{ 
 			
-				Robot.driveTrain.driveWPI(-0.3,0.07);
+				Robot.driveTrain.driveWPI(-0.3,0.205);
 //				Robot.driveTrain.driveWPI(-0.3, .038875);
 			}
 			else {
