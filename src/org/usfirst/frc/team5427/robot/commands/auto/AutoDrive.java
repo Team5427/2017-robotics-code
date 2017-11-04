@@ -219,8 +219,11 @@ public class AutoDrive extends Command {
 				System.out.print("turning");
 				Robot.driveTrain.setLeftSpeed(.35);
 				Robot.driveTrain.setRightSpeed(-.35);
+			}
+			else if(getTime() < Config.AUTO_RIGHT_SHOOT_TIME)	{
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
-			} else if (getTime() < 15) {
+			}
+			else if (getTime() < 15) {
 				Robot.driveTrain.stop();
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
 //				if (getTime() > (timetoTurnRed + .2 + 3.3 + .1)) {
@@ -289,7 +292,7 @@ public class AutoDrive extends Command {
 			
 			if(getTime() < Config.AUTO_RED_LEFT_START_DRIVE_TIME)	{ 
 			
-				Robot.driveTrain.driveWPI(-0.3,0.205);
+				Robot.driveTrain.driveWPI(-0.4,0.215);
 //				Robot.driveTrain.driveWPI(-0.3, .038875);
 			}
 			else {
