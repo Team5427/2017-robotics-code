@@ -290,7 +290,7 @@ public class AutoDrive extends Command {
 		else if (position == Config.RED_AUTO_LEFT) {
 			// redLeft
 			
-			if(getTime() < Config.AUTO_RED_LEFT_START_DRIVE_TIME)	{ 
+			if(getTime() < Config.AUTO_RED_LEFT_START_DRIVE_TIME)	{
 			
 				Robot.driveTrain.driveWPI(-0.4,0.215);
 //				Robot.driveTrain.driveWPI(-0.3, .038875);
