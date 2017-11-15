@@ -128,7 +128,7 @@ public class Config {
 															// ONE_JOYSTICK or
 	
 	/*------------speed for auto-------*/
-	public static final double AUTO_FULL_SPEED_FORWARD_LEFT  = -0.28; //too much-0.30;//Too little.23;
+	public static final double AUTO_FULL_SPEED_FORWARD_LEFT  = -0.3;// -0.28; TO THE LEFT ARE REMIX NUMBERS//too much-0.30;//Too little.23;
 	public static final double AUTO_FULL_SPEED_FORWARD_RIGHT = -.30;
 	@Deprecated
 	public static final double AUTO_FULL_SPEED_BACKWARD = .3;
@@ -136,8 +136,8 @@ public class Config {
 	public static final double AUTO_FULL_SPEED_BACKWARD_LEFT  = .26;
 	public static final double AUTO_FULL_SPEED_BACKWARD_RIGHT = .30;
 	
-	public static final double AUTO_FULL_TURN_SPEED_RIGHT = .3;
-	public static final double AUTO_FULL_TURN_SPEED_LEFT = .3;	
+	public static final double AUTO_FULL_TURN_SPEED_RIGHT = .5;
+	public static final double AUTO_FULL_TURN_SPEED_LEFT = .7;
 
 	
 	/*------------timings for auto-------*/
@@ -165,14 +165,14 @@ public class Config {
 	public static final double AUTO_LEFT_TURN_TO_GOAL_TIME =AUTO_LEFT_BACK_OFF_TIME+ 0;
 	public static final double AUTO_LEFT_SHOOT_TIME =AUTO_LEFT_TURN_TO_GOAL_TIME+ 0;//+AUTO_SHOOT_TIME;
 	//Middle
-	public static final double AUTO_MIDDLE_START_DRIVE_TIME = 2.8;
+	public static final double AUTO_MIDDLE_START_DRIVE_TIME = 3.2;
 	public static final double AUTO_MIDDLE_GEAR_WAIT_TIME = AUTO_MIDDLE_START_DRIVE_TIME + AUTO_GEAR_WAIT_TIME;
 	public static final double AUTO_MIDDLE_BACK_OFF_TIME = AUTO_MIDDLE_GEAR_WAIT_TIME + 1;//+AUTO_BACK_OFF_TIME;
 	public static final double AUTO_MIDDLE_AFTER_BACK_DELAY = AUTO_MIDDLE_BACK_OFF_TIME + AUTO_DELAY;
 	public static final double MIDDLE_TURN_ANGLE= 98.5-MOMENTUM_OFFSET;
-	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME_BLUE = AUTO_MIDDLE_AFTER_BACK_DELAY + 1.56;
+	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME_BLUE = AUTO_MIDDLE_AFTER_BACK_DELAY + 4.4;//1.56;
 	
-	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME_RED = AUTO_MIDDLE_AFTER_BACK_DELAY + 1.97;//1.9 too little 2.0 really close
+	public static double AUTO_MIDDLE_TURN_TO_GOAL_TIME_RED = AUTO_MIDDLE_AFTER_BACK_DELAY + .58;//.85; //.82 //.985;//1.97;<-Remix//1.9 too little 2.0 really close
 	public static final double AUTO_MIDDLE_TURN_WAIT_TIME_RED = AUTO_MIDDLE_TURN_TO_GOAL_TIME_RED + AUTO_DELAY;
 	public static final double AUTO_MIDDLE_DRIVE_GOAL_TIME_RED = AUTO_MIDDLE_TURN_WAIT_TIME_RED + .4; 
 	
@@ -192,7 +192,7 @@ public class Config {
 
 	//Left
 	public static final double AUTO_RED_LEFT_START_DRIVE_TIME 	= 3.7;
-	public static final double AUTO_BLUE_LEFT_START_DRIVE_TIME 	= 4.3;
+	public static final double AUTO_BLUE_LEFT_START_DRIVE_TIME 	= 5.7; //4.3
 	/*-----------spot-----------*/
 	public static final int AUTO_NONE = -1;
 	public static final int BLUE_AUTO_LEFT = 0; 

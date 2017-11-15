@@ -77,10 +77,10 @@ public class AutoDrive extends Command {
 		if(position == Config.BLUE_AUTO_LEFT)
 		{
 			Log.info("BL");
-			double timetoTurn = 7.7;
+			double timetoTurn = 8.9;
 			if(getTime() < Config.AUTO_BLUE_LEFT_START_DRIVE_TIME)	{ 
 				
-				Robot.driveTrain.driveWPI(-0.3, 0.205); //close, wide 0.23);//Tooo far in0.35);
+				Robot.driveTrain.driveWPI(-0.3, 0.21); //close, wide 0.23);//Tooo far in0.35);
 				//.5 Too narrow
 //				Robot.driveTrain.driveWPI(-0.3,0.08);//Wide curve 
 //				Robot.driveTrain.driveWPI(-0.3, .038875);
@@ -93,7 +93,7 @@ public class AutoDrive extends Command {
 				System.out.print("waiting to turn");
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
-			} else if (getTime() < (timetoTurn + .2 + 2.6	)) {	// 7.4
+			} else if (getTime() < (timetoTurn + .2 + 1.4	)) {	// 7.4
 				System.out.print("turning");
 				Robot.driveTrain.setLeftSpeed(-Config.AUTO_FULL_TURN_SPEED_LEFT);
 				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT);
@@ -137,19 +137,19 @@ public class AutoDrive extends Command {
 				Robot.driveTrain.setRightSpeed(0);
 				
 			}
-			else if(getTime()<Config.AUTO_MIDDLE_AFTER_BACK_DELAY + 2.67)//too much2.8)//2.5 too little// 1.85)//off to side
+			else if(getTime()<Config.AUTO_MIDDLE_AFTER_BACK_DELAY + .8175)//.82//<-remix//2.67)//too much2.8)//2.5 too little// 1.85)//off to side
 			{
 				//Rotates Robot BLUE
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_TURN_SPEED_LEFT);
-				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT*-1);
+				Robot.driveTrain.setRightSpeed(Config.AUTO_FULL_TURN_SPEED_RIGHT*-1 );
 
 			}
-			else if (getTime() < Config.AUTO_MIDDLE_AFTER_BACK_DELAY+2.67+Config.AUTO_DELAY)
+			else if (getTime() < Config.AUTO_MIDDLE_AFTER_BACK_DELAY+.8175+Config.AUTO_DELAY)
 			{
 				Robot.driveTrain.setLeftSpeed(0);
 				Robot.driveTrain.setRightSpeed(0);
 			}
-			else if(getTime() < Config.AUTO_MIDDLE_AFTER_BACK_DELAY+2.67+Config.AUTO_DELAY + .25)
+			else if(getTime() < Config.AUTO_MIDDLE_AFTER_BACK_DELAY+.8175+Config.AUTO_DELAY + .125)
 			{
 				Robot.launcher.setShootSpeed(Config.SHOOTER_MOTOR_SPEED);
 				Robot.driveTrain.setLeftSpeed(Config.AUTO_FULL_SPEED_FORWARD_LEFT);
