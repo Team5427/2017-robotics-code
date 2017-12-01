@@ -20,14 +20,16 @@ public class autoHorizontalAlignGoalCommand extends Command {
 	public static final int NEED_TO_TURN_LEFT = -1;
 	public static final int CENTERED = 0;
 
-	public autoHorizontalAlignGoalCommand(double timeout) {
+	public autoHorizontalAlignGoalCommand(double timeout, NetworkTable table) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
+		this.table=table;
 		// TODO fix below code
 		setTimeout(timeout);
-		NetworkTable table = NetworkTable.getTable("GRIP");
-		NetworkTable.setClientMode();
-		NetworkTable.setIPAddress("localhost");
+		Log.info("Timeout set");
+//		NetworkTable table = NetworkTable.getTable("GRIP");
+//		NetworkTable.setClientMode();
+//		NetworkTable.setIPAddress("localhost");
 	}
 
 	// TODO check this code for autonomous

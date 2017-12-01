@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import sun.util.logging.resources.logging;
@@ -179,8 +180,9 @@ public class Robot extends IterativeRobot {
 	 */
 	// public static AxisCamera axisCam;
 
-	public static Client c;
+	//public static Client c;
 
+	public static NetworkTable table;
 	/** Current camera in use */
 	public static int currentCamera = 0;
 	// NI USB interface numbers for the cameras
@@ -280,6 +282,7 @@ public class Robot extends IterativeRobot {
 		gateSub.changePos(Config.GATE_OPEN);
 		gateSub.changePos(Config.GATE_CLOSED);
 		Log.init("Gate subsystem initialized!");
+		
 
 		/* Initialize Sensor */
 		// TODO Test Cameras
@@ -370,8 +373,14 @@ public class Robot extends IterativeRobot {
 	Log.info("Autonomous Start!");
 	// Log.info("Gyro was reset!");
 	gateSub.changePos(Config.GATE_CLOSED);
+	table = NetworkTable.getTable("GRIP");
+	NetworkTable.setClientMode();
+	NetworkTable.setIPAddress("localhost");
 	//new AutoDrive(oi.autoChooser.getSelected()).start();
-	new autoHorizontalAlignGoalCommand(20);
+	Log.info("Auto goal start");
+
+	new autoHorizontalAlignGoalCommand(20, table);
+	Log.info("Auto end");
 	}
 
 	/**
