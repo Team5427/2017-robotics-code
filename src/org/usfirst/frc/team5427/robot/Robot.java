@@ -35,6 +35,7 @@ import org.usfirst.frc.team5427.robot.util.Config;
 import org.usfirst.frc.team5427.robot.commands.MoveServo;
 import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
 import org.usfirst.frc.team5427.robot.commands.auto.AutoDrive;
+import org.usfirst.frc.team5427.robot.commands.auto.autoHorizontalAlignGoalCommand;
 import org.usfirst.frc.team5427.robot.commands.subsystemControl.*;
 import org.usfirst.frc.team5427.robot.network.Client;
 //import org.usfirst.frc.team5427.robot.network.SteamworkInterpreter;
@@ -363,13 +364,14 @@ public class Robot extends IterativeRobot {
 	 * You can add additional auto modes by adding additional commands to the
 	 * chooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
-	 */
+	 */	
 	@Override
 	public void autonomousInit() {
-		Log.info("Autonomous Start!");
-		// Log.info("Gyro was reset!");
-		gateSub.changePos(Config.GATE_CLOSED);
-		new AutoDrive(oi.autoChooser.getSelected()).start();
+	Log.info("Autonomous Start!");
+	// Log.info("Gyro was reset!");
+	gateSub.changePos(Config.GATE_CLOSED);
+	//new AutoDrive(oi.autoChooser.getSelected()).start();
+	new autoHorizontalAlignGoalCommand(20);
 	}
 
 	/**
