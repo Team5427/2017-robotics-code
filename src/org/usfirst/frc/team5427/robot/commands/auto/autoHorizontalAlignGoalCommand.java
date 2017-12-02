@@ -40,6 +40,8 @@ public class autoHorizontalAlignGoalCommand extends Command {
 	 */
 	@SuppressWarnings("all")
 	protected void execute() {
+		Log.info("In execute of autoHoriz");
+		
 		if (CENTERED == getTurnDirectionNeeded())
 			Log.info("robot is centered");
 		if (NEED_TO_TURN_LEFT == getTurnDirectionNeeded())
@@ -53,14 +55,14 @@ public class autoHorizontalAlignGoalCommand extends Command {
 	 * NetworkTable
 	 */
 	public int getTurnDirectionNeeded() {
-		Double data = null;
-		table.getNumber("horizontalData", data);
+		double data=0.0;
+		data = table.getNumber("horizontalData", 0.0);
 		Log.info("DATA is " + data);
 		// position bytes
 		byte needToMoveLeft = 0, needToMoveRight = 0, centered = 0;
 		// converts data to a byte array
 		byte[] buff = new byte[3];
-		buff = PackingClass.doubleToBytes(data);
+		buff = PackingClass.doubleToBytes((double)data);
 		// sets the different position bytes to their correct values
 		needToMoveLeft = buff[0];
 		centered = buff[1];

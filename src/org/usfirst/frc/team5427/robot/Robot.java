@@ -370,17 +370,18 @@ public class Robot extends IterativeRobot {
 	 */	
 	@Override
 	public void autonomousInit() {
-	Log.info("Autonomous Start!");
-	// Log.info("Gyro was reset!");
-	gateSub.changePos(Config.GATE_CLOSED);
-	table = NetworkTable.getTable("GRIP");
-	NetworkTable.setClientMode();
-	NetworkTable.setIPAddress("localhost");
-	//new AutoDrive(oi.autoChooser.getSelected()).start();
-	Log.info("Auto goal start");
-
-	new autoHorizontalAlignGoalCommand(20, table);
-	Log.info("Auto end");
+		Log.info("Autonomous Start!");
+		// Log.info("Gyro was reset!");
+		gateSub.changePos(Config.GATE_CLOSED);
+		table = NetworkTable.getTable("GRIP");
+		//NetworkTable.setClientMode();
+		NetworkTable.setIPAddress("localhost");
+		//new AutoDrive(oi.autoChooser.getSelected()).start();
+		Log.info("Auto goal start");
+	
+		autoHorizontalAlignGoalCommand aHAGC = new autoHorizontalAlignGoalCommand(20, table);
+		aHAGC.start();
+		Log.info("Auto end");
 	}
 
 	/**
