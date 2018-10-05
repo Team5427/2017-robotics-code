@@ -113,7 +113,7 @@ public class Config {
 
 	public static final double INTAKE_MOTOR_SPEED = 1;
 	public static final double INTAKE_MOTOR_SPEED_BACKWARDS=-1;
-	public static final double SHOOTER_MOTOR_SPEED = 1;
+	public static final double SHOOTER_MOTOR_SPEED = -1;
 	public static final double AGITATOR_SPEED = -1;
 	public static final double AGITATOR_SPEED_BACKWARDS = 1;
 	public static final double CLIMB_SPEED = -1; 
