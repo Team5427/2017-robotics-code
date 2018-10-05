@@ -12,6 +12,8 @@ import org.usfirst.frc.team5427.robot.util.Log;
 /**
  * this class constantly inputs the Joystick axis into the driveTrain file,
  * causing the robot to move.
+ * 
+ * THIS IS FOR VISION PROCESSING
  */
 public class Drive extends Command {
 
@@ -50,36 +52,36 @@ public class Drive extends Command {
 	@SuppressWarnings("all")
 	protected void execute() {
 		
-		if(Robot.oi.getJoy().getRawButton(Config.AUTO_ADJUST_BUTTON))
-		{
-			if(System.nanoTime()-Robot.swip.lastRecievedTime<500000000) //less than half a second since last recieved data
-			{
-				double horAngle = Robot.swip.horizontalAngle;  //horizontal angle from center
-				
-				if(horAngle<-1*Config.DEGREE_THRESHOLD) //robot is to the left
-				{
-					//TODO: replace values with config values
-					if(horAngle>-5)
-						Robot.driveTrain.setLeftSpeed(.1);
-					else if(horAngle>-10)
-						Robot.driveTrain.setLeftSpeed(.4);
-					else
-						Robot.driveTrain.setLeftSpeed(.7);
-				}
-				else if(horAngle>Config.DEGREE_THRESHOLD) //robot is to the right
-				{
-					//TODO: replace values with config values
-					if(horAngle>5)
-						Robot.driveTrain.setLeftSpeed(.1);
-					else if(horAngle>10)
-						Robot.driveTrain.setLeftSpeed(.4);
-					else
-						Robot.driveTrain.setLeftSpeed(.7);
-				}
-			}
-		}
-		else
-		{
+//		if(Robot.oi.getJoy().getRawButton(Config.AUTO_ADJUST_BUTTON))
+//		{
+//			if(System.nanoTime()-Robot.swip.lastRecievedTime<500000000) //less than half a second since last recieved data
+//			{
+//				double horAngle = Robot.swip.horizontalAngle;  //horizontal angle from center
+//				
+//				if(horAngle<-1*Config.DEGREE_THRESHOLD) //robot is to the left
+//				{
+//					//TODO: replace values with config values
+//					if(horAngle>-5)
+//						Robot.driveTrain.setLeftSpeed(.1);
+//					else if(horAngle>-10)
+//						Robot.driveTrain.setLeftSpeed(.4);
+//					else
+//						Robot.driveTrain.setLeftSpeed(.7);
+//				}
+//				else if(horAngle>Config.DEGREE_THRESHOLD) //robot is to the right
+//				{
+//					//TODO: replace values with config values
+//					if(horAngle>5)
+//						Robot.driveTrain.setLeftSpeed(.1);
+//					else if(horAngle>10)
+//						Robot.driveTrain.setLeftSpeed(.4);
+//					else
+//						Robot.driveTrain.setLeftSpeed(.7);
+//				}
+//			}
+//		}
+//		else
+//		{
 			if (joystickMode == ONE_JOYSTICK) {
 				driveTrain.driveJoystick(joystick.getZ(), joystick.getY());
 			}
@@ -87,7 +89,7 @@ public class Drive extends Command {
 				driveTrain.driveDualJoystick(joystick.getY(), altJoystick.getY());
 			}
 			// Log.init("DRIVING");
-		}
+//		}
 		
 	}
 

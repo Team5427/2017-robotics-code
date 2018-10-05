@@ -12,15 +12,15 @@ import org.usfirst.frc.team5427.robot.Robot;
  * @author Blake Romero
  *
  */
-public class PullRope extends Command {
+public class ClimbDown extends Command {
 
 	// Holds the speed of the motors used to pull the rope into the robot.
 	private double pullSpeed;
 
-	public PullRope() {
+	public ClimbDown() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.ropeClimb);
-
+		pullSpeed = -Config.CLIMB_SPEED;
 	}
 
 	/**
@@ -28,8 +28,6 @@ public class PullRope extends Command {
 	 * configuration file.
 	 */
 	protected void initialize() {
-		Log.init("Initialized Pull");
-		pullSpeed = Config.PULL_SPEED;
 		Robot.ropeClimb.setPullSpeed(pullSpeed);
 	}
 
@@ -40,10 +38,7 @@ public class PullRope extends Command {
 
 	//returns true if the button in config is released
 	protected boolean isFinished() {
-		if (!Robot.oi.getJoy().getRawButton(Config.PULL_BUTTON))
-			return true;
-		else
-			return false;
+		return (!Robot.oi.getJoy().getRawButton(Config.CLIMB_UP_BUTTON));
 	}
 
 	//stops pulling on the rope

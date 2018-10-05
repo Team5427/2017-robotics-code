@@ -116,7 +116,7 @@ public class Config {
 	public static final double SHOOTER_MOTOR_SPEED = 1;
 	public static final double AGITATOR_SPEED = -1;
 	public static final double AGITATOR_SPEED_BACKWARDS = 1;
-	public static final double PULL_SPEED = -1; 
+	public static final double CLIMB_SPEED = -1; 
  
 	/* ----------Controller Ports---------- */
 	// Joystick
@@ -199,25 +199,21 @@ public class Config {
 	public static final double DEGREE_THRESHOLD = 3.0;
 	
 	/*---------------Buttons------------------- */
-	public static final int SHOOT_BUTTON 					= 1;
-	public static final int SPIN_BUTTON 					= 2;
-	public static final int FLAP_CLOSE 						= 3;
-	public static final int SWITCH_CAMERAS_BUTTON 			= 3;
-	public static final int START_INTAKE_BUTTON 			= 4;
-	public static final int FLAP_OPEN 						= 5;
-	public static final int CHANGE_INTAKE_DIRECTION_BUTTON 	= 6;
-	public static final int SPIN_OUT_BUTTON			 		= 7;
-	public static final int PULL_BUTTON 					= 8;
-	public static final int GATE_SWITCH 					= 9;
-	public static final int AUTO_ADJUST_BUTTON 				= 13;
+	public static final int SHOOT_BUTTON = 1;
+	public static final int INTAKE_OUT_BUTTON = 7;
+	public static final int INTAKE_IN_BUTTON = 2;
+	public static final int CLIMB_DOWN_BUTTON = 3;
+	public static final int CLIMB_UP_BUTTON = 5;
+	public static final int SERVO_SWITCH_BUTTON = 9;
+	public static final int AUTO_ADJUST_BUTTON = 10;
 
 	/*------------Mulipurpose Flap Vars------*/
-	public static enum stage 	{OPEN,CLOSE};
-	public static stage FLAP_START_STAGE=stage.CLOSE;
-	public static final long retractedToIntake = 1;
-	public static final long intakeToGear = (long) .5;
-	public static final long gearToRetracted = 1;
-	public static final double FLAP_SPEED = .05;
+//	public static enum stage 	{OPEN,CLOSE};
+//	public static stage FLAP_START_STAGE=stage.CLOSE;
+//	public static final long retractedToIntake = 1;
+//	public static final long intakeToGear = (long) .5;
+//	public static final long gearToRetracted = 1;
+//	public static final double FLAP_SPEED = .05;
 	
 	/* Servo Motors */
 	public static final int GATE_CLOSED = 1;

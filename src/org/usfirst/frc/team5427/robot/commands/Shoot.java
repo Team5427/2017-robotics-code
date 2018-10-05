@@ -6,7 +6,7 @@ import org.usfirst.frc.team5427.robot.util.Log;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShooterStart extends Command {
+public class Shoot extends Command {
 
 	//speed of the shooter
 	private double shootSpeed;
@@ -15,7 +15,7 @@ public class ShooterStart extends Command {
 	 * sets the speed of the launching mechanism to the speed defined in the
 	 * configuration file.
 	 */
-	public ShooterStart(double shootSpeed) {
+	public Shoot(double shootSpeed) {
 		// Use requires() here to declare subsystem dependencies
 		this.shootSpeed=shootSpeed;
 		requires(Robot.launcher);
@@ -27,7 +27,6 @@ public class ShooterStart extends Command {
 	 * configuration file.
 	 */
 	protected void initialize() {
-		Log.init("initialized Shoot");
 		Robot.launcher.setShootSpeed(shootSpeed);
 	}
 
@@ -38,10 +37,7 @@ public class ShooterStart extends Command {
 
 	//returns true when the shoot button is released
 	protected boolean isFinished() {
-		if (!Robot.oi.getJoy().getRawButton(Config.SHOOT_BUTTON))
-			return true;
-		else
-			return false;
+		return (!Robot.oi.getJoy().getRawButton(Config.SHOOT_BUTTON));
 	}
 
 	// Called once after isFinished returns true

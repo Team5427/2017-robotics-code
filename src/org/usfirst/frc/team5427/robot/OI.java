@@ -5,21 +5,13 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-//import org.usfirst.frc.team5427.robot.commands.AgitatorBack;
-import org.usfirst.frc.team5427.robot.commands.AgitatorStart;
-import org.usfirst.frc.team5427.robot.commands.AgiBack;
-//import org.usfirst.frc.team5427.robot.commands.ChangeCameras
-//import org.usfirst.frc.team5427.robot.commands.ChangeCamera;
-import org.usfirst.frc.team5427.robot.commands.ChangeDirections;
+import org.usfirst.frc.team5427.robot.commands.ClimbDown;
 import org.usfirst.frc.team5427.robot.commands.MoveServo;
-import org.usfirst.frc.team5427.robot.commands.PullRope;
-import org.usfirst.frc.team5427.robot.commands.SetFlapStage;
-//import org.usfirst.frc.team5427.robot.commands.SetFlapStage;
-import org.usfirst.frc.team5427.robot.commands.SetIntakeSpeed;
-import org.usfirst.frc.team5427.robot.commands.ShooterStart;
+import org.usfirst.frc.team5427.robot.commands.ClimbUp;
+import org.usfirst.frc.team5427.robot.commands.IntakeIn;
+import org.usfirst.frc.team5427.robot.commands.IntakeOut;
+import org.usfirst.frc.team5427.robot.commands.Shoot;
 import org.usfirst.frc.team5427.robot.subsystems.Agitator;
-//import org.usfirst.frc.team5427.robot.commands.SwitchCameras;
 import org.usfirst.frc.team5427.robot.util.Config;
 
 /**
@@ -64,38 +56,12 @@ public class OI {
 	 */
 	public Joystick altJoy = new Joystick(Config.ALT_JOYSTICK_PORT);
 
-	// Buttons
-	/**
-	 * Switches the camera view
-	 */
-	//public Button switchCameras = new JoystickButton(joy, Config.SWITCH_CAMERAS_BUTTON);
-	/**
-	 * Changes the direction of the intake
-	 */
-	//public Button changeIntakeDirection = new JoystickButton(joy, Config.CHANGE_INTAKE_DIRECTION_BUTTON);
-	/**
-	 * Starts the intake
-	 */
-	//public Button startIntake = new JoystickButton(joy, Config.START_INTAKE_BUTTON);
-	/**
-	 * Button to shoot the balls
-	 */
 	public Button shooter = new JoystickButton(joy, Config.SHOOT_BUTTON);
-	/**
-	 * Commands for moveable flap
-	 */
-	public Button flapOpen = new JoystickButton(joy, Config.FLAP_OPEN);
-	//public Button flapClose = new JoystickButton(joy, Config.FLAP_ClOSE);
-//	public Button flapClose = new JoystickButton(joy, Config.FLAP_CLOSE);
-	public SetIntakeSpeed si;
-
-	/**button for rope climb*/
-	public Button pull = new JoystickButton(joy, Config.PULL_BUTTON);
-	/**button for agitator climb*/
-	public Button spin = new JoystickButton(joy, Config.SPIN_BUTTON);
-	public Button spinBack = new JoystickButton(joy, Config.SPIN_OUT_BUTTON);
-	
-	public Button moveServo = new JoystickButton(joy, Config.GATE_SWITCH);
+	public Button intakeIn = new JoystickButton(joy,Config.INTAKE_IN_BUTTON);
+	public Button intakeOut = new JoystickButton(joy,Config.INTAKE_OUT_BUTTON);
+	public Button climbUp = new JoystickButton(joy, Config.CLIMB_UP_BUTTON);
+	public Button climbDown = new JoystickButton(joy, Config.CLIMB_DOWN_BUTTON);
+	public Button moveServo = new JoystickButton(joy, Config.SERVO_SWITCH_BUTTON);
 	
 	SendableChooser<Integer> autoChooser= new SendableChooser<Integer>();
 	
@@ -103,18 +69,12 @@ public class OI {
 	 * Constructor for the OI class, defines the button-press events.
 	 */
 	public OI() {
-		shooter.whileHeld(new ShooterStart(Config.SHOOTER_MOTOR_SPEED));
-
-		//startIntake.toggleWhenPressed(new SetIntakeSpeed(Config.INTAKE_MOTOR_SPEED));
-		//changeIntakeDirection.toggleWhenPressed(new ChangeDirections());
-		pull.whenPressed(new PullRope());
-		spin.whileHeld(new AgitatorStart(Config.AGITATOR_SPEED));
-		spinBack.whileHeld(new AgiBack(Config.AGITATOR_SPEED_BACKWARDS));
-		flapOpen.whenPressed(new SetFlapStage(Config.stage.OPEN));
+		shooter.whileHeld(new Shoot(Config.SHOOTER_MOTOR_SPEED));
+		intakeIn.whileHeld(new IntakeIn());
+		intakeOut.whileHeld(new IntakeOut());
+		climbUp.whileHeld(new ClimbUp());
+		climbDown.whileHeld(new ClimbDown());
 		moveServo.whenPressed(new MoveServo());
-		//flapClose.whenPressed(new SetFlapStage(Config.stage.CLOSE));
-
-		
 		autoChooser.addDefault("              ",	Config.AUTO_NONE);
 		autoChooser.addObject("BlueAutoDriveLeft  ", Config.BLUE_AUTO_LEFT);
 		autoChooser.addObject("BlueAutoDriveMiddle", Config.BLUE_AUTO_MIDDLE);
