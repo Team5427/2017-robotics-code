@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.hal.HAL;
+//import edu.wpi.first.wpilibj.hal.HAL;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.hal.FRCNetComm.tInstances;
-import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType;
+//import edu.wpi.first.wpilibj.hal.FRCNetComm.tInstances;
+//import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType;
 
 /**
  * This Subsystem will be responsible for managing all four SIM motors that are
@@ -23,14 +23,15 @@ import edu.wpi.first.wpilibj.hal.FRCNetComm.tResourceType;
  * 
  * @author Andrew Kennedy, Bo Corman
  */
-public class DriveTrain extends Subsystem {
-
+public class DriveTrain extends Subsystem
+{
+	
 	SpeedController motorPWM_FrontLeft;
 	SpeedController motorPWM_RearLeft;
 	SpeedController motorPWM_FrontRight;
 	SpeedController MOTOR_PWM_BackRight;
 	protected static boolean kArcadeRatioCurve_Reported = false;
-
+	
 	/**
 	 * Drive Train Constructor - Uses the speed controllers to initialize the
 	 * speed controllers used in the subsystem.
@@ -48,111 +49,130 @@ public class DriveTrain extends Subsystem {
 	public static final double kDefaultMaxOutput = 1.0;
 	protected double m_sensitivity;
 	protected double m_maxOutput;
-
+	
 	public DriveTrain(SpeedController motorPWM_FrontLeft, SpeedController motorPWM_RearLeft,
-			SpeedController motorPWM_FrontRight, SpeedController motorPWM_BackRight) {
+			SpeedController motorPWM_FrontRight, SpeedController motorPWM_BackRight)
+	{
 		this.motorPWM_FrontLeft = motorPWM_FrontLeft;
 		this.motorPWM_RearLeft = motorPWM_RearLeft;
 		this.motorPWM_FrontRight = motorPWM_FrontRight;
 		this.MOTOR_PWM_BackRight = motorPWM_BackRight;
-
+		
 		m_sensitivity = kDefaultSensitivity;
 		m_maxOutput = kDefaultMaxOutput;
 		// boolean m_allocatedSpeedControllers = true;
 	}
-//	RobotDrive robotDrive41 = new RobotDrive(0, 0);
+	// RobotDrive robotDrive41 = new RobotDrive(0, 0);
 	
-
-	public void driveWPI(double outputMagnitude, double curve) {
+	public void driveWPI(double outputMagnitude, double curve)
+	{
 		final double leftOutput;
 		final double rightOutput;
-
-		if (!kArcadeRatioCurve_Reported) {
-			HAL.report(tResourceType.kResourceType_RobotDrive, getNumMotors(), tInstances.kRobotDrive_ArcadeRatioCurve);
+		
+		if (!kArcadeRatioCurve_Reported)
+		{
+			// HAL.report(tResourceType.kResourceType_RobotDrive,
+			// getNumMotors(), tInstances.kRobotDrive_ArcadeRatioCurve);
 			kArcadeRatioCurve_Reported = true;
 		}
-		if (curve < 0) {
+		if (curve < 0)
+		{
 			double value = Math.log(-curve);
 			double ratio = (value - m_sensitivity) / (value + m_sensitivity);
-			if (ratio == 0) {
+			if (ratio == 0)
+			{
 				ratio = .0000000001;
 			}
 			leftOutput = outputMagnitude / ratio;
 			rightOutput = outputMagnitude;
-		} else if (curve > 0) {
+		}
+		else if (curve > 0)
+		{
 			double value = Math.log(curve);
 			double ratio = (value - m_sensitivity) / (value + m_sensitivity);
-			if (ratio == 0) {
+			if (ratio == 0)
+			{
 				ratio = .0000000001;
 			}
 			leftOutput = outputMagnitude;
 			rightOutput = outputMagnitude / ratio;
-		} else {
+		}
+		else
+		{
 			leftOutput = outputMagnitude;
 			rightOutput = outputMagnitude;
 		}
 		setLeftRightMotorOutputs(leftOutput, rightOutput);
 	}
-
-	protected int getNumMotors() {
+	
+	protected int getNumMotors()
+	{
 		return 4;
 	}
-
-	public void setLeftRightMotorOutputs(double leftOutput, double rightOutput) {
+	
+	public void setLeftRightMotorOutputs(double leftOutput, double rightOutput)
+	{
 		// m_frontLeftMotor.set(limit(leftOutput) * m_maxOutput);
 		setLeftSpeed(limit(leftOutput) * m_maxOutput);
 		// m_frontRightMotor.set(-limit(rightOutput) * m_maxOutput);
 		setRightSpeed(limit(rightOutput) * m_maxOutput);
 	}
-
-	protected static double limit(double num) {
-		if (num > 1.0) {
+	
+	protected static double limit(double num)
+	{
+		if (num > 1.0)
+		{
 			return 1.0;
 		}
-		if (num < -1.0) {
+		if (num < -1.0)
+		{
 			return -1.0;
 		}
 		return num;
 	}
-
+	
 	@Override
-	protected void initDefaultCommand() {
-
+	protected void initDefaultCommand()
+	{
+		
 	}
-
+	
 	/**
 	 * Sets the speed of the left side motors on the drive train.
 	 * 
 	 * @param speed
 	 *            - The wanted speed of the left side motors.
 	 */
-	public void setLeftSpeed(double speed) {
+	public void setLeftSpeed(double speed)
+	{
 		motorPWM_FrontLeft.set(-speed * Config.DRIVE_TRAIN_MULTIPLIER);
 		motorPWM_RearLeft.set(-speed * Config.DRIVE_TRAIN_MULTIPLIER);
 		SmartDashboard.putNumber("Left Motors", speed);
 	}
-
+	
 	/**
 	 * Sets the speed of the right side motors of the drive train.
 	 * 
 	 * @param speed
 	 *            - The wanted speed of the right side motors.
 	 */
-	public void setRightSpeed(double speed) {
+	public void setRightSpeed(double speed)
+	{
 		Log.debug("Speed: " + speed);
 		motorPWM_FrontRight.set(speed * Config.DRIVE_TRAIN_MULTIPLIER);
 		MOTOR_PWM_BackRight.set(speed * Config.DRIVE_TRAIN_MULTIPLIER);
 		SmartDashboard.putNumber("Right Motors", speed);
 	}
-
+	
 	/**
 	 * Sets the speed of all drive train motors to 0.
 	 */
-	public void stop() {
+	public void stop()
+	{
 		setLeftSpeed(0);
 		setRightSpeed(0);
 	}
-
+	
 	/**
 	 * Takes the input of the joystick, and uses it to drive the robot. It
 	 * currently uses six variables: the Z axis of the joystick, the Y axis of
@@ -166,7 +186,8 @@ public class DriveTrain extends Subsystem {
 	 * @param y
 	 *            - Y axis of joystick, positive is backwards
 	 */
-	public void driveJoystick(double z, double y) {
+	public void driveJoystick(double z, double y)
+	{
 		if (Math.abs(y) <= Config.DEADSET_DIF)
 			y = 0;
 		if (Math.abs(z) <= Config.DEADSET_DIF)
@@ -196,7 +217,7 @@ public class DriveTrain extends Subsystem {
 		 */
 		Robot.driveTrain.setLeftSpeed((v - w) / 2);
 	}
-
+	
 	/**
 	 * Sets the left and right stick in accordance with the joystick inputs for
 	 * dual joysticks.
@@ -206,7 +227,8 @@ public class DriveTrain extends Subsystem {
 	 * @param y2
 	 *            - Y axis of the right joystick
 	 */
-	public void driveDualJoystick(double y, double y2) {
+	public void driveDualJoystick(double y, double y2)
+	{
 		double leftSpeed = y;
 		double rightSpeed = y2;
 		Robot.driveTrain.setLeftSpeed(leftSpeed);
